@@ -11,7 +11,7 @@
       "destination": "/adpreview-multishow/index.html"
     },
     {
-      "source": "/adpreview-multishow/(.*)",
+      "source": "/adpreview-multishow/:path*",
       "destination": "/adpreview-multishow/index.html"
     },
     {
