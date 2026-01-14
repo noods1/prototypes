@@ -18,7 +18,7 @@ import {
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#121415] flex items-center justify-center px-6 py-3 h-[60px]">
+    <nav className="fixed top-[40px] left-0 right-0 z-50 bg-[#121415] flex items-center justify-center px-6 py-3 h-[60px]">
       <div className="flex items-center justify-between w-full">
         {/* Left Section */}
         <div className="flex items-center gap-[40px]">

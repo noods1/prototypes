@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <BackToLauncher />
-      <div className="pt-10">
+      <div className="pt-[40px]">
         <CatalogList />
       </div>
     </div>

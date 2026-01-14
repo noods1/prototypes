@@ -16,7 +16,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BackToLauncher />
-      <div className="pt-10">
+      <div className="pt-[40px]">
         <Toaster />
         <Sonner />
         <BrowserRouter>
