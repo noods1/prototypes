@@ -33,6 +33,7 @@ for (const app of apps) {
     }
   } catch (error) {
     console.error(`Error building ${app}:`, error.message)
+    console.error(`⚠️  Skipping ${app} due to build error - continuing with other apps...`)
     // Continue building other apps even if one fails
     continue
   }
