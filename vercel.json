@@ -19,7 +19,7 @@
       "destination": "https://react-tailwind-app.vercel.app/:path*"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api).*)",
       "destination": "/index.html"
     }
   ]
