@@ -12,14 +12,7 @@
     },
     {
       "source": "/adpreview-multishow/:path*",
-      "destination": "/adpreview-multishow/index.html",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
-        }
-      ]
+      "destination": "/adpreview-multishow/index.html"
     },
     {
       "source": "/catalog-creation-proto",
@@ -27,21 +20,14 @@
     },
     {
       "source": "/catalog-creation-proto/:path*",
-      "destination": "/catalog-creation-proto/index.html",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
-        }
-      ]
+      "destination": "/catalog-creation-proto/index.html"
     },
     {
       "source": "/",
       "destination": "/index.html"
     },
     {
-      "source": "/((?!adpreview-multishow|catalog-creation-proto|assets).*)",
+      "source": "/((?!adpreview-multishow|catalog-creation-proto|assets|.*\\.(js|css|woff|woff2|png|jpg|jpeg|gif|svg|mp4|webp)).*)",
       "destination": "/index.html"
     }
   ],
