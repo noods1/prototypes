@@ -12,10 +12,15 @@ const ks = {
       fillLow: 'var(--color-neutral-fillLow, #e0e0e0)',
       onSurface: 'var(--color-neutral-onSurface, #000000)',
       highOnSurface: 'var(--color-neutral-highOnSurface, #333333)',
+      transparentFill: 'var(--color-neutral-transparentFill, rgba(0,0,0,0.05))',
     },
     primary: {
       fill: 'var(--color-primary-fill, #0066cc)',
     },
+  },
+  spacing: {
+    '0-5': 'var(--spacing-0-5, 2px)',
+    '2-5': 'var(--spacing-2-5, 10px)',
   },
 } as any;
 
