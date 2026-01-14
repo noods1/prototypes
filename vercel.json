@@ -11,7 +11,7 @@
       "destination": "/adpreview-multishow/index.html"
     },
     {
-      "source": "/adpreview-multishow/(.*)",
+      "source": "/adpreview-multishow/:path*",
       "destination": "/adpreview-multishow/index.html"
     },
     {
@@ -19,7 +19,7 @@
       "destination": "/catalog-creation-proto/index.html"
     },
     {
-      "source": "/catalog-creation-proto/(.*)",
+      "source": "/catalog-creation-proto/:path*",
       "destination": "/catalog-creation-proto/index.html"
     },
     {
@@ -27,12 +27,36 @@
       "destination": "/react-tailwind-app/index.html"
     },
     {
-      "source": "/react-tailwind-app/(.*)",
+      "source": "/react-tailwind-app/:path*",
       "destination": "/react-tailwind-app/index.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/adpreview-multishow/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/react-tailwind-app/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 }

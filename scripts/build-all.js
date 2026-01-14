@@ -33,6 +33,8 @@ for (const app of apps) {
     }
   } catch (error) {
     console.error(`Error building ${app}:`, error.message)
+    // Continue building other apps even if one fails
+    continue
   }
 }
 
