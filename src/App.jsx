@@ -3,25 +3,30 @@ const apps = [
     name: 'adpreview-multishow',
     displayName: 'Ad Preview Multishow',
     description: 'Ad preview application',
-    url: import.meta.env.VITE_ADPREVIEW_URL || 'https://adpreview-multishow.vercel.app'
+    path: '/adpreview-multishow'
   },
   {
     name: 'catalog-creation-proto',
     displayName: 'Catalog Creation',
     description: 'Catalog creation prototype',
-    url: import.meta.env.VITE_CATALOG_URL || 'https://catalog-creation-proto.vercel.app'
+    path: '/catalog-creation-proto'
   },
   {
     name: 'react-tailwind-app',
     displayName: 'React Tailwind App',
     description: 'React + Tailwind app',
-    url: import.meta.env.VITE_REACT_TAILWIND_URL || 'https://react-tailwind-app.vercel.app'
+    path: '/react-tailwind-app'
   }
 ]
 
 function App() {
   const handleAppClick = (app) => {
-    window.open(app.url, '_blank')
+    // Use the path structure: prototypes/app-name
+    // This assumes apps are deployed as separate Vercel projects
+    // and accessible at the base domain with the app name as path
+    const baseUrl = window.location.origin
+    const url = `${baseUrl}${app.path}`
+    window.open(url, '_blank')
   }
 
   return (
