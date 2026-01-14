@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd apps/launcher && npm install && npm run build",
+  "outputDirectory": "apps/launcher/dist",
+  "devCommand": "cd apps/launcher && npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite"
+}

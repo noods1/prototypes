@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd ../.. && npm install && cd apps/adpreview-multishow && npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "cd ../.. && npm install && cd apps/adpreview-multishow && npm run dev",
+  "installCommand": "cd ../.. && npm install",
+  "framework": "vite"
+}

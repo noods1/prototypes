@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd ../.. && npm install && cd apps/react-tailwind-app && npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "cd ../.. && npm install && cd apps/react-tailwind-app && npm run dev",
+  "installCommand": "cd ../.. && npm install",
+  "framework": "vite"
+}
