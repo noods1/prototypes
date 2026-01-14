@@ -26,11 +26,6 @@ const apps = [
 ]
 
 function App() {
-  const handleAppClick = (app) => {
-    // Navigate directly to the app
-    window.location.href = app.url
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="container mx-auto px-4 py-8">
@@ -45,10 +40,10 @@ function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {apps.map((app) => (
-            <div
+            <a
               key={app.name}
-              onClick={() => handleAppClick(app)}
-              className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border border-slate-200 hover:border-blue-400"
+              href={app.url}
+              className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border border-slate-200 hover:border-blue-400 block no-underline text-inherit"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center space-x-3">
