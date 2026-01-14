@@ -8,6 +8,7 @@ const ks = {
   color: {
     neutral: {
       surface1: 'var(--color-neutral-surface1, #ffffff)',
+      surface2: 'var(--color-neutral-surface2, #fafafa)',
       surface: 'var(--color-neutral-surface, #f5f5f5)',
       fillLow: 'var(--color-neutral-fillLow, #e0e0e0)',
       onSurface: 'var(--color-neutral-onSurface, #000000)',
@@ -18,9 +19,13 @@ const ks = {
       fill: 'var(--color-primary-fill, #0066cc)',
     },
   },
+  text: {
+    // Add text tokens structure
+  },
   spacing: {
     '0-5': 'var(--spacing-0-5, 2px)',
     '2-5': 'var(--spacing-2-5, 10px)',
+    '600': 'var(--spacing-600, 24px)',
   },
 } as any;
 
