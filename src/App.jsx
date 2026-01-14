@@ -28,25 +28,9 @@ const apps = [
 ]
 
 function App() {
-  const [selectedApp, setSelectedApp] = useState(null)
-  const [iframeError, setIframeError] = useState(false)
-
   const handleAppClick = (app) => {
-    // Open in new tab
-    window.open(app.url, '_blank')
-  }
-
-  const handleAppView = (app) => {
-    setSelectedApp(app)
-    setIframeError(false)
-  }
-
-  const handleIframeLoad = () => {
-    setIframeError(false)
-  }
-
-  const handleIframeError = () => {
-    setIframeError(true)
+    // Navigate to the app
+    window.location.href = app.url
   }
 
   if (selectedApp) {
@@ -156,7 +140,7 @@ function App() {
           {apps.map((app) => (
             <div
               key={app.name}
-              onClick={() => handleAppView(app)}
+              onClick={() => handleAppClick(app)}
               className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border border-slate-200 hover:border-blue-400"
             >
               <div className="flex items-start justify-between mb-3">
