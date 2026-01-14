@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 // Apps are built and served from the same container
 const getAppUrl = (appName) => {
   const origin = typeof window !== 'undefined' ? window.location.origin : ''
@@ -29,99 +27,8 @@ const apps = [
 
 function App() {
   const handleAppClick = (app) => {
-    // Navigate to the app
+    // Navigate directly to the app
     window.location.href = app.url
-  }
-
-  if (selectedApp) {
-    return (
-      <div className="min-h-screen bg-white">
-        <div className="border-b border-gray-200 bg-white px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setSelectedApp(null)}
-              className="text-gray-600 hover:text-gray-900 flex items-center space-x-2"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              <span>Back to Launcher</span>
-            </button>
-            <h2 className="text-lg font-semibold text-gray-800">{selectedApp.displayName}</h2>
-          </div>
-          <div className="flex items-center space-x-4">
-            <a
-              href={selectedApp.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-            >
-              Open in New Tab
-            </a>
-          </div>
-        </div>
-        <div className="relative w-full h-[calc(100vh-73px)] bg-gray-50">
-          {iframeError ? (
-            <div className="absolute inset-0 flex items-center justify-center bg-white">
-              <div className="text-center max-w-md p-8">
-                <div className="text-red-500 mb-4">
-                  <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">App Not Available</h3>
-                <p className="text-gray-600 mb-6">
-                  The app couldn't be loaded. Make sure it's deployed as a separate Vercel project.
-                </p>
-                <div className="space-y-3">
-                  <a
-                    href={selectedApp.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-                  >
-                    Try Opening in New Tab
-                  </a>
-                  <div>
-                    <button
-                      onClick={() => setSelectedApp(null)}
-                      className="text-gray-600 hover:text-gray-800 text-sm"
-                    >
-                      ← Back to Launcher
-                    </button>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-gray-50 rounded-lg text-left">
-                  <p className="text-xs text-gray-500 mb-2">Trying to load:</p>
-                  <code className="text-xs text-gray-700 break-all">{selectedApp.url}</code>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <>
-              <iframe
-                src={selectedApp.url}
-                className="w-full h-full border-0"
-                title={selectedApp.displayName}
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation allow-modals"
-                onLoad={handleIframeLoad}
-                onError={handleIframeError}
-              />
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-4 border border-gray-200 opacity-0 hover:opacity-100 transition-opacity">
-                <a
-                  href={selectedApp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium"
-                >
-                  Open in New Tab
-                </a>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -132,7 +39,7 @@ function App() {
             Prototypes Launcher
           </h1>
           <p className="text-slate-600">
-            Click on any app to view it
+            Click on any app to open it
           </p>
         </header>
 
@@ -169,7 +76,7 @@ function App() {
               </div>
               <p className="text-sm text-slate-600 mb-4">{app.description}</p>
               <div className="flex items-center text-blue-600 text-sm font-medium">
-                <span>View App</span>
+                <span>Open App</span>
                 <svg
                   className="w-4 h-4 ml-2"
                   fill="none"
