@@ -1,23 +1,35 @@
 import { useState } from 'react'
 
+// Get the current domain to construct app URLs
+const getAppUrl = (appName, envVar) => {
+  // If environment variable is set, use it (for separate Vercel deployments)
+  if (envVar) return envVar
+  
+  // Otherwise, try to construct URL based on deployment pattern
+  // For Vercel, apps deployed separately would have their own domains
+  // For now, we'll use the relative path which should work with rewrites
+  const origin = typeof window !== 'undefined' ? window.location.origin : ''
+  return `${origin}/${appName}`
+}
+
 const apps = [
   {
     name: 'adpreview-multishow',
     displayName: 'Ad Preview Multishow',
     description: 'Ad preview application',
-    url: import.meta.env.VITE_ADPREVIEW_URL || `${window.location.origin}/adpreview-multishow`
+    url: getAppUrl('adpreview-multishow', import.meta.env.VITE_ADPREVIEW_URL)
   },
   {
     name: 'catalog-creation-proto',
     displayName: 'Catalog Creation',
     description: 'Catalog creation prototype',
-    url: import.meta.env.VITE_CATALOG_URL || `${window.location.origin}/catalog-creation-proto`
+    url: getAppUrl('catalog-creation-proto', import.meta.env.VITE_CATALOG_URL)
   },
   {
     name: 'react-tailwind-app',
     displayName: 'React Tailwind App',
     description: 'React + Tailwind app',
-    url: import.meta.env.VITE_REACT_TAILWIND_URL || `${window.location.origin}/react-tailwind-app`
+    url: getAppUrl('react-tailwind-app', import.meta.env.VITE_REACT_TAILWIND_URL)
   }
 ]
 
