@@ -49,18 +49,37 @@ function App() {
             </button>
             <h2 className="text-lg font-semibold text-gray-800">{selectedApp.displayName}</h2>
           </div>
-          <button
-            onClick={() => window.open(selectedApp.url, '_blank')}
-            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-          >
-            Open in New Tab
-          </button>
+          <div className="flex items-center space-x-4">
+            <a
+              href={selectedApp.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+            >
+              Open in New Tab
+            </a>
+          </div>
         </div>
-        <iframe
-          src={selectedApp.url}
-          className="w-full h-[calc(100vh-73px)] border-0"
-          title={selectedApp.displayName}
-        />
+        <div className="relative w-full h-[calc(100vh-73px)] bg-gray-50">
+          <iframe
+            src={selectedApp.url}
+            className="w-full h-full border-0"
+            title={selectedApp.displayName}
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation allow-modals"
+            style={{ display: 'block' }}
+          />
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-4 border border-gray-200">
+            <p className="text-sm text-gray-600 mb-2">App not loading?</p>
+            <a
+              href={selectedApp.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium"
+            >
+              Open {selectedApp.displayName} in New Tab
+            </a>
+          </div>
+        </div>
       </div>
     )
   }
