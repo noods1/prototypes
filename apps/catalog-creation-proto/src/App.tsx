@@ -16,7 +16,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BackToLauncher />
-      <div className="pt-[40px]">
+      <div className="pt-[40px] min-h-screen">
         <Toaster />
         <Sonner />
         <BrowserRouter basename="/catalog-creation-proto">
