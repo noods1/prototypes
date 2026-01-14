@@ -91,7 +91,7 @@ function App() {
                   />
                 </svg>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
