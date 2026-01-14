@@ -7,15 +7,27 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/adpreview-multishow/:path*",
+      "source": "/adpreview-multishow",
       "destination": "/adpreview-multishow/index.html"
     },
     {
-      "source": "/catalog-creation-proto/:path*",
+      "source": "/adpreview-multishow/(.*)",
+      "destination": "/adpreview-multishow/index.html"
+    },
+    {
+      "source": "/catalog-creation-proto",
       "destination": "/catalog-creation-proto/index.html"
     },
     {
-      "source": "/react-tailwind-app/:path*",
+      "source": "/catalog-creation-proto/(.*)",
+      "destination": "/catalog-creation-proto/index.html"
+    },
+    {
+      "source": "/react-tailwind-app",
+      "destination": "/react-tailwind-app/index.html"
+    },
+    {
+      "source": "/react-tailwind-app/(.*)",
       "destination": "/react-tailwind-app/index.html"
     },
     {
