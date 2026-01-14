@@ -20,11 +20,23 @@ const ks = {
     },
   },
   text: {
-    // Add text tokens structure
+    titleSm: {
+      fontSize: 'var(--text-titleSm-fontSize, 14px)',
+      fontWeight: 'var(--text-titleSm-fontWeight, 600)',
+      lineHeight: 'var(--text-titleSm-lineHeight, 1.4)',
+    },
+    bodySm: {
+      fontSize: 'var(--text-bodySm-fontSize, 12px)',
+      fontWeight: 'var(--text-bodySm-fontWeight, 400)',
+      lineHeight: 'var(--text-bodySm-lineHeight, 1.5)',
+    },
   },
   spacing: {
     '0-5': 'var(--spacing-0-5, 2px)',
     '2-5': 'var(--spacing-2-5, 10px)',
+    '100': 'var(--spacing-100, 4px)',
+    '200': 'var(--spacing-200, 8px)',
+    '400': 'var(--spacing-400, 16px)',
     '600': 'var(--spacing-600, 24px)',
   },
 } as any;
