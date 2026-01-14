@@ -1,9 +1,10 @@
+import { useState } from 'react'
+
 const apps = [
   {
     name: 'adpreview-multishow',
     displayName: 'Ad Preview Multishow',
     description: 'Ad preview application',
-    // Use environment variable or construct URL based on deployment
     url: import.meta.env.VITE_ADPREVIEW_URL || `${window.location.origin}/adpreview-multishow`
   },
   {
@@ -21,11 +22,47 @@ const apps = [
 ]
 
 function App() {
+  const [selectedApp, setSelectedApp] = useState(null)
+
   const handleAppClick = (app) => {
-    // Open the app URL in a new tab
-    // If apps are deployed as separate Vercel projects, use their full URLs
-    // Otherwise, try the relative path (requires Vercel rewrites/proxy)
+    // Open in new tab
     window.open(app.url, '_blank')
+  }
+
+  const handleAppView = (app) => {
+    setSelectedApp(app)
+  }
+
+  if (selectedApp) {
+    return (
+      <div className="min-h-screen bg-white">
+        <div className="border-b border-gray-200 bg-white px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setSelectedApp(null)}
+              className="text-gray-600 hover:text-gray-900 flex items-center space-x-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span>Back to Launcher</span>
+            </button>
+            <h2 className="text-lg font-semibold text-gray-800">{selectedApp.displayName}</h2>
+          </div>
+          <button
+            onClick={() => window.open(selectedApp.url, '_blank')}
+            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+          >
+            Open in New Tab
+          </button>
+        </div>
+        <iframe
+          src={selectedApp.url}
+          className="w-full h-[calc(100vh-73px)] border-0"
+          title={selectedApp.displayName}
+        />
+      </div>
+    )
   }
 
   return (
@@ -36,7 +73,7 @@ function App() {
             Prototypes Launcher
           </h1>
           <p className="text-slate-600">
-            Click on any app to open it in a new tab
+            Click on any app to view it
           </p>
         </header>
 
@@ -44,7 +81,7 @@ function App() {
           {apps.map((app) => (
             <div
               key={app.name}
-              onClick={() => handleAppClick(app)}
+              onClick={() => handleAppView(app)}
               className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border border-slate-200 hover:border-blue-400"
             >
               <div className="flex items-start justify-between mb-3">
@@ -73,7 +110,7 @@ function App() {
               </div>
               <p className="text-sm text-slate-600 mb-4">{app.description}</p>
               <div className="flex items-center text-blue-600 text-sm font-medium">
-                <span>Open App</span>
+                <span>View App</span>
                 <svg
                   className="w-4 h-4 ml-2"
                   fill="none"
@@ -84,7 +121,7 @@ function App() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    d="M9 5l7 7-7 7"
                   />
                 </svg>
               </div>
