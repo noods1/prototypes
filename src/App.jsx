@@ -26,6 +26,12 @@ const apps = [
 ]
 
 function App() {
+  const handleAppClick = (e, app) => {
+    e.preventDefault();
+    // Force a full page navigation
+    window.location.href = app.url;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="container mx-auto px-4 py-8">
@@ -43,6 +49,7 @@ function App() {
             <a
               key={app.name}
               href={app.url}
+              onClick={(e) => handleAppClick(e, app)}
               className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border border-slate-200 hover:border-blue-400 block no-underline text-inherit"
             >
               <div className="flex items-start justify-between mb-3">
