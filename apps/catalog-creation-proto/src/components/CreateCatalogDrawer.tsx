@@ -1643,14 +1643,14 @@ export const CreateCatalogDrawer: React.FC<CreateCatalogDrawerProps> = ({
     <>
       {/* Overlay - fades in with easing (non-interactive) */}
       <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ease-in-out ${
+        className={`fixed inset-0 bg-black/50 z-[90] transition-opacity duration-300 ease-in-out ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       />
       
       {/* Drawer - slides from right with easing, 944px wide */}
       <div
-        className="fixed top-0 right-0 h-screen w-[944px] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-out"
+        className="fixed top-0 right-0 h-screen w-[944px] bg-white shadow-2xl z-[90] transform transition-transform duration-300 ease-out"
         style={{
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           scrollbarGutter: 'stable'
@@ -1659,7 +1659,7 @@ export const CreateCatalogDrawer: React.FC<CreateCatalogDrawerProps> = ({
         {/* Close Button - Outside drawer on the left, slides with drawer */}
         <button
           onClick={handleClose}
-          className={`absolute top-0 -left-9 w-9 h-9 bg-[#404142] flex items-center justify-center z-50 hover:bg-[#505152] transition-all duration-300 ease-out rounded-l ${
+          className={`absolute top-0 -left-9 w-9 h-9 bg-[#404142] flex items-center justify-center z-[90] hover:bg-[#505152] transition-all duration-300 ease-out rounded-l ${
             isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
           style={{
