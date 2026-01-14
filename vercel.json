@@ -7,6 +7,18 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/adpreview-multishow/:path*",
+      "destination": "https://adpreview-multishow.vercel.app/:path*"
+    },
+    {
+      "source": "/catalog-creation-proto/:path*",
+      "destination": "https://catalog-creation-proto.vercel.app/:path*"
+    },
+    {
+      "source": "/react-tailwind-app/:path*",
+      "destination": "https://react-tailwind-app.vercel.app/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
