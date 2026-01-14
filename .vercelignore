@@ -1,2 +1,6 @@
-apps/*
-!apps/.gitkeep
+# Don't exclude apps/* - we need them during the build
+# Only exclude the built dist folders from individual apps
+apps/*/dist
+apps/*/node_modules
+apps/*/.vite
+apps/*/.DS_Store
