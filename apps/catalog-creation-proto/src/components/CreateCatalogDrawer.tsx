@@ -1650,7 +1650,7 @@ export const CreateCatalogDrawer: React.FC<CreateCatalogDrawerProps> = ({
       
       {/* Drawer - slides from right with easing, 944px wide */}
       <div
-        className="fixed top-0 right-0 h-screen w-[944px] bg-white shadow-2xl z-[90] transform transition-transform duration-300 ease-out"
+        className="fixed top-[40px] right-0 h-[calc(100vh-40px)] w-[944px] bg-white shadow-2xl z-[90] transform transition-transform duration-300 ease-out"
         style={{
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           scrollbarGutter: 'stable'
