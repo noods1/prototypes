@@ -38,4 +38,12 @@ for (const app of apps) {
   }
 }
 
+// Copy _redirects file if it exists
+const redirectsFile = join(process.cwd(), 'public', '_redirects')
+const distRedirects = join(process.cwd(), 'dist', '_redirects')
+if (existsSync(redirectsFile)) {
+  cpSync(redirectsFile, distRedirects)
+  console.log('✓ Copied _redirects file')
+}
+
 console.log('\n✓ All apps built successfully!')
