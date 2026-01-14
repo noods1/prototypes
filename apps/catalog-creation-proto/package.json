@@ -11,9 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fe-infra/keystone": "file:../Downloads/byted-web-components-main/packages/keystone-ui/core",
-    "@fe-infra/keystone-design-tokens": "file:../Downloads/byted-web-components-main/packages/keystone-design-tokens",
-    "@fe-infra/keystone-react": "file:../Downloads/byted-web-components-main/packages/keystone-ui/react",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
