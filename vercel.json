@@ -11,7 +11,7 @@
       "destination": "/adpreview-multishow/index.html"
     },
     {
-      "source": "/adpreview-multishow/:path*",
+      "source": "/adpreview-multishow/(.*)",
       "destination": "/adpreview-multishow/index.html"
     },
     {
@@ -19,7 +19,7 @@
       "destination": "/catalog-creation-proto/index.html"
     },
     {
-      "source": "/catalog-creation-proto/:path*",
+      "source": "/catalog-creation-proto/(.*)",
       "destination": "/catalog-creation-proto/index.html"
     },
     {
@@ -27,7 +27,7 @@
       "destination": "/react-tailwind-app/index.html"
     },
     {
-      "source": "/react-tailwind-app/:path*",
+      "source": "/react-tailwind-app/(.*)",
       "destination": "/react-tailwind-app/index.html"
     },
     {
@@ -35,7 +35,7 @@
       "destination": "/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!adpreview-multishow|catalog-creation-proto|react-tailwind-app).*)",
       "destination": "/index.html"
     }
   ],
