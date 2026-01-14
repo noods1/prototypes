@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import BackToLauncher from './components/BackToLauncher'
 import LeftRail from './components/LeftRail'
 import AdNameSection from './components/AdNameSection'
 import ProductDetailsCard from './components/ProductDetailsCard'
@@ -10,8 +11,9 @@ import Watermark from './components/Watermark'
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <BackToLauncher />
       <Navbar />
-      <div className="pt-[60px] flex">
+      <div className="pt-[100px] flex">
         <div className="fixed left-0 top-[60px] bottom-0 w-[250px] bg-white border-r border-gray-200 overflow-y-auto">
           <LeftRail />
         </div>

@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import BackToLauncher from "./components/BackToLauncher";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CatalogOverview from "./pages/CatalogOverview";
@@ -14,18 +15,21 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/catalog/:id/overview" element={<CatalogOverview />} />
-          <Route path="/testforray" element={<TestForRay />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-      <Analytics />
+      <BackToLauncher />
+      <div className="pt-10">
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/catalog/:id/overview" element={<CatalogOverview />} />
+            <Route path="/testforray" element={<TestForRay />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <Analytics />
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );
