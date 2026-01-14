@@ -1,0 +1,22 @@
+import React from 'react';
+import { IconBase, IconProps } from '../../IconBase';
+
+type ProtectionProps = Omit<IconProps, 'children'>;
+
+/**
+ * ProtectionIcon
+ * 
+ * Converted from ECommerce/Transaction/ProtectionIcon.js
+ * 
+ * Available sizes: 8, 12, 14, 16, 24, 32, 48, 64
+ */
+const Protection: React.FC<ProtectionProps> = ({ size = '16', ...props }) => {
+  return (
+    <IconBase size={size} viewBox="0 0 24 24" {...props}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M4.25 4.65869V14.1047C4.25 15.3807 4.93696 16.6385 6.19319 17.4163L12 21.0115L17.8067 17.4163C19.0629 16.6385 19.7499 15.3807 19.7499 14.1047V4.65869L12 2.91388L4.25 4.65869ZM11.6705 0.937995C11.8874 0.889158 12.1125 0.889158 12.3294 0.937995L20.5794 2.79537C21.2637 2.94944 21.7499 3.55725 21.7499 4.25873V14.1047C21.7499 16.1181 20.6655 17.9986 18.8595 19.1167L12.7896 22.8749C12.3058 23.1745 11.6941 23.1745 11.2103 22.8749L5.14036 19.1167C3.33443 17.9986 2.25 16.1181 2.25 14.1047V4.25873C2.25 3.55725 2.73618 2.94944 3.42053 2.79537L11.6705 0.937995Z" fill="currentColor" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M17.2067 7.43364C17.5972 7.82416 17.5972 8.45733 17.2067 8.84785L10.976 15.0786C10.7884 15.2662 10.5341 15.3715 10.2689 15.3715C10.0037 15.3715 9.7493 15.2662 9.56176 15.0786L6.79254 12.3094C6.40202 11.9189 6.40202 11.2857 6.79255 10.8952C7.18307 10.5047 7.81624 10.5047 8.20676 10.8952L10.2689 12.9573L15.7925 7.43364C16.183 7.04312 16.8162 7.04311 17.2067 7.43364Z" fill="currentColor" />
+    </IconBase>
+  );
+};
+
+export default Protection;

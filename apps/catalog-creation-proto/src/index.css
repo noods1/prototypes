@@ -1,0 +1,245 @@
+/* TikTok Sans Fonts */
+@font-face {
+  font-family: 'TikTok Sans Display';
+  src: url('./Fonts/TikTokSansDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TikTok Sans Display';
+  src: url('./Fonts/TikTok-Display-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TikTok Sans Text';
+  src: url('./Fonts/TikTokSansText-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TikTok Sans Text';
+  src: url('./Fonts/TikTokSansText-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Design System Tokens from Figma */
+    /* Primary Colors */
+    --ks-color-primary-surface: #ffffff;
+    --ks-color-primary-surface1: #f2fdfc;
+    --ks-color-primary-surface2: #e8fbf9;
+    --ks-color-primary-surface3: #d7f2f0;
+    --ks-color-primary-fill: #009995;
+    --ks-color-primary-fillLow: #9ee1dd;
+    --ks-color-primary-onSurface: #017976;
+    --ks-color-primary-onFill: #ffffff;
+    --ks-color-primary-onFillLow: #002c2b;
+
+    /* Neutral Colors */
+    --ks-color-neutral-surface: #ffffff;
+    --ks-color-neutral-surface1: #F8F8F9;
+    --ks-color-neutral-surface2: #F1F2F2;
+    --ks-color-neutral-surface3: #ECECED;
+    --ks-color-neutral-surface4: #D3D4D5;
+    --ks-color-neutral-surface5: #B9BBBC;
+    --ks-color-neutral-onSurface: #6D6E70;
+    --ks-color-neutral-onSurface2: #4F5052;
+    --ks-color-neutral-onSurface3: #262627;
+    --ks-color-neutral-onSurface4: #121415;
+    --ks-color-neutral-highOnSurface: #121415;
+    --ks-color-neutral-fill: #87898B;
+    --ks-color-neutral-fillLow: #D3D4D5;
+    --ks-color-neutral-fillHigh: #262627;
+    --ks-color-neutral-onFill: #ffffff;
+    --ks-color-neutral-onFillLow: #262627;
+    --ks-color-neutral-transparentFill: rgba(18, 20, 21, 0);
+
+    /* Success Colors */
+    --ks-color-success-fill: #2a9c49;
+    --ks-color-success-fillLow: #99e4a2;
+    --ks-color-success-onFill: #ffffff;
+    --ks-color-success-onFillLow: #052d0f;
+    --ks-color-success-onSurface: #057e33;
+    --ks-color-success-surface1: #effff0;
+    --ks-color-success-surface2: #e7fde8;
+    --ks-color-success-surface3: #ddf9df;
+
+    /* Warning Colors */
+    --ks-color-warning-fill: #d2a106;
+    --ks-color-warning-fillLow: #fad253;
+    --ks-color-warning-onFill: #ffffff;
+    --ks-color-warning-onFillLow: #342209;
+    --ks-color-warning-onSurface: #8d670b;
+    --ks-color-warning-surface1: #fffbec;
+    --ks-color-warning-surface2: #fdf5da;
+    --ks-color-warning-surface3: #fbebbc;
+
+    /* Error Colors */
+    --ks-color-error-fill: #ef504b;
+    --ks-color-error-fillLow: #ffc6bd;
+    --ks-color-error-onFill: #ffffff;
+    --ks-color-error-onFillLow: #4e0c0b;
+    --ks-color-error-onSurface: #ca242e;
+    --ks-color-error-surface1: #fff9f8;
+    --ks-color-error-surface2: #fff2f0;
+    --ks-color-error-surface3: #ffe7e3;
+
+    /* Support Colors */
+    --ks-color-support-surface: #ffffff;
+    --ks-color-support-surface1: #fbfaff;
+    --ks-color-support-surface2: #f5f4ff;
+    --ks-color-support-surface3: #e9ebff;
+    --ks-color-support-fill: #8078f6;
+    --ks-color-support-fillLow: #cdcfff;
+    --ks-color-support-onFill: #ffffff;
+    --ks-color-support-onFillLow: #221f4b;
+    --ks-color-support-onSurface: #665cd6;
+
+    /* Spacing */
+    --ks-spacing-0: 0px;
+    --ks-spacing-1: 4px;
+    --ks-spacing-2: 8px;
+    --ks-spacing-3: 12px;
+    --ks-spacing-4: 16px;
+    --ks-spacing-5: 20px;
+    --ks-spacing-6: 24px;
+    --ks-spacing-8: 32px;
+    --ks-spacing-9: 36px;
+    --ks-spacing-10: 40px;
+    --ks-spacing-12: 48px;
+    --ks-spacing-14: 56px;
+    --ks-spacing-16: 64px;
+    --ks-spacing-18: 72px;
+    --ks-spacing-20: 80px;
+    --ks-spacing-22: 88px;
+    --ks-spacing-24: 96px;
+    /* Legacy spacing aliases */
+    --ks-spacing-0-5: 2px;
+    --ks-spacing-100: 4px;
+    --ks-spacing-200: 8px;
+    --ks-spacing-2-5: 10px;
+    --ks-spacing-300: 12px;
+    --ks-spacing-400: 16px;
+    --ks-spacing-600: 24px;
+
+    /* Border Radius */
+    --ks-border-radius-sm: 2px;
+    --ks-border-radius-md: 4px;
+    --ks-border-radius-lg: 6px;
+    --ks-border-radius-xl: 8px;
+    --ks-border-radius-full: 9999px;
+
+    /* Tailwind Defaults */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

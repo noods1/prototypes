@@ -1,0 +1,22 @@
+import React from 'react';
+import { IconBase, IconProps } from '../../IconBase';
+
+type VideoFileProps = Omit<IconProps, 'children'>;
+
+/**
+ * VideoFileIcon
+ * 
+ * Converted from FileExtensions/LocalFiles/VideoFileIcon.js
+ * 
+ * Available sizes: 8, 12, 14, 16, 24, 32, 48, 64
+ */
+const VideoFile: React.FC<VideoFileProps> = ({ size = '16', ...props }) => {
+  return (
+    <IconBase size={size} viewBox="0 0 24 24" {...props}>
+      <path d="M23.222 0H0.778C0.348322 0 0 0.348322 0 0.778V23.222C0 23.6517 0.348322 24 0.778 24H23.222C23.6517 24 24 23.6517 24 23.222V0.778C24 0.348322 23.6517 0 23.222 0Z" fill="currentColor" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M15.9945 10.5856C16.2424 10.7293 16.4481 10.9356 16.5912 11.1839C16.7342 11.4321 16.8095 11.7136 16.8095 12.0001C16.8095 12.2866 16.7342 12.5681 16.5912 12.8164C16.4481 13.0646 16.2424 13.2709 15.9945 13.4146L9.90752 16.9286C9.65914 17.0714 9.37759 17.1465 9.09108 17.1462C8.80457 17.146 8.52315 17.0704 8.27502 16.9272C8.02689 16.7839 7.82077 16.578 7.67729 16.33C7.53381 16.082 7.45803 15.8006 7.45752 15.5141V8.48563C7.45803 8.19911 7.53381 7.91776 7.67729 7.66976C7.82077 7.42176 8.02689 7.21582 8.27502 7.07256C8.52315 6.92931 8.80457 6.85377 9.09108 6.85352C9.37759 6.85326 9.65914 6.92831 9.90752 7.07113L15.9945 10.5856ZM13.911 12.0001L9.72402 9.58263V14.4171L13.911 12.0001Z" fill="currentColor" />
+    </IconBase>
+  );
+};
+
+export default VideoFile;

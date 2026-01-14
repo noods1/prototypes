@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Play">
+<rect id="&#231;&#159;&#169;&#229;&#189;&#162;" width="48" height="48" fill="var(--fill-0, white)" fill-opacity="0.01"/>
+<g id="&#230;&#164;&#173;&#229;&#156;&#134;&#229;&#189;&#162;">
+<path d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" fill="var(--fill-0, black)" fill-opacity="0.501257"/>
+<path d="M24 2.7998C35.7084 2.7998 45.2002 12.2916 45.2002 24C45.2002 35.7084 35.7084 45.2002 24 45.2002C12.2916 45.2002 2.7998 35.7084 2.7998 24C2.7998 12.2916 12.2916 2.7998 24 2.7998Z" stroke="var(--stroke-0, white)" stroke-opacity="0.501694" stroke-width="2.4" stroke-linejoin="round"/>
+</g>
+<path id="&#232;&#183;&#175;&#229;&#190;&#132;" d="M20 24V17.0718L26 20.5359L32 24L26 27.4641L20 30.9282V24Z" fill="var(--fill-0, white)" stroke="var(--stroke-0, white)" stroke-width="4" stroke-linejoin="round"/>
+</g>
+</svg>
