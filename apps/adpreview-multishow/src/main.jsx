@@ -24,24 +24,30 @@ window.addEventListener('unhandledrejection', (event) => {
   }
 });
 
-// Wait for DOM to be ready
+// Wait for DOM to be ready and log for debugging
+console.log('main.jsx loaded, looking for root element...');
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   console.error('Root element not found!');
+  document.body.innerHTML = '<div style="padding: 20px; color: red;">Error: Root element not found!</div>';
 } else {
+  console.log('Root element found, attempting to render...');
   try {
-    ReactDOM.createRoot(rootElement).render(
+    const root = ReactDOM.createRoot(rootElement);
+    console.log('React root created, rendering App...');
+    root.render(
       <React.StrictMode>
         <App />
       </React.StrictMode>,
     );
+    console.log('App rendered successfully!');
   } catch (error) {
     console.error('Error rendering app:', error);
     rootElement.innerHTML = `
-      <div style="padding: 20px; font-family: sans-serif;">
+      <div style="padding: 20px; font-family: sans-serif; color: red;">
         <h1>Error loading app</h1>
-        <p>${error.message}</p>
-        <pre>${error.stack}</pre>
+        <p><strong>Error:</strong> ${error.message}</p>
+        <pre style="background: #f5f5f5; padding: 10px; overflow: auto;">${error.stack}</pre>
       </div>
     `;
   }
