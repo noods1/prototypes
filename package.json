@@ -14,11 +14,9 @@
     "lint": "eslint .",
     "dev:adpreview": "npm run dev --workspace=apps/adpreview-multishow",
     "dev:catalog": "npm run dev --workspace=apps/catalog-creation-proto",
-    "dev:react-tailwind": "npm run dev --workspace=apps/react-tailwind-app",
-    "dev:all": "npm-run-all --parallel dev dev:adpreview dev:catalog dev:react-tailwind",
+    "dev:all": "npm-run-all --parallel dev dev:adpreview dev:catalog",
     "build:adpreview": "npm run build --workspace=apps/adpreview-multishow",
     "build:catalog": "npm run build --workspace=apps/catalog-creation-proto",
-    "build:react-tailwind": "npm run build --workspace=apps/react-tailwind-app",
     "install:all": "npm install"
   },
   "dependencies": {
