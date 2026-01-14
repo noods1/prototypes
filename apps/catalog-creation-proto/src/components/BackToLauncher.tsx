@@ -6,7 +6,7 @@ function BackToLauncher() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] bg-blue-600 text-white px-4 py-2 h-[40px] flex items-center justify-between shadow-md">
+    <div className="fixed top-0 left-0 right-0 z-[200] bg-blue-600 text-white px-4 py-2 h-[40px] flex items-center justify-between shadow-md">
       <div className="flex items-center gap-2">
         <button
           onClick={handleBackToLauncher}
