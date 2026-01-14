@@ -17,12 +17,6 @@ const apps = [
     description: 'Catalog creation prototype',
     url: getAppUrl('catalog-creation-proto')
   },
-  {
-    name: 'react-tailwind-app',
-    displayName: 'React Tailwind App',
-    description: 'React + Tailwind app',
-    url: getAppUrl('react-tailwind-app')
-  }
 ]
 
 function App() {

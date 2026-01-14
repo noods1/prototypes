@@ -23,19 +23,11 @@
       "destination": "/catalog-creation-proto/index.html"
     },
     {
-      "source": "/react-tailwind-app",
-      "destination": "/react-tailwind-app/index.html"
-    },
-    {
-      "source": "/react-tailwind-app/(.*)",
-      "destination": "/react-tailwind-app/index.html"
-    },
-    {
       "source": "/",
       "destination": "/index.html"
     },
     {
-      "source": "/((?!adpreview-multishow|catalog-creation-proto|react-tailwind-app).*)",
+      "source": "/((?!adpreview-multishow|catalog-creation-proto).*)",
       "destination": "/index.html"
     }
   ],
@@ -49,14 +41,5 @@
         }
       ]
     },
-    {
-      "source": "/react-tailwind-app/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    }
   ]
 }

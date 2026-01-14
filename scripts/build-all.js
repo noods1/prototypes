@@ -4,8 +4,7 @@ import { join } from 'node:path'
 
 const apps = [
   'adpreview-multishow',
-  'catalog-creation-proto',
-  'react-tailwind-app'
+  'catalog-creation-proto'
 ]
 
 console.log('\nBuilding all apps...')
