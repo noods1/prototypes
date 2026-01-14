@@ -19,7 +19,7 @@ const App = () => (
       <div className="pt-[40px]">
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/catalog-creation-proto">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/catalog/:id/overview" element={<CatalogOverview />} />
