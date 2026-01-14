@@ -14,7 +14,7 @@ function App() {
       <BackToLauncher />
       <Navbar />
       <div className="pt-[100px] flex">
-        <div className="fixed left-0 top-[60px] bottom-0 w-[250px] bg-white border-r border-gray-200 overflow-y-auto">
+        <div className="fixed left-0 top-[100px] bottom-0 w-[250px] bg-white border-r border-gray-200 overflow-y-auto">
           <LeftRail />
         </div>
         <div className="flex-1 ml-[250px] bg-[#F8F8F9] relative">
