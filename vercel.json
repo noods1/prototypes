@@ -8,15 +8,15 @@
   "rewrites": [
     {
       "source": "/adpreview-multishow/:path*",
-      "destination": "https://adpreview-multishow.vercel.app/:path*"
+      "destination": "/adpreview-multishow/index.html"
     },
     {
       "source": "/catalog-creation-proto/:path*",
-      "destination": "https://catalog-creation-proto.vercel.app/:path*"
+      "destination": "/catalog-creation-proto/index.html"
     },
     {
       "source": "/react-tailwind-app/:path*",
-      "destination": "https://react-tailwind-app.vercel.app/:path*"
+      "destination": "/react-tailwind-app/index.html"
     },
     {
       "source": "/((?!api).*)",
