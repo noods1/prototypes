@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/build-all.js || true",
+    "build": "vite build && node scripts/build-all.js",
     "build:launcher": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
