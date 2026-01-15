@@ -1,0 +1,31 @@
+@use 'sass:list';
+@import '../ks-skeleton-tile/';
+$prefix: skeleton-avatar;
+
+$avatar-sizes: 'sm', 'md', 'lg';
+$avatar-diameters: var(--ks-spacing-600), var(--ks-spacing-800), var(--ks-spacing-1200);
+$avatar-text-variants: 'titleSm', 'titleMd', 'headlineMd';
+
+:host {
+  display: inline-flex;
+}
+
+.#{$prefix} {
+  background-color: var(--ks-color-neutral-surface3);
+
+  @each $size-key in $avatar-sizes {
+    &--#{$size-key} {
+      $size: list.nth($avatar-diameters, list.index($avatar-sizes, $size-key));
+      width: $size;
+      height: $size;
+    }
+  }
+
+  &--square {
+    border-radius: var(--ks-border-radius-md);
+  }
+
+  &--circle {
+    border-radius: var(--ks-border-radius-full);
+  }
+}

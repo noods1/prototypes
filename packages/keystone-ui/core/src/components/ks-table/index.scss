@@ -1,0 +1,303 @@
+@import '../../prestyles/index.scss';
+
+$prefix-table: ks-table;
+
+$fixedCheckboxColumnWidth: 52px;
+
+:host {
+  display: block;
+  overflow: auto !important;
+}
+
+.#{$prefix-table} {
+  position: relative;
+  width: 100%;
+  table-layout: fixed;
+  border: none;
+  border-collapse: collapse;
+
+  &-empty {
+    height: 100%;
+  }
+
+  & &__body &__empty {
+    background-color: transparent;
+  }
+
+  &__empty__wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  td {
+    vertical-align: middle;
+    border-bottom: 1px solid var(--ks-color-neutral-fillLow);
+    overflow: hidden;
+  }
+
+  &-hide-last-border {
+    tr:last-of-type td {
+      border-bottom: none;
+    }
+  }
+
+  .th-cell--fixed,
+  .td-cell--fixed {
+    z-index: 1;
+
+    &-last {
+      overflow: visible;
+
+      &--shadow::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 30px;
+        transform: translateX(100%);
+        box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.12);
+
+        @include ks-transition-in-out(200, box-shadow);
+      }
+    }
+  }
+
+  &-allSides-bordered {
+    th {
+      border-top: 1px solid var(--ks-color-neutral-surface3);
+    }
+    td:first-child,
+    th:first-child {
+      border-left: 1px solid var(--ks-color-neutral-surface3);
+    }
+    th:not(:last-child),
+    td:not(:last-child) {
+      border-right: 1px solid var(--ks-color-neutral-fillLow);
+    }
+    th:last-child,
+    td:last-child {
+      border-right: 1px solid var(--ks-color-neutral-surface3);
+    }
+  }
+
+  > thead {
+    background-color: var(--ks-color-neutral-surface1);
+    border: none;
+    border-radius: var(--ks-border-radius-md);
+    &.dragging {
+      cursor: move;
+      .th-cell {
+        user-select: none;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: 0;
+  }
+
+  td {
+    @include ks-typeface('bodySm');
+  }
+
+  .th-select {
+    position: sticky;
+    left: 0;
+    width: $fixedCheckboxColumnWidth;
+    min-width: $fixedCheckboxColumnWidth;
+    max-width: $fixedCheckboxColumnWidth;
+  }
+
+  .th-border {
+    border: none;
+    outline: 1px solid var(--ks-color-neutral-fillLow);
+  }
+  .th-cell {
+    position: relative;
+    text-align: left;
+    align-items: center;
+    background-color: var(--ks-color-neutral-surface1);
+    &:hover {
+      background-color: var(--ks-color-neutral-surface1Hover);
+    }
+
+    @include ks-typeface('titleSm');
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: var(--ks-spacing-200);
+    }
+
+    .drag-handle {
+      cursor: move;
+      color: var(--ks-color-neutral-lowOnSurface);
+      &:hover {
+        color: var(--ks-color-neutral-lowOnSurfaceHover);
+      }
+      &:active,
+      &:focus {
+        color: var(--ks-color-neutral-lowOnSurfaceActive);
+      }
+    }
+
+    .resize-handle {
+      position: absolute;
+      top: 0;
+      right: -1px;
+      bottom: 0;
+      width: 2px;
+      z-index: 1;
+      cursor: col-resize;
+    }
+
+    &--justify {
+      &-start {
+        justify-items: start;
+        height: 100%;
+      }
+      &-center {
+        justify-items: center;
+        height: 100%;
+      }
+      &-end {
+        justify-items: end;
+        height: 100%;
+      }
+    }
+  }
+  &--md .th-cell > div {
+    padding: 0 16px;
+    min-height: 60px;
+  }
+  &--sm .th-cell > div {
+    padding: 10px 12px;
+  }
+
+  .td-cell {
+    background-color: inherit;
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+    &--justify {
+      &-start {
+        justify-content: start;
+        height: 100%;
+      }
+      &-center {
+        justify-content: center;
+        height: 100%;
+      }
+      &-end {
+        justify-content: end;
+        height: 100%;
+      }
+    }
+  }
+
+  &--md td > div {
+    padding: 8px 16px;
+    min-height: 60px;
+  }
+  &--sm td > div {
+    padding: 10px 12px;
+    min-height: 40px;
+  }
+
+  .th-sorter-container {
+    display: flex;
+    margin-inline-start: calc(var(--ks-spacing-100) * -1);
+    align-items: center;
+    gap: var(--ks-spacing-100);
+  }
+
+  .simulated-dragged-column {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: var(--ks-color-neutral-transparentFillHover);
+    box-shadow: var(--ks-elevation-shadow-level1);
+    pointer-events: none;
+    z-index: 1;
+
+    .th-cell {
+      border: 1px solid var(--ks-color-neutral-fillLow);
+      .drag-handle {
+        color: var(--ks-color-neutral-lowOnSurfaceActive);
+      }
+    }
+  }
+
+  .indicator-border {
+    border-left: 2px solid var(--ks-color-primary-fill);
+  }
+  .resize-indicator {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--ks-ref-color-primary-650);
+    pointer-events: none;
+    cursor: col-resize;
+  }
+
+  > tbody {
+    border: none;
+    tr {
+      background-color: var(--ks-color-neutral-onFill);
+
+      &:hover {
+        background-color: var(--ks-color-neutral-surfaceHover);
+      }
+      &.tr-checked {
+        background-color: var(--ks-color-primary-surface1);
+        &:hover {
+          background-color: var(--ks-color-primary-surface1Hover);
+        }
+      }
+      &.tr-disabled {
+        background-color: var(--ks-color-neutral-surface);
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+        cursor: not-allowed;
+        &:hover {
+          background-color: var(--ks-color-neutral-surface);
+        }
+      }
+    }
+
+    .tr-group {
+      color: var(--ks-color-neutral-onSurface);
+      background-color: var(--ks-color-neutral-surface1);
+
+      .group-cell {
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 10px 14px;
+      }
+    }
+  }
+
+  .checkbox-skeleton {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cell-skeleton {
+    width: 100%;
+    height: 80%;
+  }
+}

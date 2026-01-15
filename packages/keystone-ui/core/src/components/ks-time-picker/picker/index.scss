@@ -1,0 +1,31 @@
+@import '../../../prestyles/index.scss';
+$prefix-time-picker: ks-time-picker;
+
+:host {
+  width: fit-content;
+  display: block;
+}
+.#{$prefix-time-picker} {
+  cursor: pointer;
+  &--suffix {
+    display: flex;
+  }
+
+  &--content {
+    width: 200px;
+  }
+
+  [ks-input]::part(input) {
+    cursor: pointer;
+  }
+  &__icon:not(&__icon--disabled) {
+    width: 16px;
+    height: 16px;
+    color: var(--ks-color-neutral-onSurface);
+  }
+  &__icon--disabled {
+    width: 16px;
+    height: 16px;
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+  }
+}

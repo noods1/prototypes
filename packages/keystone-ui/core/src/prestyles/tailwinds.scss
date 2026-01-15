@@ -1,0 +1,35 @@
+.ks-text-bodyMd {
+  font-size: var(--ks-text-bodyMd-fontSize);
+  line-height: var(--ks-text-bodyMd-lineHeight);
+  font-weight: var(--ks-text-bodyMd-fontWeight);
+  letter-spacing: var(--ks-text-bodyMd-letterSpacing);
+  font-family: var(--ks-text-bodyMd-fontFamily);
+}
+
+@keyframes breathing-opacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// FIXME tailwind 中是否同步更新下命名 ks-breathing-opacity -> ks-skeleton
+.ks-skeleton,
+.animate-pulse {
+  background-color: var(--ks-color-neutral-surface3);
+  border-radius: var(--ks-border-radius-sm);
+  animation-name: breathing-opacity;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.455, 0, 0.55, 1);
+  animation-fill-mode: forwards; /* 让元素停留在最后一帧 */
+  animation-iteration-count: infinite;
+}
+.ks-card-section {
+  margin-bottom: var(--ks-spacing-400);
+  @include ks-typeface('titleMd');
+}

@@ -1,0 +1,64 @@
+@import '../../../../prestyles/index.scss';
+@import '../utils.scss';
+$date-comparison-panel: date-comparison-panel;
+
+.#{$date-comparison-panel} {
+  width: fit-content;
+  box-shadow: var(--ks-size__shadow-sm) var(--ks-color__shadow);
+  border-radius: $cell-radius;
+
+  .panel__header {
+    border-bottom: 1px solid var(--ks-color__divider-default);
+    background-color: var(--ks-color-primary-onFill);
+
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    box-sizing: border-box;
+    align-items: center;
+  }
+
+  [ks-date-range-panel]::part(self) {
+    box-shadow: none;
+  }
+
+  .panel__header-left {
+    flex: 1;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    column-gap: 16px;
+    line-height: initial;
+    align-items: center;
+    height: 100%;
+  }
+
+  .header__date--divider {
+    color: var(--ks-color-neutral-onSurface);
+    font-size: var(--ks-size__font-md);
+  }
+
+  .header__date--item {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: var(--ks-size__font-md);
+    color: var(--ks-color__font-default);
+    padding: 0 16px;
+    cursor: pointer;
+    height: 100%;
+  }
+
+  .header__date--item.header__date--item-active {
+    border-top: 2px solid var(--ks-color__primary__font-active);
+  }
+
+  .panel__header-right {
+    display: flex;
+    align-items: center;
+    color: var(--ks-color__font-default);
+    font-size: var(--ks-size__font-md);
+    padding: 0 16px;
+    column-gap: 8px;
+  }
+}

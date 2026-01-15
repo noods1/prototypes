@@ -1,0 +1,15 @@
+@use 'sass:list';
+@use 'sass:map';
+@import '../../../prestyles/index.scss';
+
+$prefix: skeleton-card;
+:host {
+  display: block;
+  width: fit-content;
+}
+
+.#{$prefix} {
+  display: flex;
+  background-color: var(--ks-color-neutral-surface3);
+  border-radius: var(--ks-border-radius-md);
+}

@@ -1,0 +1,23 @@
+@import '../../../../prestyles/index.scss';
+$date-range-picker: ks-date-time-range-picker;
+
+:host {
+  width: fit-content;
+  display: block;
+}
+
+[ks-picker-base]::part(wc-input) {
+  width: 250px;
+}
+
+.#{$date-range-picker} {
+  &__footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    &__btns {
+      display: flex;
+      gap: var(--ks-spacing-100);
+    }
+  }
+}

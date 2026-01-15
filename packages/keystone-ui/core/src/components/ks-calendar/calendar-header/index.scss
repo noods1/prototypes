@@ -1,0 +1,22 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: calendar-header;
+
+.#{$prefix} {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ks-spacing-400);
+  column-gap: var(--ks-spacing-400);
+
+  &__current {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    column-gap: var(--ks-spacing-300);
+  }
+
+  &__spacer {
+    flex: 1;
+  }
+}

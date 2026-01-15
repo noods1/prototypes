@@ -1,0 +1,92 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: sub-menu;
+
+:host {
+  width: 100%;
+}
+
+.#{$prefix}-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--ks-spacing-100);
+}
+
+.#{$prefix} {
+  cursor: pointer;
+
+  width: 100%;
+  min-height: 40px;
+  column-gap: var(--ks-spacing-200);
+  padding: calc(var(--ks-spacing-200) + var(--ks-spacing-50)) var(--ks-spacing-200);
+  padding-left: calc(var(--ks-comp-side-navigation-level) * var(--ks-spacing-800));
+
+  display: flex;
+  align-items: center;
+  border-radius: var(--ks-border-radius-md);
+
+  color: var(--ks-color-neutral-highOnSurface);
+  background-color: var(--ks-color-neutral-surface);
+
+  @include ks-transition-out(100, color, background-color);
+
+  &-title {
+    flex: 1;
+
+    @include ks-typeface('bodySm');
+  }
+
+  &-chevron {
+    transition: transform 200ms;
+
+    &--rotate {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:not(.#{$prefix}--disabled):hover {
+    color: var(--ks-color-neutral-highOnSurfaceHover);
+    background-color: var(--ks-color-neutral-surfaceHover);
+  }
+
+  &:not(.#{$prefix}--disabled):active {
+    color: var(--ks-color-neutral-highOnSurface);
+    background-color: var(--ks-color-neutral-surfaceActive);
+  }
+
+  &--root {
+    padding-left: var(--ks-spacing-200);
+
+    .#{$prefix}-title {
+      @include ks-typeface('titleSm');
+    }
+  }
+
+  &--active:not(.#{$prefix}--disabled) {
+    color: var(--ks-color-neutral-highOnSurface);
+    background-color: var(--ks-color-primary-surface);
+
+    &:hover {
+      color: var(--ks-color-neutral-highOnSurface);
+      background-color: var(--ks-color-primary-surface1);
+    }
+
+    &:active {
+      color: var(--ks-color-neutral-highOnSurface);
+      background-color: var(--ks-color-primary-surface2);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--ks-color-neutral-highOnSurfaceDisabled);
+    background-color: var(--ks-color-neutral-surfaceDisabled);
+  }
+}
+
+.#{$prefix}-items {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--ks-spacing-100);
+}

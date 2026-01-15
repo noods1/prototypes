@@ -1,0 +1,92 @@
+@import '../../prestyles/index.scss';
+
+$prefix-divider: divider;
+$divider-variants: 'primary', 'support', 'neutral', 'success', 'warning', 'error';
+
+:host {
+  display: block;
+}
+
+@each $variant-key in $divider-variants {
+  :host([ks-color='#{$variant-key}']) {
+    --ks-comp-color-divider-fill: var(--ks-color-#{$variant-key}-fillLow);
+  }
+}
+
+.#{$prefix-divider} {
+  margin: 0;
+  border-style: none;
+
+  &--vertical {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    border-left: 1px solid var(--ks-comp-color-divider-fill);
+  }
+
+  &--horizontal {
+    display: block;
+    width: 100%;
+    border-width: 0;
+    border-top: 1px solid var(--ks-comp-color-divider-fill);
+  }
+
+  &--dashed {
+    border-style: dashed;
+    border-color: var(--ks-comp-color-divider-fill);
+  }
+
+  &--orientation {
+    display: table;
+    margin: var(--ks-spacing-400) 0;
+    font-weight: 600;
+    white-space: nowrap;
+    border-width: 0;
+    text-align: center;
+    &.#{$prefix-divider}--dashed {
+      &::before,
+      &::after {
+        border-top-style: dashed;
+      }
+    }
+
+    &::before,
+    &::after {
+      position: relative;
+      top: 50%;
+      display: table-cell;
+      width: 50%;
+      border-top: 1px solid var(--ks-comp-color-divider-fill);
+      transform: translateY(50%);
+      content: '';
+    }
+    .#{$prefix-divider}__innertext {
+      display: inline-block;
+      padding: 0 var(--ks-spacing-600);
+
+      @include ks-typeface('titleMd');
+    }
+
+    &-left {
+      &::before {
+        top: 50%;
+        width: 5%;
+      }
+      &::after {
+        top: 50%;
+        width: 95%;
+      }
+    }
+    &-right {
+      &::before {
+        top: 50%;
+        width: 95%;
+      }
+      &::after {
+        top: 50%;
+        width: 5%;
+      }
+    }
+  }
+}

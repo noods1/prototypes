@@ -1,0 +1,50 @@
+@import '../../prestyles/index.scss';
+$prefix: input-selector;
+
+:host {
+  display: inline-block;
+}
+
+.#{$prefix} {
+  display: flex;
+  align-items: flex-start;
+  overflow: none;
+  position: relative;
+  width: 100%;
+  line-height: 1;
+  transition: all ease-in-out 0.1s;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:not(&__disabled) {
+    [ks-input]::part(content) {
+      cursor: pointer;
+    }
+
+    [ks-input]::part(input) {
+      cursor: pointer;
+    }
+  }
+
+  &__suffix {
+    display: flex;
+    flex-direction: row;
+    gap: var(--ks-spacing-200);
+
+    &[dir='ltr'] {
+      margin-right: calc(var(--ks-spacing-100) - 1px);
+    }
+    &[dir='rtl'] {
+      margin-left: calc(var(--ks-spacing-100) - 1px);
+    }
+  }
+
+  .icon {
+    transform: rotate(0); /* Initial position pointing right wards */
+    transition: transform 0.15s; /* Transition effect */
+  }
+  .icon-down {
+    transform: rotate(-180deg); /* Initial position pointing right wards */
+    transition: transform 0.15s; /* Transition effect */
+  }
+}

@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "@fe-infra/keystone-react": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.5",

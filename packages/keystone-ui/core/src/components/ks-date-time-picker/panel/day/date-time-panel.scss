@@ -1,0 +1,11 @@
+@import '../../../../prestyles/index.scss';
+// @import '../utils.scss';
+$panel-prefix: 'date-time-panel';
+
+.#{$panel-prefix} {
+  display: flex;
+  flex-direction: row;
+  [ks-time-panel]::part(self) {
+    height: 312px;
+  }
+}

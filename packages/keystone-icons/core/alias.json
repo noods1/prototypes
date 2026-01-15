@@ -1,0 +1,20 @@
+{
+  "move-one": ["move"],
+  "filter-apply": ["filter"],
+  "add-link": ["link"],
+  "block-none": ["block"],
+  "folder-minus": ["folder-subtract"],
+  "settings-config": ["config-settings"],
+  "add-item": ["add-file"],
+  "check-mark": ["check"],
+  "check-mark-small": ["check-small"],
+  "alarm": ["alarm-clock"],
+  "cart": ["shopping-cart"],
+  "analytics": ["analysis"],
+  "credit-card": ["bank-card"],
+  "bag": ["shopping-bag"],
+  "preview-open": ["preview"],
+  "feel-good": ["smile"],
+  "bell": ["remind"],
+  "applications": ["all-application"]
+}

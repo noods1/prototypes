@@ -1,0 +1,204 @@
+@import '../../prestyles/index.scss';
+
+$prefix: inline-alert;
+$info-variants: 'warning', 'error', 'info', 'success', 'primary', 'support';
+$background-variants: 'normal', 'inverse';
+$frame-gap: var(--ks-spacing-50);
+
+:host {
+  display: block;
+}
+
+@mixin generateAlertType {
+  @each $variant in $info-variants {
+    &--#{$variant} {
+      .#{$prefix}__icon {
+        padding-block-start: 1px;
+        slot[name='icon'] {
+          color: var(--ks-color-#{$variant}-fillLow);
+        }
+      }
+    }
+  }
+}
+
+@mixin generateFrameType {
+  @each $variant in $info-variants {
+    &--#{$variant}_frame-normal {
+      background: linear-gradient(
+        to right,
+        var(--ks-color-#{$variant}-fill) 0%,
+        var(--ks-color-#{$variant}-fill) 50%,
+        var(--ks-color-neutral-surface1) 50%,
+        var(--ks-color-neutral-surface1)
+      );
+    }
+    &--#{$variant}_frame-inverse {
+      background: linear-gradient(
+        to right,
+        var(--ks-color-#{$variant}-fill) 0%,
+        var(--ks-color-#{$variant}-fill) 50%,
+        var(--ks-color-neutral-surface) 50%,
+        var(--ks-color-neutral-surface)
+      );
+    }
+  }
+}
+
+.#{$prefix} {
+  border-radius: var(--ks-border-radius-md);
+  color: var(--ks-color-neutral-highOnSurface);
+  box-sizing: border-box;
+  pointer-events: auto;
+  display: flex;
+  overflow: hidden;
+  gap: var(--ks-spacing-200);
+  width: calc(100% - 2px);
+  @include generateFrameType;
+  @include generateAlertType;
+
+  &--normal {
+    margin-left: $frame-gap;
+    background-color: var(--ks-color-neutral-surface1);
+    border-top-left-radius: var(--ks-border-radius-sm) var(--ks-border-radius-md);
+    border-bottom-left-radius: var(--ks-border-radius-sm) var(--ks-border-radius-md);
+  }
+
+  &--inverse {
+    margin-left: $frame-gap;
+    background-color: var(--ks-color-neutral-surface);
+    border-top-left-radius: var(--ks-border-radius-sm) var(--ks-border-radius-md);
+    border-bottom-left-radius: var(--ks-border-radius-sm) var(--ks-border-radius-md);
+  }
+
+  &__frame {
+    border-radius: var(--ks-border-radius-md);
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ks-spacing-200);
+    [ks-link]::part(self) {
+      @include ks-typeface('labelSm');
+    }
+    &-view {
+      display: flex;
+      align-items: center;
+      gap: var(--ks-spacing-100);
+      &-rotate {
+        .chevron {
+          rotate: 180deg;
+        }
+      }
+    }
+  }
+
+  &__links-container {
+    display: flex;
+    align-items: center;
+    gap: var(--ks-spacing-200);
+  }
+  &__links-divider {
+    height: 12px;
+    width: 1px;
+    background-color: var(--ks-color-neutral-fillLow);
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    padding-block-start: 1px;
+    gap: var(--ks-spacing-200);
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ks-spacing-200);
+      &-close {
+        gap: 0;
+      }
+      &-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--ks-spacing-200);
+        overflow: hidden;
+        &-close {
+          white-space: nowrap;
+          &-multiple {
+            height: 0;
+          }
+        }
+      }
+    }
+
+    &-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-link {
+      display: inline-flex;
+      align-items: center;
+      [ks-link]::part(self) {
+        @include ks-typeface('labelSm');
+      }
+    }
+
+    &-compact {
+      gap: var(--ks-spacing-100);
+    }
+  }
+
+  &__close {
+    display: flex;
+  }
+
+  &--horizontal {
+    align-items: center;
+    padding: var(--ks-spacing-200) var(--ks-spacing-400) var(--ks-spacing-200) calc(var(--ks-spacing-400) - $frame-gap);
+    .#{$prefix}__body {
+      flex-direction: row;
+      align-items: center;
+
+      &-title {
+        @include ks-typeface('titleSm');
+      }
+
+      &-content {
+        @include ks-typeface('labelSm');
+        flex: 1;
+        white-space: nowrap;
+      }
+    }
+    .#{$prefix}__close {
+      display: flex;
+      margin-top: 1px;
+    }
+  }
+
+  &--vertical {
+    padding: var(--ks-spacing-400) var(--ks-spacing-400) var(--ks-spacing-400) calc(var(--ks-spacing-400) - $frame-gap);
+
+    .#{$prefix}__icon-title {
+      margin-top: 2px;
+    }
+
+    .#{$prefix}__body {
+      flex-direction: column;
+
+      &-title {
+        @include ks-typeface('titleSm');
+      }
+
+      &-content {
+        @include ks-typeface('labelSm');
+      }
+    }
+  }
+
+  &--compact {
+    padding: var(--ks-spacing-200);
+  }
+}

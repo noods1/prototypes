@@ -1,0 +1,50 @@
+@use 'sass:list';
+@use 'sass:map';
+@import '../../../prestyles/index.scss';
+
+$prefix: skeleton-button;
+$button-sizes: 'xs', 'sm', 'md', 'lg';
+$button-padding-x: var(--ks-spacing-50), var(--ks-spacing-200), var(--ks-spacing-400), var(--ks-spacing-600);
+$button-padding-y: var(--ks-spacing-50), var(--ks-spacing-100), var(--ks-spacing-200), var(--ks-spacing-300);
+$button-font-variants: 'labelSm', 'labelMd', 'labelLg', 'labelLg';
+
+:host {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.#{$prefix} {
+  display: inline-flex;
+  background-color: var(--ks-color-neutral-surface3);
+  min-width: 133px;
+  border-radius: var(--ks-border-radius-md);
+  @each $size-key in $button-sizes {
+    $paddingX: list.nth($button-padding-x, list.index($button-sizes, $size-key));
+    $paddingY: list.nth($button-padding-y, list.index($button-sizes, $size-key));
+    $fontVariant: list.nth($button-font-variants, list.index($button-sizes, $size-key));
+
+    &--#{$size-key} {
+      $formItemHeight: calc(var(--ks-text-#{$fontVariant}-lineHeight) + 2 * $paddingY);
+      padding: $paddingY $paddingX;
+      height: $formItemHeight;
+
+      &.#{$prefix}--cycle,
+      &.#{$prefix}--square {
+        width: $formItemHeight;
+        min-width: $formItemHeight;
+      }
+
+      &.#{$prefix}--round {
+        border-radius: calc($formItemHeight / 2);
+      }
+    }
+  }
+  &--cycle {
+    border-radius: var(--ks-border-radius-full);
+  }
+
+  &--square,
+  &--cycle {
+    padding: 0;
+  }
+}

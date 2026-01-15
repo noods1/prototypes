@@ -1,0 +1,95 @@
+@import '../../prestyles/index.scss';
+$prefix: tree-view;
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--ks-spacing-100);
+  overflow: auto;
+
+  &__node {
+    display: flex;
+    align-items: center;
+    @include ks-transition-out(100, background-color);
+    border-radius: var(--ks-border-radius-md);
+    &:not(&--disabled) {
+      &:hover {
+        background-color: var(--ks-color-neutral-surface2);
+      }
+      &:active {
+        background-color: var(--ks-color-neutral-surface2Active);
+      }
+    }
+    &-active:not(&--disabled) {
+      &:hover {
+        background-color: var(--ks-color-primary-surface2Hover);
+      }
+      &:active {
+        background-color: var(--ks-color-primary-surface2Active);
+      }
+    }
+    &[dir='rtl'] {
+      .#{$prefix}__expand-icon {
+        transform: rotate(90deg);
+      }
+      .#{$prefix}__node--expanded {
+        transform: none;
+      }
+    }
+    &-expanded:not(&--disabled) {
+      background-color: var(--ks-color-primary-surface2);
+    }
+  }
+
+  &__label {
+    display: block;
+    padding: var(--ks-spacing-200);
+    padding-left: 0;
+    height: 36px;
+    flex: 1;
+    overflow: hidden;
+
+    cursor: pointer;
+
+    .#{$prefix}--disabled & {
+      cursor: not-allowed;
+    }
+
+    &--disabled {
+      color: var(--ks-color-primary-onSurfaceDisabled);
+    }
+    &--checked {
+      color: var(--ks-color-primary-onSurface);
+    }
+    &--padded {
+      padding-left: var(--ks-spacing-200);
+    }
+  }
+
+  &__expand-icon {
+    padding: 0 var(--ks-spacing-200);
+    cursor: pointer;
+    @include ks-transition-in-out(200, transform);
+    transform: rotate(-90deg);
+    .#{$prefix}__node--disabled & {
+      cursor: not-allowed;
+      color: var(--ks-color-primary-onSurfaceDisabled);
+    }
+  }
+  &__tooltip {
+    &::part(default) {
+      width: 100%;
+    }
+  }
+  &__node--expanded {
+    transform: none;
+  }
+  &__no-expand-icon {
+    margin-left: var(--ks-spacing-500);
+  }
+}

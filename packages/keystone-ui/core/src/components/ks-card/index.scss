@@ -1,0 +1,73 @@
+@import '../../prestyles/index.scss';
+$prefix: ks-card;
+
+:host {
+  display: block;
+}
+
+$horizontalPadding: var(--ks-spacing-600);
+
+.#{$prefix} {
+  font-size: 14px;
+  line-height: 22px;
+  position: relative;
+  color: var(--ks-color-neutral-highOnSurface);
+  background: var(--ks-color-neutral-surface);
+  box-sizing: border-box;
+  border-radius: var(--ks-border-radius-xl);
+  border: 1px solid transparent;
+  .#{$prefix}__head--md {
+    padding-top: var(--ks-spacing-600);
+    padding-bottom: var(--ks-spacing-800);
+  }
+  .#{$prefix}__head--sm {
+    padding-top: var(--ks-spacing-600);
+    padding-bottom: var(--ks-spacing-400);
+  }
+
+  &__head {
+    display: flex;
+    padding: 0 $horizontalPadding;
+    .#{$prefix}__head-title {
+      flex: 1;
+      display: flex;
+      .#{$prefix}__head-optionalTitle {
+        color: var(--ks-color-neutral-lowOnSurface);
+        padding: 0 var(--ks-spacing-100);
+      }
+    }
+  }
+
+  &__viewMore {
+    @include ks-typeface('bodySm');
+    color: var(--ks-color-neutral-onSurface);
+    cursor: pointer;
+    &:hover {
+      color: var(--ks-color-neutral-onSurfaceHover);
+    }
+    &:active {
+      color: var(--ks-color-neutral-onSurfaceActive);
+    }
+    &--md {
+      margin-top: var(--ks-spacing-800);
+    }
+    &--sm {
+      margin-top: var(--ks-spacing-400);
+    }
+  }
+
+  &__body {
+    padding: 0 $horizontalPadding;
+    color: var(--ks-color-neutral-highOnSurface);
+    padding-bottom: var(--ks-spacing-600);
+    @include ks-typeface('bodySm');
+  }
+
+  &__head--md {
+    @include ks-typeface('headlineMd');
+  }
+
+  &__head--sm {
+    @include ks-typeface('headlineSm');
+  }
+}

@@ -1,0 +1,122 @@
+@import '../../prestyles/index.scss';
+$prefix: link;
+$link-variants: 'primary', 'support', 'neutral', 'neutralHigh', 'success', 'warning', 'error', 'info';
+
+:host {
+  display: inline-block;
+}
+:host([ks-display='inline']) {
+  display: inline;
+}
+
+@mixin generateVariants {
+  @each $variant in $link-variants {
+    &--#{$variant} {
+      @if $variant == 'neutralHigh' {
+        color: var(--ks-color-neutral-highOnSurface);
+
+        &.#{$prefix}--disabled {
+          color: var(--ks-color-neutral-highOnSurfaceDisabled);
+        }
+
+        &:not(&.#{$prefix}--disabled):hover {
+          color: var(--ks-color-neutral-highOnSurfaceHover);
+
+          &::after {
+            background-color: var(--ks-color-neutral-highOnSurfaceHover);
+          }
+        }
+
+        &:not(&.#{$prefix}--disabled):active {
+          color: var(--ks-color-neutral-highOnSurfaceActive);
+
+          &::after {
+            background-color: var(--ks-color-neutral-highOnSurfaceActive);
+          }
+        }
+      } @else {
+        color: var(--ks-color-#{$variant}-onSurface);
+
+        &.#{$prefix}--disabled {
+          color: var(--ks-color-#{$variant}-onSurfaceDisabled);
+        }
+
+        &:not(&.#{$prefix}--disabled):hover {
+          color: var(--ks-color-#{$variant}-onSurfaceHover);
+
+          &::after {
+            background-color: var(--ks-color-#{$variant}-onSurfaceHover);
+          }
+        }
+
+        &:not(&.#{$prefix}--disabled):active {
+          color: var(--ks-color-#{$variant}-onSurfaceActive);
+
+          &::after {
+            background-color: var(--ks-color-#{$variant}-onSurfaceActive);
+          }
+        }
+      }
+    }
+  }
+}
+
+.#{$prefix} {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+  @include ks-transition-out(100, color, text-decoration-color);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+
+  @include generateVariants;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: calc(100% - 16px);
+    height: 1px;
+    @include ks-transition-out(100, background-color, width);
+  }
+
+  &--inline {
+    display: inline;
+    align-items: unset;
+    white-space: unset;
+    &::after {
+      display: none;
+    }
+    &:not(&--disabled):hover,
+    &:not(&--disabled):active {
+      text-decoration-color: currentColor;
+    }
+  }
+
+  &--md {
+    @include ks-typeface('bodySm');
+  }
+
+  &--sm {
+    @include ks-typeface('labelSm');
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &:not(&--disabled):hover,
+  &:not(&--disabled):active {
+    &::after {
+      width: 100%;
+    }
+  }
+}

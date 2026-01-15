@@ -1,0 +1,11 @@
+@use 'sass:list';
+
+@import './vars.scss';
+@import './mixins.scss';
+@import './base.scss';
+@import './tailwinds.scss';
+
+*,
+:host {
+  box-sizing: border-box;
+}

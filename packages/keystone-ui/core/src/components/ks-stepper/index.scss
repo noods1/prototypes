@@ -1,0 +1,102 @@
+@import '../../prestyles/index.scss';
+
+$prefix: stepper;
+
+.#{$prefix} {
+  &__item {
+    color: var(--ks-color-neutral-onSurface);
+    @include ks-typeface('titleMd');
+    @include ks-transition-in-out(200, color);
+
+    &-container {
+      ::slotted(*) {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &-label {
+      height: 24px;
+    }
+
+    &--active:not(.#{$prefix}__item--disabled) {
+      .#{$prefix}__item-label,
+      .#{$prefix}__item-header {
+        color: var(--ks-color-neutral-highOnSurface);
+      }
+    }
+    &--disabled {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+  }
+
+  &--horizontal {
+    display: flex;
+
+    .#{$prefix}__item {
+      display: flex;
+      column-gap: var(--ks-spacing-200);
+      &-label {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+
+      &-content {
+        overflow: hidden;
+        max-width: 180px;
+      }
+
+      &-container {
+        max-width: 188px;
+      }
+    }
+
+    .#{$prefix}__divider {
+      width: 24px;
+      margin: auto var(--ks-spacing-300);
+    }
+  }
+
+  &--vertical {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ks-spacing-200);
+
+    .#{$prefix}__item {
+      display: flex;
+      column-gap: var(--ks-spacing-200);
+
+      &-header {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        row-gap: var(--ks-spacing-100);
+      }
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--ks-spacing-100);
+        width: 100%;
+      }
+
+      &-content {
+        height: 0;
+        overflow: hidden;
+
+        &--active {
+          height: auto;
+        }
+      }
+
+      .#{$prefix}__divider {
+        flex: 1 1 28px;
+      }
+    }
+  }
+}

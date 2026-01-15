@@ -1,0 +1,140 @@
+@use 'sass:list';
+@import '../../prestyles/index.scss';
+
+$prefix-modal: modal;
+
+$modal-sizes: 'sm', 'md', 'lg';
+$modal-widths: 480px, 600px, 840px;
+
+:host {
+  --ks-comp-color-overlay-mask: rgba(38, 38, 39, 0.5);
+}
+
+@mixin generateSize {
+  @each $size-key in $modal-sizes {
+    &--#{$size-key} {
+      width: list.nth($modal-widths, list.index($modal-sizes, $size-key));
+    }
+  }
+}
+
+.#{$prefix-modal} {
+  z-index: 1;
+  outline: none;
+
+  .divider {
+    height: 0;
+    opacity: 0;
+    @include ks-transition-in-out(150, opacity);
+    &__shown {
+      opacity: 1;
+    }
+  }
+
+  &__underlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+
+    &[visible] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__mask {
+    z-index: 1;
+    position: fixed;
+    inset-block: 0;
+    inset-inline: 0;
+    overflow: hidden;
+    background-color: var(--ks-comp-color-overlay-mask);
+  }
+
+  &__wrapper {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--ks-color-neutral-surface);
+    box-shadow: var(--ks-elevation-shadow-level3);
+    border-radius: var(--ks-border-radius-xl);
+    transform: scale(0.92);
+
+    @include generateSize;
+
+    .#{$prefix-modal}__close {
+      position: absolute;
+      right: var(--ks-spacing-400);
+      top: var(--ks-spacing-400);
+    }
+  }
+
+  &__header {
+    padding: var(--ks-spacing-500) var(--ks-spacing-600);
+    &-title {
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+      gap: var(--ks-spacing-100);
+      padding-right: var(--ks-spacing-1000);
+    }
+
+    &-title-content {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      @include ks-typeface('headlineSm');
+      color: var(--ks-color-neutral-highOnSurface);
+    }
+    &-des {
+      display: contents;
+      text-align: start;
+      @include ks-typeface('bodySm');
+      color: var(--ks-color-neutral-onSurface);
+    }
+  }
+
+  &__scroll {
+    margin: var(--ks-spacing-400) 0;
+    padding: 0 var(--ks-spacing-600);
+    max-height: calc(80vh - 200px);
+  }
+
+  &__body {
+    width: 100%;
+    @include ks-typeface('bodyMd');
+    color: var(--ks-color-neutral-highOnSurface);
+
+    &-container {
+      color: var(--ks-color-neutral-highOnSurface);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--ks-spacing-600);
+    padding: var(--ks-spacing-500) var(--ks-spacing-600);
+
+    &__btns {
+      display: flex;
+      gap: var(--ks-spacing-200);
+    }
+
+    &__other {
+      flex: 1;
+    }
+  }
+}

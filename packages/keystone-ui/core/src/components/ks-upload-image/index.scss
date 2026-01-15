@@ -1,0 +1,91 @@
+@import '../../prestyles/index.scss';
+$prefix: upload-avatar;
+
+:host {
+  display: inline-flex;
+  width: 118px;
+  height: 118px;
+}
+
+.#{$prefix} {
+  width: 118px;
+  height: 118px;
+  position: relative;
+  border-radius: var(--ks-border-radius-md);
+  border: 1px dashed var(--ks-color-neutral-fillLow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--ks-text-bodySm-fontSize);
+  background-color: var(--ks-ref-color-white);
+  cursor: pointer;
+  &.#{$prefix}--plain {
+    color: var(--ks-color-neutral-onSurface);
+  }
+  &.#{$prefix}--disabled {
+    cursor: not-allowed;
+    background-color: var(--ks-color-neutral-surface2Disabled);
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+  }
+
+  &:not(.#{$prefix}--disabled):hover {
+    background-color: var(--ks-color-neutral-surfaceHover);
+    border-color: var(--ks-color-neutral-fillLowHover);
+    &.#{$prefix}--plain {
+      color: var(--ks-color-neutral-onSurfaceHover);
+    }
+  }
+
+  &:not(.#{$prefix}--disabled):active {
+    background-color: var(--ks-color-neutral-surfaceActive);
+    border-color: var(--ks-color-neutral-fillLowActive);
+    &.#{$prefix}--plain {
+      color: var(--ks-color-neutral-onSurfaceActive);
+    }
+  }
+  &--highlight:not(.#{$prefix}--disabled) {
+    border-color: var(--ks-color-primary-fillLow);
+    background-color: var(--ks-color-primary-surface2);
+    &.#{$prefix}--plain {
+      color: var(--ks-color-neutral-onSurface);
+    }
+  }
+
+  &--error:not(.#{$prefix}--disabled) {
+    border-color: var(--ks-color-error-fill);
+    background-color: var(--ks-color-error-surface2);
+  }
+
+  &--error:not(.#{$prefix}--highlight) {
+    border-color: var(--ks-color-error-fill);
+    background-color: var(--ks-color-error-surface2);
+  }
+
+  &__picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ks-color-neutral-surface);
+    > img {
+      width: 100%;
+      height: auto;
+      &.#{$prefix}__picture--vertical {
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+
+  &--progressContainer {
+    width: 100px;
+    height: 40px;
+    margin-top: 35px;
+  }
+}

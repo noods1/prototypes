@@ -1,0 +1,167 @@
+$prefix: 'crop';
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.#{$prefix}-container {
+  position: relative;
+  user-select: none; // 防止拖动时选中文本
+  display: inline-block;
+  vertical-align: top;
+
+  &-width {
+    width: 100%;
+  }
+
+  &-height {
+    height: 100%;
+  }
+
+  &::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: var(--ks-color-neutral-overlay);
+  }
+
+  .#{$prefix}-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .#{$prefix}-source-image {
+      display: block; // 移除图片下方的额外空间
+      user-select: none;
+      pointer-events: none; // 图片本身不响应鼠标事件，事件由上层选框处理
+      &.image-upper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+      }
+      &-width {
+        width: 100%;
+        height: auto;
+      }
+      &-height {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  .#{$prefix}-selection-box {
+    position: absolute; // 由 JS 设置 top, left, width, height
+    border: 1px dashed var(--ks-color-neutral-fillLow);
+    box-sizing: border-box;
+    cursor: move;
+    z-index: 10;
+    // box-shadow: 0 0 0 9999px var(--ks-color-neutral-overlay);
+
+    .#{$prefix}-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none; // 网格线不响应鼠标事件
+      box-sizing: border-box;
+
+      .grid-line {
+        position: absolute;
+        pointer-events: none;
+
+        &.vertical-1 {
+          left: calc(100% / 3);
+          top: 0;
+          bottom: 0;
+          border-left: 0.5px dashed var(--ks-color-neutral-fillLow);
+          height: 100%;
+        }
+        &.vertical-2 {
+          left: calc(100% / 3 * 2);
+          top: 0;
+          bottom: 0;
+          border-left: 0.5px dashed var(--ks-color-neutral-fillLow);
+          height: 100%;
+        }
+        &.horizontal-1 {
+          top: calc(100% / 3);
+          left: 0;
+          right: 0;
+          border-top: 0.5px dashed var(--ks-color-neutral-fillLow);
+        }
+        &.horizontal-2 {
+          top: calc(100% / 3 * 2);
+          left: 0;
+          right: 0;
+          border-top: 0.5px dashed var(--ks-color-neutral-fillLow);
+        }
+      }
+    }
+
+    .#{$prefix}-handle {
+      position: absolute;
+      // border: 1px solid $handle-border-color; // 如果需要边框
+      box-sizing: border-box;
+
+      // 定位控制点 (使用 transform 使其中心对齐)
+      &.handle-top-left {
+        top: 0;
+        left: 0;
+        cursor: nwse-resize;
+        transform: translate(-50%, -50%);
+      }
+      &.handle-top-center {
+        top: -1px;
+        left: 50%;
+        cursor: ns-resize;
+        transform: translate(-50%, -50%);
+      }
+      &.handle-top-right {
+        top: 0;
+        right: 0;
+        cursor: nesw-resize;
+        transform: translate(50%, -50%);
+      }
+      &.handle-middle-left {
+        top: 50%;
+        left: -1px;
+        cursor: ew-resize;
+        transform: translate(-50%, -50%);
+      }
+      &.handle-middle-right {
+        top: 50%;
+        right: -1px;
+        cursor: ew-resize;
+        transform: translate(50%, -50%);
+      }
+      &.handle-bottom-left {
+        bottom: 0;
+        left: 0;
+        cursor: nesw-resize;
+        transform: translate(-50%, 50%);
+      }
+      &.handle-bottom-center {
+        bottom: -1px;
+        left: 50%;
+        cursor: ns-resize;
+        transform: translate(-50%, 50%);
+      }
+      &.handle-bottom-right {
+        bottom: 0;
+        right: 0;
+        cursor: nwse-resize;
+        transform: translate(50%, 50%);
+      }
+    }
+  }
+}

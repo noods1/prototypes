@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ks-table component: basic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link href="/build/keystone.css" rel="stylesheet" />
+    <script src="/build/keystone.esm.js" type="module"></script>
+  </head>
+  <body>
+    <ks-table></ks-table>
+    <script>
+      const dataSource = [
+        { key: '1', name: 'Ryan Hu', age: 28, address: 'No. 36, East Street, Dongcheng District' },
+        { key: '2', name: 'Daniel Wu', age: 37, address: 'No. 7, Hudi Park, Xihu District' },
+        { key: '3', name: 'JJ Lin', age: 45, address: 'No. 15, Beihuan Road, Beicheng District' },
+        { key: '4', name: 'Jay Chou', age: 39, address: 'No. 23, Nanhai Avenue, Nanshan District' },
+        {
+          key: '5',
+          name: 'Leehom Wang',
+          age: 30,
+          address: 'No. 88, Xizhimen Inner Street, Xicheng District, Xicheng District',
+        },
+        { key: '6', name: 'Aaron Kwok', age: 36, address: 'No. 50, East Street, Dongcheng District' },
+        { key: '7', name: 'Eason Chan', age: 34, address: 'No. 9, Hudi Park, Xihu District' },
+      ];
+
+      const columns = [
+        {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+        },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
+        },
+        {
+          title: 'Address',
+          dataIndex: 'address',
+          key: 'address',
+        },
+      ];
+
+      const table = document.querySelector('ks-table');
+      table.dataSource = dataSource;
+      table.columns = columns;
+    </script>
+  </body>
+</html>

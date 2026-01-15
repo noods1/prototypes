@@ -1,0 +1,219 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: calendar-month;
+
+.#{$prefix} {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+
+  &-day {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    color: var(--ks-color-neutral-highOnSurface);
+    background-color: var(--ks-color-neutral-surface);
+    @include ks-transition-out(100, color, background-color);
+
+    &__label {
+      @include ks-transition-out(100, color, background-color);
+    }
+
+    &--within {
+      color: var(--ks-color-neutral-highOnSurface);
+      background-color: var(--ks-color-primary-surface3);
+    }
+
+    &--disabled {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+      background-color: var(--ks-color-neutral-surface);
+    }
+
+    &:not(&--disabled, &--active, &--within):hover:not(:has([ks-calendar-event]:hover)) {
+      background-color: var(--ks-color-neutral-surfaceHover);
+    }
+
+    &:not(&--disabled, &--active, &--within):active:not(:has([ks-calendar-event]:hover)) {
+      background-color: var(--ks-color-neutral-surfaceActive);
+    }
+  }
+
+  &--compact {
+    grid-template-columns: repeat(7, 36px);
+
+    .#{$prefix}__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      width: 36px;
+
+      padding: 0;
+      border-bottom: none;
+      aspect-ratio: 1 / 1;
+      @include ks-typeface('labelLg');
+    }
+
+    .#{$prefix}-day {
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      width: 36px;
+
+      padding: 0;
+      border: none;
+      border-radius: var(--ks-border-radius-md);
+
+      &__label {
+        position: relative;
+        @include ks-typeface('bodySm');
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+
+      &--active {
+        color: var(--ks-color-primary-onFill);
+        background-color: var(--ks-color-primary-fill);
+
+        &:hover {
+          background-color: var(--ks-color-primary-fillHover);
+        }
+
+        &:active {
+          background-color: var(--ks-color-primary-fillActive);
+        }
+
+        &.#{$prefix}-day--start {
+          border-start-end-radius: 0;
+          border-end-end-radius: 0;
+        }
+
+        &.#{$prefix}-day--end {
+          border-start-start-radius: 0;
+          border-end-start-radius: 0;
+        }
+      }
+
+      &--within {
+        border-radius: 0;
+      }
+
+      &--today {
+        color: var(--ks-color-primary-onSurface);
+
+        .#{$prefix}-day__label::after {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 4px;
+          height: 4px;
+          margin: 0 auto;
+          border-radius: var(--ks-border-radius-full);
+          background-color: var(--ks-color-primary-onSurface);
+          transform: translateY(50%);
+        }
+
+        &.#{$prefix}-day--active {
+          color: var(--ks-color-primary-onFill);
+
+          .#{$prefix}-day__label::after {
+            background-color: var(--ks-color-primary-onFill);
+          }
+        }
+      }
+    }
+  }
+
+  &--spacious {
+    .#{$prefix}__header {
+      padding: var(--ks-spacing-200);
+      color: var(--ks-color-neutral-onSurface);
+      // border-bottom: 1px solid var(--ks-color-neutral-fillLow);
+      @include ks-typeface('titleMd');
+    }
+
+    .#{$prefix}-day {
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--ks-spacing-200);
+
+      padding: var(--ks-spacing-200);
+      border: 1px solid var(--ks-color-neutral-fillLow);
+      margin-right: -1px;
+      margin-bottom: -1px;
+      position: relative;
+      z-index: 1;
+
+      &:nth-child(7n + 1) {
+        border-inline-start: none;
+      }
+
+      &__label {
+        height: 24px;
+        width: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--ks-border-radius-md);
+        @include ks-typeface('bodyMd');
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+
+      &__events {
+        height: 92px;
+
+        [ks-calendar-event] {
+          display: inline-block;
+          width: 100%;
+        }
+      }
+
+      &--active {
+        // color: var(--ks-color-primary-onFill);
+        background-color: var(--ks-color-primary-surface3);
+        border-color: var(--ks-color-primary-fill);
+        z-index: 3;
+
+        &:hover {
+          background-color: var(--ks-ref-color-primary-900);
+        }
+
+        &:active {
+          background-color: var(--ks-color-primary-fillLow);
+        }
+      }
+
+      &--start {
+        border-inline-end-color: var(--ks-color-neutral-fillLow);
+      }
+      &--within {
+        border-top-color: var(--ks-color-primary-fill);
+        border-bottom-color: var(--ks-color-primary-fill);
+        z-index: 2;
+      }
+      &--end {
+        border-inline-start-color: var(--ks-color-neutral-fillLow);
+      }
+      &--start,
+      &--end {
+        background-color: var(--ks-color-primary-fillLow);
+        &:hover {
+          color: var(--ks-color-primary-fillHover);
+        }
+        &:active {
+          color: var(--ks-color-primary-fillActive);
+        }
+      }
+
+      &--today {
+        .#{$prefix}-day__label {
+          color: var(--ks-color-primary-onFill);
+          background-color: var(--ks-color-primary-fill);
+        }
+      }
+    }
+  }
+}

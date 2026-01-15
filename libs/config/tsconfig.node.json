@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "outDir": "dist",
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": ["node", "jest"],
+    "sourceMap": true
+  }
+}

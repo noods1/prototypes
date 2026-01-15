@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ks-avatar component: basic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link href="/build/keystone.css" rel="stylesheet" />
+    <script src="/build/keystone.esm.js" type="module"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .avatar-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+      }
+      .avatar-section h3 {
+        margin-top: 0;
+      }
+      .avatar-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .avatar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>KsAvatar Component Examples</h1>
+
+    <div class="avatar-section">
+      <h3>Basic Avatars (Sizes & Shapes)</h3>
+      <div class="avatar-container">
+        <div class="avatar-item">
+          <span>Default (md, circle)</span>
+          <ks-avatar></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Size: sm</span>
+          <ks-avatar size="sm"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Size: md</span>
+          <ks-avatar size="md"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Size: lg</span>
+          <ks-avatar size="lg"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Size: xl</span>
+          <ks-avatar size="xl"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Shape: square</span>
+          <ks-avatar shape="square"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Shape: square, size: lg</span>
+          <ks-avatar shape="square" size="lg"></ks-avatar>
+        </div>
+      </div>
+    </div>
+
+    <div class="avatar-section">
+      <h3>Avatars with Image</h3>
+      <div class="avatar-container">
+        <div class="avatar-item">
+          <span>Image</span>
+          <ks-avatar src="https://via.placeholder.com/100" alt="Placeholder Image"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Image (square, lg)</span>
+          <ks-avatar src="https://via.placeholder.com/150" alt="Large Placeholder" shape="square" size="lg"></ks-avatar>
+        </div>
+      </div>
+    </div>
+
+    <div class="avatar-section">
+      <h3>Avatars with Text Content (Initials)</h3>
+      <div class="avatar-container">
+        <div class="avatar-item">
+          <span>Initials</span>
+          <ks-avatar>JD</ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Initials (lg)</span>
+          <ks-avatar size="lg">AB</ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Initials (square)</span>
+          <ks-avatar shape="square">XY</ks-avatar>
+        </div>
+      </div>
+    </div>
+
+    <div class="avatar-section">
+      <h3>Avatars with Label</h3>
+      <div class="avatar-container">
+        <ks-avatar show-label name="John Doe" description="Software Engineer"></ks-avatar>
+        <ks-avatar
+          show-label
+          name="Jane Smith"
+          description="Product Manager"
+          src="https://via.placeholder.com/100/007bff/ffffff?Text=JS"
+          alt="Jane Smith"
+        ></ks-avatar>
+        <ks-avatar show-label name="Alex Brown" description="UX Designer" size="lg">AB</ks-avatar>
+      </div>
+    </div>
+
+    <div class="avatar-section">
+      <h3>Avatars with Badge</h3>
+      <div class="avatar-container">
+        <div class="avatar-item">
+          <span>Dot Badge (success)</span>
+          <ks-avatar show-badge type="dot" variant="success"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Dot Badge (warning, lg)</span>
+          <ks-avatar show-badge type="dot" variant="warning" size="lg"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Count Badge</span>
+          <ks-avatar show-badge type="count" count="5"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Count Badge (overflow)</span>
+          <ks-avatar show-badge type="count" count="100" overflow-count="99"></ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Image with Badge</span>
+          <ks-avatar
+            src="https://via.placeholder.com/100"
+            alt="User"
+            show-badge
+            type="dot"
+            variant="danger"
+          ></ks-avatar>
+        </div>
+      </div>
+    </div>
+
+    <div class="avatar-section">
+      <h3>Avatars with Overlap Slot</h3>
+      <div class="avatar-container">
+        <div class="avatar-item">
+          <span>Overlap Icon</span>
+          <ks-avatar>
+            <ks-icon
+              name="edit"
+              slot="overlap"
+              style="font-size: 12px; color: white; background: rgba(0, 0, 0, 0.5); border-radius: 50%; padding: 4px"
+            ></ks-icon>
+          </ks-avatar>
+        </div>
+        <div class="avatar-item">
+          <span>Image with Overlap</span>
+          <ks-avatar src="https://via.placeholder.com/100" alt="User with Edit">
+            <ks-icon
+              name="camera"
+              slot="overlap"
+              style="font-size: 16px; color: white; background: rgba(0, 0, 0, 0.6); border-radius: 50%; padding: 6px"
+            ></ks-icon>
+          </ks-avatar>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+@use 'sass:math';
+@import '../../prestyles/index.scss';
+$prefix: ks-text;
+
+:host {
+  display: inline;
+  [ks-popover] {
+    display: block;
+  }
+  word-break: break-word;
+}
+:host([ks-ellipsis]) {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+:host([ks-maxline]) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-break: break-word;
+}
+
+:host([ks-definition]) {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--ks-color-neutral-onSurface);
+  text-decoration-thickness: 6%;
+  text-underline-offset: 25%;
+  text-underline-position: from-font;
+  cursor: pointer;
+}
+:host([ks-definition][ks-variant^='headline']) {
+  text-decoration-thickness: 4%;
+}
+
+$variants: 'headlineLg', 'headlineMd', 'headlineSm', 'titleLg', 'titleMd', 'titleSm', 'bodyLg', 'bodyMd', 'bodySm',
+  'labelLg', 'labelMd', 'labelSm';
+
+@each $variant in $variants {
+  :host([ks-variant='#{$variant}']) {
+    margin: 0;
+
+    @include ks-typeface($variant);
+  }
+}
+
+$themes: 'default', 'primary', 'support', 'error', 'warning', 'success', 'info', 'neutral', 'neutralHigh', 'neutralLow';
+
+@each $theme in $themes {
+  :host([ks-theme='#{$theme}']) {
+    @if $theme == 'default' {
+    } @else if $theme == 'neutralHigh' {
+      color: var(--ks-color-neutral-highOnSurface);
+    } @else if $theme == 'neutralLow' {
+      color: var(--ks-color-neutral-lowOnSurface);
+    } @else {
+      color: var(--ks-color-#{$theme}-onSurface);
+    }
+  }
+}
+
+.tooltip-content {
+  max-width: 296px;
+  max-height: 296px;
+}

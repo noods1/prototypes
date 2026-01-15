@@ -1,0 +1,29 @@
+@import '../../../../prestyles/index.scss';
+$month-range-picker: ks-month-range-picker;
+
+[ks-picker-base]::part(wc-input) {
+  width: 250px;
+}
+
+.quickOption {
+  width: 100%;
+  padding: var(--ks-spacing-200);
+  border-radius: var(--ks-border-radius-md);
+  cursor: pointer;
+  @include ks-typeface('bodySm');
+
+  &:hover,
+  &:focus {
+    background-color: var(--ks-color-neutral-surfaceHover);
+  }
+  &:active {
+    background-color: var(--ks-color-neutral-surfaceActive);
+  }
+  &--selected {
+    color: var(--ks-color-primary-onSurface);
+  }
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--ks-color-primary-onSurfaceDisabled);
+  }
+}

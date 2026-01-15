@@ -1,0 +1,348 @@
+@import '../../prestyles/index.scss';
+@import '../ks-scrollbar/global-style.scss';
+
+$prefix: dropdown-menu;
+
+:host {
+  width: 100%;
+  display: inline-flex;
+
+  --ks-comp-dropdown-maxWidth: 400px;
+  --ks-comp-dropdown-minWidth: 120px;
+}
+.#{$prefix}__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+
+  [ks-input]::part(self) {
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  &-content {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  &:has([ks-input]) .#{$prefix} {
+    padding-top: var(--ks-spacing-50);
+  }
+  &:has([ks-tabs]) {
+    &:not(:has(.#{$prefix}__search)) {
+      padding-top: var(--ks-spacing-50);
+    }
+    .#{$prefix} {
+      padding-top: 0;
+    }
+  }
+  .#{$prefix}__search {
+    & > [ks-icon] {
+      // FIXME Super wierd design to use a disabled state color in normal placeholder
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+    &::part(content) {
+      padding: 0 var(--ks-spacing-200);
+    }
+  }
+}
+
+.load-fail-illustration {
+  background-image: url('./load-fail.svg');
+  background-size: contain;
+}
+
+.loading {
+  background-color: var(--ks-color-neutral-onFill);
+  z-index: 10;
+}
+
+.footer {
+  position: relative;
+  z-index: 11;
+  margin: var(--ks-spacing-100);
+  margin-top: var(--ks-spacing-50);
+  padding: var(--ks-spacing-300) var(--ks-spacing-200) var(--ks-spacing-200);
+  border-top: 1px solid var(--ks-color-neutral-fillLow);
+}
+
+.load-item {
+  padding: var(--ks-spacing-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  box-sizing: content-box;
+}
+
+.#{$prefix} {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden auto;
+  padding: var(--ks-spacing-100);
+  max-width: var(--ks-comp-dropdown-maxWidth);
+  min-width: var(--ks-comp-dropdown-minWidth);
+  background-color: var(--ks-color-neutral-surface);
+
+  &__popover {
+    display: inline-flex;
+    flex-grow: 1;
+    &::part(body) {
+      box-shadow: var(--ks-elevation-shadow-level3);
+    }
+  }
+
+  &__overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+
+    > *:not(.#{$prefix}__body) {
+      flex-shrink: 0;
+      min-height: 0;
+    }
+  }
+
+  //   // FIXME 最好 KsTabs 做一下 flex 适配，避免覆盖太多样式
+  &__tabs {
+    &::part(header) {
+      margin-top: var(--ks-spacing-50);
+      padding: 0 var(--ks-spacing-200);
+    }
+    &::part(divider) {
+      padding: 0 var(--ks-spacing-200);
+    }
+    &::part(item) {
+      @include ks-typeface('labelMd');
+    }
+    &::part(item-active) {
+      @include ks-typeface('labelMd');
+    }
+    &::part(content) {
+      margin-top: var(--ks-spacing-50);
+    }
+  }
+  &__body:has(&__search) .#{$prefix}__tabs::part(header) {
+    margin-top: var(--ks-spacing-100);
+  }
+
+  &__search {
+    flex-shrink: 0;
+    padding: var(--ks-spacing-100);
+    padding-bottom: 0;
+    // margin-bottom: var(--ks-spacing-50);
+
+    &::part(self) {
+      border-width: 0 0 1px;
+      border-color: var(--ks-color-neutral-fillLow);
+      border-radius: 0;
+    }
+  }
+
+  &__searchResultsTitle {
+    padding: var(--ks-spacing-200);
+  }
+
+  &__empty-or-failed {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ks-spacing-50);
+
+    &-item {
+      cursor: pointer;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--ks-spacing-200);
+      column-gap: var(--ks-spacing-200);
+      border-radius: var(--ks-border-radius-md);
+      width: 100%;
+
+      // @include ks-transition-out(100, background-color);
+
+      ks-icon-check-mark-small {
+        display: inline-flex;
+        align-items: center;
+        color: var(--ks-color-neutral-onSurface);
+      }
+
+      [ks-checkbox] {
+        flex: 1;
+      }
+
+      &--hidden {
+        display: none;
+      }
+
+      &--multiple.#{$prefix}__list-item--active {
+        --current-active-bg: var(--ks-color-neutral-surface);
+
+        background-color: var(--current-active-bg);
+        &:hover {
+          --current-active-bg: var(--ks-color-neutral-surfaceHover);
+        }
+
+        &:active {
+          --current-active-bg: var(--ks-color-neutral-surfaceActive);
+        }
+        .#{$prefix}__list-item__content {
+          &--text {
+            [data-highlight] {
+              background-color: var(--current-active-bg);
+            }
+          }
+        }
+      }
+
+      &--active:not(&--multiple, &--disabled) {
+        --current-active-bg: var(--ks-color-primary-surface2);
+
+        background-color: var(--current-active-bg);
+
+        &:hover {
+          --current-active-bg: var(--ks-color-primary-surface2Hover);
+        }
+
+        &:active {
+          --current-active-bg: var(--ks-color-primary-surface2Active);
+        }
+
+        .#{$prefix}__list-item__content {
+          &--text {
+            [data-highlight] {
+              background-color: var(--current-active-bg);
+            }
+          }
+        }
+      }
+
+      &--disabled {
+        cursor: not-allowed;
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+        ks-icon-check-mark-small {
+          color: var(--ks-color-primary-onSurfaceDisabled);
+        }
+
+        .#{$prefix}__list-item__content-text {
+          color: var(--ks-color-neutral-onSurfaceDisabled);
+          [ks-theme='default'] {
+            color: var(--ks-color-neutral-onSurfaceDisabled);
+          }
+          [data-highlight] {
+            color: var(--ks-color-neutral-fillLow);
+          }
+        }
+      }
+
+      &:not(&--disabled, &--active):hover {
+        background-color: var(--ks-color-neutral-surfaceHover);
+      }
+
+      &:not(&--disabled, &--active):active {
+        background-color: var(--ks-color-neutral-surfaceActive);
+      }
+
+      &--active.#{$prefix}__list-item--disabled:not(&--multiple) {
+        background-color: var(--ks-color-primary-surface2);
+      }
+
+      &__content {
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        column-gap: var(--ks-spacing-200);
+        flex-grow: 1;
+        @include ks-typeface('bodySm');
+
+        &-text {
+          flex: 1;
+          display: flex;
+          overflow: hidden;
+          flex-direction: column;
+          row-gap: var(--ks-spacing-50);
+          color: var(--ks-color-neutral-highOnSurface);
+          width: 100%;
+
+          // @include ks-transition-out(100, color);
+
+          [data-highlight] {
+            color: var(--ks-color-primary-onSurface);
+            background-color: var(--ks-color-primary-surface2);
+          }
+        }
+
+        &-desc {
+          color: var(--ks-color-neutral-onSurface);
+        }
+      }
+    }
+
+    &-group-title {
+      display: flex;
+      gap: var(--ks-spacing-200);
+      padding: var(--ks-spacing-200);
+      align-items: center;
+
+      &-content {
+        color: var(--ks-color-neutral-onSurface);
+        display: flex;
+        gap: var(--ks-spacing-100);
+        @include ks-typeface('labelMd');
+      }
+      &-label {
+        flex-direction: column;
+      }
+
+      &-description {
+        @include ks-typeface('labelSm');
+      }
+
+      [ks-icon] {
+        color: var(--ks-color-neutral-onSurface);
+      }
+    }
+
+    &-group-divider {
+      padding: var(--ks-spacing-100) 0;
+    }
+
+    [ks-empty-states] {
+      display: none;
+    }
+
+    &--empty [ks-empty-states] {
+      display: initial;
+    }
+  }
+
+  &__tooltip {
+    &::part(default) {
+      width: 100%;
+    }
+  }
+
+  $reach-bottom-sentinel-threshold: 4px;
+  &__reach-bottom-sentinel {
+    width: $reach-bottom-sentinel-threshold;
+    height: $reach-bottom-sentinel-threshold;
+    margin-bottom: -#{$reach-bottom-sentinel-threshold};
+    background-color: transparent;
+    pointer-events: none;
+  }
+}

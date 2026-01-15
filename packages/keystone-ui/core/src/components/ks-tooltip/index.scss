@@ -1,0 +1,153 @@
+@import '../../prestyles/index.scss';
+
+$prefix-popover: tooltip;
+:host {
+  display: contents !important;
+}
+
+// @mixin size($arrow-size) {
+//   .#{$prefix-popover}__popper {
+//     &__arrow {
+//       width: $arrow-size;
+//       height: $arrow-size;
+//       & > span {
+//         width: $arrow-size;
+//         height: $arrow-size;
+//         &::before {
+//           width: calc($arrow-size - 8px);
+//           height: calc($arrow-size - 8px);
+//         }
+//       }
+//     }
+//   }
+// }
+
+.#{$prefix-popover} {
+  display: contents !important;
+  &__popper {
+    all: initial;
+    display: block;
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    color: var(--ks-color-neutral-highOnSurface);
+    background-color: transparent;
+    inset: 0 auto auto 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+    overflow: visible;
+    box-sizing: border-box;
+
+    z-index: var(--ks-zindex__popper);
+
+    &:not(:is(:popover-open, .\:popover-open)):not(dialog[open]) {
+      display: none;
+    }
+
+    &::backdrop {
+      display: none;
+    }
+    &__win {
+      /* 注：此元素保证popper通过absolute弹出后能正常定位 */
+      width: 100vw;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &__bodywrap {
+      /* 此元素作为transform动画元素（交由animejs控制），因为popper元素transform交由popperjs控制了 */
+      position: relative;
+    }
+    &__body {
+      box-shadow: var(--ks-elevation-shadow-level2);
+      background-color: var(--ks-color-neutral-surface);
+      border-radius: var(--ks-border-radius-md);
+      overflow: hidden;
+    }
+    &__body__content {
+      padding: var(--ks-spacing-200) var(--ks-spacing-300);
+      word-wrap: break-word;
+    }
+    &__arrow {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      & > span {
+        width: 12px;
+        height: 12px;
+        display: block;
+        overflow: hidden;
+        color: var(--ks-color-neutral-surface);
+        &::before {
+          width: 8px;
+          height: 8px;
+          content: '';
+          z-index: -1;
+          transform: translateY(-50%) rotate(45deg);
+          background-color: currentcolor;
+          border-radius: 0 0 2px 0/0 0 2px 0;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    &[data-popper-placement^='top'] &__arrow {
+      top: unset !important;
+      bottom: 0 !important;
+      & > span {
+        transform: translateY(100%);
+      }
+    }
+    &[data-popper-placement^='bottom'] &__arrow {
+      top: 0 !important;
+      & > span {
+        transform: translateY(-100%) rotate(180deg);
+      }
+    }
+    &[data-popper-placement^='left'] &__arrow {
+      left: unset !important;
+      right: 0 !important;
+      & > span {
+        transform: translateX(100%) rotate(-90deg);
+      }
+    }
+    &[data-popper-placement^='right'] &__arrow {
+      left: 0 !important;
+      & > span {
+        transform: translateX(-100%) rotate(90deg);
+      }
+    }
+
+    &--highlight {
+      .#{$prefix-popover}__popper__body {
+        color: var(--ks-color-neutral-surface);
+        background-color: var(--ks-color-neutral-highOnSurface);
+      }
+      .#{$prefix-popover}__popper__arrow {
+        & > span {
+          color: var(--ks-color-neutral-highOnSurface);
+        }
+      }
+    }
+
+    @include ks-typeface('labelSm');
+
+    &--size-auto {
+      width: fit-content;
+    }
+    &--size-md {
+      max-width: 320px;
+    }
+    &--size-sm {
+      max-width: 240px;
+    }
+    &--size-lg {
+      max-width: 480px;
+    }
+  }
+  &__popcorn {
+    display: contents;
+  }
+}

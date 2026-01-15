@@ -1,0 +1,1 @@
+import{n as r,u as t,v as n}from"./p-BVbYP5UG.js";var o="[object String]";function s(s){return typeof s=="string"||!t(s)&&r(s)&&n(s)==o}export{s as i};

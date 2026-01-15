@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KsThumbnail - Basic Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link href="/build/keystone.css" rel="stylesheet" />
+    <script src="/build/keystone.esm.js" type="module"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      .section {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fff;
+      }
+      .section h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+      .thumbnail-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .thumbnail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        min-width: 100px;
+      }
+      .thumbnail-item span {
+        font-size: 0.9em;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>KsThumbnail Component Examples</h1>
+
+    <div class="section">
+      <h3>Default and Sizes</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Default (md, 1:1)</span>
+          <ks-thumbnail></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Size: xs</span>
+          <ks-thumbnail size="xs"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Size: sm</span>
+          <ks-thumbnail size="sm"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Size: md</span>
+          <ks-thumbnail size="md"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Size: lg</span>
+          <ks-thumbnail size="lg"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Size: xl</span>
+          <ks-thumbnail size="xl"></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Ratios</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Ratio: 1:1 (Default)</span>
+          <ks-thumbnail size="md" ratio="1:1"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Ratio: 2:3</span>
+          <ks-thumbnail size="md" ratio="2:3"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Ratio: 3:2</span>
+          <ks-thumbnail size="md" ratio="3:2"></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Image Source & Mode</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Image (cover)</span>
+          <ks-thumbnail image="https://via.placeholder.com/300/FFC107/000000?Text=Cover" size="lg"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Image (contain)</span>
+          <ks-thumbnail
+            image="https://via.placeholder.com/150/2196F3/FFFFFF?Text=Contain"
+            size="lg"
+            mode="contain"
+          ></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Image (cover, 2:3)</span>
+          <ks-thumbnail
+            image="https://via.placeholder.com/200x300/4CAF50/FFFFFF?Text=2:3Cover"
+            size="lg"
+            ratio="2:3"
+          ></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Playable</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Playable</span>
+          <ks-thumbnail
+            playable
+            image="https://via.placeholder.com/150/E91E63/FFFFFF?Text=Play"
+            id="playableThumb"
+          ></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Playable (disabled)</span>
+          <ks-thumbnail
+            playable
+            disabled
+            image="https://via.placeholder.com/150/9C27B0/FFFFFF?Text=PlayDisabled"
+          ></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Disabled State</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Disabled (no image)</span>
+          <ks-thumbnail disabled></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Disabled (with image)</span>
+          <ks-thumbnail disabled image="https://via.placeholder.com/150/795548/FFFFFF?Text=DisabledImg"></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Block State</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Blocked (no reason)</span>
+          <ks-thumbnail block image="https://via.placeholder.com/150/F44336/FFFFFF?Text=Blocked1"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Blocked (with reason)</span>
+          <ks-thumbnail
+            block
+            block-reason="This content is currently unavailable due to copyright restrictions."
+            image="https://via.placeholder.com/150/F44336/FFFFFF?Text=Blocked2"
+          ></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Blocked (no image, with reason)</span>
+          <ks-thumbnail block block-reason="No image and blocked."></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>With Icon Slot</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Icon Slot (md)</span>
+          <ks-thumbnail size="md">
+            <ks-icon-image slot="icon"></ks-icon-image>
+          </ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Icon Slot (xl)</span>
+          <ks-thumbnail size="xl">
+            <ks-icon-file-video slot="icon"></ks-icon-file-video>
+          </ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Icon Slot (blocked)</span>
+          <ks-thumbnail block block-reason="Icon slot not shown when blocked">
+            <ks-icon-image slot="icon"></ks-icon-image>
+          </ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Actions</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Single Action</span>
+          <ks-thumbnail image="https://via.placeholder.com/150/00BCD4/FFFFFF?Text=Action1" id="singleActionThumb">
+            <div slot="action-view">View Details</div>
+          </ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Multiple Actions</span>
+          <ks-thumbnail image="https://via.placeholder.com/150/8BC34A/000000?Text=Action2" id="multiActionThumb">
+            <div slot="action-edit">Edit</div>
+            <div slot="action-delete">Delete</div>
+            <div slot="action-share">Share</div>
+          </ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Actions (disabled)</span>
+          <ks-thumbnail
+            disabled
+            image="https://via.placeholder.com/150/CDDC39/000000?Text=ActionDisabled"
+            id="disabledActionThumb"
+          >
+            <div slot="action-edit">Edit</div>
+          </ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Is Multiple</h3>
+      <div class="thumbnail-container">
+        <div class="thumbnail-item">
+          <span>Multiple (sm) - no effect</span>
+          <ks-thumbnail is-multiple size="sm"></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Multiple (lg)</span>
+          <ks-thumbnail
+            is-multiple
+            size="lg"
+            image="https://via.placeholder.com/200/673AB7/FFFFFF?Text=MultipleLG"
+          ></ks-thumbnail>
+        </div>
+        <div class="thumbnail-item">
+          <span>Multiple (xl)</span>
+          <ks-thumbnail
+            is-multiple
+            size="xl"
+            image="https://via.placeholder.com/250/3F51B5/FFFFFF?Text=MultipleXL"
+          ></ks-thumbnail>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const playableThumb = document.getElementById('playableThumb');
+        if (playableThumb) {
+          playableThumb.addEventListener('ksPlay', (event) => {
+            console.log('ksPlay event triggered:', event.target);
+            alert('Playable thumbnail clicked!');
+          });
+        }
+
+        const singleActionThumb = document.getElementById('singleActionThumb');
+        if (singleActionThumb) {
+          // For single action, the component handles the slot directly.
+          // We need to set the actions prop programmatically.
+          singleActionThumb.actions = [{ id: 'view', render: () => document.createElement('slot-view-placeholder') }];
+          singleActionThumb.addEventListener('ksAction', (event) => {
+            console.log('ksAction (single) event triggered:', event.detail, event.target);
+            alert(`Single Action: ${event.detail}`);
+          });
+        }
+
+        const multiActionThumb = document.getElementById('multiActionThumb');
+        if (multiActionThumb) {
+          multiActionThumb.actions = [
+            { id: 'edit', render: () => document.createElement('slot-edit-placeholder') },
+            { id: 'delete', render: () => document.createElement('slot-delete-placeholder') },
+            { id: 'share', render: () => document.createElement('slot-share-placeholder') },
+          ];
+          multiActionThumb.addEventListener('ksAction', (event) => {
+            console.log('ksAction (multi) event triggered:', event.detail, event.target);
+            alert(`Multi Action: ${event.detail}`);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

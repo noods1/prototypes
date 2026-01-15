@@ -1,0 +1,268 @@
+@import '../../prestyles/index.scss';
+$prefix: input;
+
+:host {
+  display: inline-flex;
+  width: 100%;
+  margin-inline-start: var(--ks-comp-space__item-margin-inline-start, unset) !important;
+}
+
+.#{$prefix} {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  white-space: nowrap;
+  outline: none;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type='number'] {
+    -moz-appearance: textfield;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  &__wrapper {
+    width: 100%;
+    display: inline-flex;
+    box-sizing: border-box;
+    background: var(--ks-color-neutral-surface);
+    border: 1px solid var(--ks-color-neutral-fillLow);
+    border-radius: var(--ks-comp-space__item-radius, var(--ks-border-radius-md));
+    position: relative;
+    overflow: hidden;
+    @include ks-transition-out(100, border-color);
+
+    &[dir='ltr'] {
+      .#{$prefix}__prepend,
+      .#{$prefix}__suffix,
+      .#{$prefix}__count,
+      .#{$prefix}__clear {
+        margin-left: var(--ks-spacing-200);
+      }
+      .#{$prefix}__append,
+      .#{$prefix}__prefix {
+        margin-right: var(--ks-spacing-200);
+      }
+    }
+    // TODO 确认 RTL 时是否会有些奇怪
+    &[dir='rtl'] {
+      .#{$prefix}__prefix,
+      .#{$prefix}__prepend {
+        margin-left: var(--ks-spacing-200);
+      }
+      .#{$prefix}__clear,
+      .#{$prefix}__suffix,
+      .#{$prefix}__append,
+      .#{$prefix}__count {
+        margin-right: var(--ks-spacing-200);
+      }
+    }
+
+    &:not(&--disabled, &--focus):hover {
+      z-index: 1; // 消除 in KsSpace 组件时边框被遮盖问题
+      border-color: var(--ks-color-neutral-fillLowHover);
+      & .#{$prefix}__clear {
+        display: flex;
+      }
+      [ks-button] {
+        border-color: var(--ks-color-neutral-fillLowHover);
+      }
+    }
+
+    &:not(&--disabled, &--filled):active,
+    &--focus:not(&--disabled) {
+      z-index: 1; // 消除 in KsSpace 组件时边框被遮盖问题
+      border-color: var(--ks-color-primary-fill);
+      & .#{$prefix}__clear {
+        display: flex;
+      }
+    }
+
+    input:not(&--disabled)::placeholder {
+      // TODO Super wierd design to use a disabled state color in normal placeholder
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+
+    &--disabled {
+      border: 1px solid var(--ks-color-neutral-fillDisabled);
+      cursor: not-allowed;
+      box-shadow: none;
+      outline: none;
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+      background-color: var(--ks-color-neutral-surface1);
+      -webkit-text-fill-color: var(--ks-color-neutral-onSurfaceDisabled);
+      .#{$prefix} {
+        cursor: not-allowed;
+        &__prefix,
+        &__suffix {
+          color: var(--ks-color-neutral-onSurfaceDisabled);
+        }
+        &__clear {
+          color: var(--ks-color-neutral-fillDisabled);
+          cursor: not-allowed;
+        }
+        &::placeholder {
+          color: var(--ks-color-neutral-onSurfaceDisabled);
+        }
+      }
+    }
+
+    &--warning:not(&--disabled) {
+      border-color: var(--ks-color-warning-fill);
+      &:hover {
+        border-color: var(--ks-color-warning-fillHover);
+      }
+      &:focus {
+        border-color: var(--ks-color-warning-fillActive);
+      }
+    }
+    &--warning--focus:not(&--disabled) {
+      border-color: var(--ks-color-warning-fillActive);
+    }
+
+    &--error:not(&--disabled) {
+      border-color: var(--ks-color-error-fill);
+      &:hover {
+        border-color: var(--ks-color-error-fillHover);
+      }
+      &:focus {
+        border-color: var(--ks-color-error-fillActive);
+      }
+    }
+    &--error--focus:not(&--disabled) {
+      border-color: var(--ks-color-error-fillActive);
+    }
+
+    $inputSpacingMaps: (
+      md: var(--ks-spacing-200), // lg: var(--ks-spacing-300),
+    );
+    $inputHeightMaps: (
+      md: 36px,
+    );
+    @each $size-key, $value in $inputSpacingMaps {
+      &--size-#{$size-key} {
+        height: map-get($inputHeightMaps, $size-key);
+        & input {
+          @include ks-typeface('bodySm');
+          padding: $value 0;
+          box-sizing: border-box;
+        }
+
+        .#{$prefix}__count--default {
+          text-align: end;
+          color: var(--ks-color-neutral-onSurface);
+          @include ks-typeface('labelSm');
+          font-variant-numeric: lining-nums tabular-nums;
+          padding: $value 0;
+          &--error {
+            color: var(--ks-color-error-onSurface);
+          }
+        }
+      }
+    }
+
+    &--size-sm {
+      height: 24px;
+      & input {
+        @include ks-typeface('labelSm');
+        padding: var(--ks-spacing-100) 0;
+      }
+
+      .#{$prefix}__count--default {
+        text-align: end;
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+        @include ks-typeface('labelSm');
+        padding: var(--ks-spacing-100) 0;
+        &--error {
+          color: var(--ks-color-error-onSurface);
+        }
+      }
+    }
+
+    &--button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__inner {
+    flex: 1;
+    display: inline-flex;
+    box-sizing: border-box;
+    // color: var(--ks-color-neutral-onSurface);
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    padding: 0 calc(var(--ks-spacing-300) - 1px);
+    align-items: center;
+    .#{$prefix}__wrapper--size-sm & {
+      padding: 0 var(--ks-spacing-200);
+    }
+  }
+
+  &__clear {
+    display: flex;
+    align-items: center;
+    font-size: inherit;
+    position: relative;
+    color: var(--ks-color-neutral-fill);
+
+    cursor: pointer;
+
+    &:not(&__disabled):active {
+      color: var(--ks-color-neutral-fillActive);
+    }
+    &:not(&__disabled):hover {
+      color: var(--ks-color-neutral-fillHover);
+    }
+  }
+
+  &__addon {
+    display: flex;
+    align-items: center;
+    font-size: inherit;
+    color: var(--ks-color-neutral-highOnSurface);
+    position: relative;
+    ::slotted([ks-icon]) {
+      color: var(--ks-color-neutral-onSurface);
+    }
+    &.#{$prefix}__prefix {
+      color: var(--ks-color-neutral-onSurface);
+    }
+  }
+
+  &__button {
+    border: 1px solid var(--ks-color-neutral-fillLow);
+    border-inline-start: none;
+    position: relative;
+    border-radius: var(--ks-comp-space__item-radius, var(--ks-border-radius-md));
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-inline-start: -1px;
+    transition-property: border-color;
+    transition-duration: 100ms;
+    &::part(self) {
+      border: none;
+      height: 34px;
+      border-radius: 0;
+    }
+    &--disabled {
+      background-color: var(--ks-color-neutral-surface1);
+      border-color: var(--ks-color-neutral-fillDisabled);
+    }
+    &:not(&--disabled):hover {
+      z-index: 1;
+      border-color: var(--ks-color-neutral-fillLowHover);
+    }
+  }
+}

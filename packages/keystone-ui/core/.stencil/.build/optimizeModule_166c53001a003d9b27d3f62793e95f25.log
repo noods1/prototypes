@@ -1,0 +1,10 @@
+import{t as s,a as t}from"./p-BVbYP5UG.js";import{C as i}from"./p-BKnx-nkd.js";
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */class h{constructor(t,i,h,e,n){this.subscribe=false;this.provided=false;this.value=undefined;this._callback=(t,i)=>{if(this.unsubscribe){if(this.unsubscribe!==i){this.provided=false;this.unsubscribe()}if(!this.subscribe){this.unsubscribe()}}this.value=t;s(this.host);if(!this.provided||this.subscribe){this.provided=true;if(this.callback){this.callback(t,i)}}this.unsubscribe=i};this.host=t;if(i.context!==undefined){const s=i;this.context=s.context;this.callback=s.callback;this.subscribe=s.subscribe??false;this.path=s.path}else{this.context=i;this.callback=h;this.subscribe=e??false;this.path=n}}hostConnected(){this.dispatchRequest()}hostDisconnected(){if(this.unsubscribe){this.unsubscribe();this.unsubscribe=undefined}}dispatchRequest(){this.host.dispatchEvent(new i(this.context,this._callback,this.subscribe,this.path))}}
+/**
+ * @license
+ * Copyright 2024 ByteDance Inc.
+ */function e({context:s,subscribe:i=false,path:e}){return(n,f)=>{const o=n.connectedCallback;const c=n.disconnectedCallback;const a=new WeakMap;n.connectedCallback=function(){const n=new h(t(this),{context:s,callback:s=>{this[f]=s},subscribe:i,path:typeof e==="function"?new Promise((s=>{if(this.__propsReady){this.__propsReady.then((()=>s(e.bind(this))))}else{s(e.bind(this))}})):e});a.set(t(this),n);n.hostConnected();if(o){o.call(this)}};n.disconnectedCallback=function(){a.get(t(this)).hostDisconnected();a.delete(t(this));if(c){c.call(this)}}}}export{e as C};

@@ -1,0 +1,70 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: calendar-event;
+
+$event-colors: 'purple', 'blue', 'pink', 'neutral';
+
+@mixin generateColors {
+  &--purple {
+    color: var(--ks-color-data-data1-fillHigh);
+    background-color: var(--ks-color-data-data1-surface);
+    border-left: 1px solid var(--ks-color-data-data1-fill);
+    border-right: 1px solid var(--ks-color-data-data1-fill);
+  }
+
+  &--blue {
+    color: var(--ks-color-data-data2-fill);
+    background-color: var(--ks-color-data-data2-surface);
+    border-left: 1px solid var(--ks-color-data-data5-fillMedHigh);
+    border-right: 1px solid var(--ks-color-data-data5-fillMedHigh);
+  }
+
+  &--pink {
+    color: var(--ks-color-data-data3-fillHigh);
+    background-color: var(--ks-color-data-data3-surface);
+    border-left: 1px solid var(--ks-color-data-data3-fillMedHigh);
+    border-right: 1px solid var(--ks-color-data-data3-fillMedHigh);
+  }
+
+  &--neutral {
+    color: var(--ks-color-data-neutral-fillLow);
+    background-color: var(--ks-color-data-neutral-surface);
+    border-left: 1px solid var(--ks-color-neutral-fill);
+    border-right: 1px solid var(--ks-color-neutral-fill);
+  }
+}
+
+.#{$prefix} {
+  z-index: 1;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: var(--ks-border-radius-innerMd);
+  background-color: var(--ks-color-neutral-surface);
+
+  &__bar {
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    padding: var(--ks-spacing-50) var(--ks-spacing-100);
+
+    @include generateColors;
+  }
+
+  &__label {
+    width: 100%;
+  }
+
+  &__popover {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ks-spacing-100);
+  }
+
+  &--placeholder {
+    visibility: hidden;
+  }
+}

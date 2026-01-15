@@ -1,0 +1,70 @@
+@import '../../prestyles/index.scss';
+
+$prefix: chip;
+
+:host {
+  display: inline-block;
+}
+
+.#{$prefix} {
+  cursor: pointer;
+  user-select: none;
+
+  display: inline-flex;
+  box-sizing: border-box;
+  column-gap: var(--ks-spacing-100);
+  border-radius: var(--ks-border-radius-full);
+  border: 1px solid var(--ks-color-neutral-fillLow);
+  padding: var(--ks-spacing-100) var(--ks-spacing-300);
+
+  color: var(--ks-color-neutral-onSurface);
+  background-color: var(--ks-color-neutral-surface);
+
+  @include ks-transition-out(100, border-color, color, background-color);
+
+  &-label {
+    @include ks-typeface('labelLg');
+  }
+
+  &:not(&--disabled) {
+    &:hover {
+      color: var(--ks-color-neutral-onSurfaceHover);
+      border-color: var(--ks-color-neutral-fillLowHover);
+    }
+
+    &:active {
+      color: var(--ks-color-neutral-onSurfaceActive);
+      border-color: var(--ks-color-neutral-fillLowHoverActive);
+    }
+  }
+
+  &--active:not(&--disabled) {
+    color: var(--ks-color-primary-onSurface);
+    border-color: var(--ks-color-primary-fill);
+    background-color: var(--ks-color-primary-surface2);
+
+    &:hover {
+      color: var(--ks-color-primary-onSurfaceHover);
+      border-color: var(--ks-color-primary-fillHover);
+      background-color: var(--ks-color-primary-surface2Hover);
+    }
+
+    &:active {
+      color: var(--ks-color-primary-onSurfaceActive);
+      border-color: var(--ks-color-primary-fillActive);
+      background-color: var(--ks-color-primary-surface2Active);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+    border-color: var(--ks-color-neutral-fillLowDisabled);
+
+    &.#{$prefix}--active {
+      color: var(--ks-color-primary-onSurfaceDisabled);
+      border-color: var(--ks-color-primary-fillDisabled);
+      background-color: var(--ks-color-primary-surface2Disabled, #e8fbf9);
+    }
+  }
+}

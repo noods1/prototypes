@@ -1,0 +1,9 @@
+$prefix: status-icon;
+
+.#{$prefix} {
+  [ks-icon] {
+    &::part(outer) {
+      stroke: var(--ks-stroke-color);
+    }
+  }
+}

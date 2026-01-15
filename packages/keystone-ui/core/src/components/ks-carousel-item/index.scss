@@ -1,0 +1,10 @@
+@use 'sass:math';
+@import '../../prestyles/index.scss';
+$prefix: 'carousel';
+:host {
+  display: block;
+  width: 100%;
+}
+
+.#{$prefix} {
+}

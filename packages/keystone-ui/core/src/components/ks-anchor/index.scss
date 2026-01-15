@@ -1,0 +1,120 @@
+@import '../../prestyles/index.scss';
+
+$prefix: anchor;
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--ks-spacing-100);
+    color: var(--ks-color-neutral-highOnSurface);
+    margin-bottom: var(--ks-spacing-400);
+
+    [ks-text] {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    overflow: hidden;
+    @include ks-transition-in-out(200, width);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ks-spacing-400);
+    border-left: 2px solid var(--ks-color-neutral-surface3);
+
+    & & {
+      border-left: none;
+    }
+
+    &-label {
+      cursor: pointer;
+      display: block;
+      margin-left: -2px;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      padding: var(--ks-spacing-50) 0;
+      color: var(--ks-color-neutral-onSurface);
+      @include ks-typeface('bodySm');
+      @include ks-transition-out(100, color, border-left-color);
+
+      &:not(&--active):hover {
+        color: var(--ks-color-neutral-onSurfaceHover);
+      }
+
+      &:not(&--active):active {
+        color: var(--ks-color-neutral-onSurfaceActive);
+      }
+
+      &--active {
+        color: var(--ks-color-neutral-highOnSurface);
+        border-left-color: var(--ks-color-primary-fill);
+        @include ks-typeface('titleSm');
+      }
+    }
+  }
+
+  &__sub {
+    row-gap: var(--ks-spacing-300);
+    margin-top: var(--ks-spacing-300);
+  }
+
+  &--hidden {
+    &.#{$prefix}--collapsible {
+      .#{$prefix}__wrapper[style-hidden='true'] {
+        height: 0;
+      }
+    }
+
+    &.#{$prefix}--hideable {
+      .#{$prefix}__title [ks-text] {
+        display: none;
+      }
+
+      .#{$prefix}__wrapper {
+        width: 0;
+      }
+    }
+  }
+}
+
+.#{$prefix}[dir='rtl'] {
+  .#{$prefix}__content {
+    border-left: none;
+    border-right: 2px solid var(--ks-color-neutral-fillLow);
+
+    & .#{$prefix}__content {
+      border-right: none;
+    }
+
+    &-label {
+      border-left: none;
+      margin-left: 0;
+      margin-right: -2px;
+      border-right: 2px solid transparent;
+      @include ks-transition-out(100, color, border-right-color);
+
+      &:not(&--active):hover {
+        border-right-color: var(--ks-color-neutral-fillLowHover);
+      }
+
+      &:not(&--active):active {
+        border-right-color: var(--ks-color-neutral-fillLowActive);
+      }
+
+      &--active {
+        border-right-color: var(--ks-color-primary-fill);
+      }
+    }
+  }
+}

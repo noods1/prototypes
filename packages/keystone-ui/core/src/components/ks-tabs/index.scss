@@ -1,0 +1,207 @@
+@import '../../prestyles/index.scss';
+$prefix: tabs;
+
+.#{$prefix} {
+  display: flex;
+
+  &--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #fff;
+  }
+
+  &__bar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--ks-spacing-600);
+
+    &-content {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      color: var(--ks-color-neutral-onSurface);
+      gap: var(--ks-spacing-600);
+
+      .#{$prefix}__bar-item {
+        flex-shrink: 0;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        @include ks-transition-out(100, color);
+
+        &::after {
+          content: '';
+          margin: auto;
+          display: block;
+          border-radius: var(--ks-border-radius-sm);
+          position: absolute;
+          z-index: 1;
+          background-color: transparent;
+          @include ks-transition-out(100, background-color, width);
+        }
+
+        &:not(.#{$prefix}__bar-item--active):not(.#{$prefix}__bar-item--disabled):hover {
+          color: var(--ks-color-neutral-onSurfaceHover);
+
+          &.#{$prefix}__bar-item::after {
+            background-color: var(--ks-color-neutral-fill);
+          }
+        }
+
+        &--md {
+          padding: 8px 0;
+          @include ks-typeface('labelLg');
+        }
+        &--lg {
+          padding: 10px 0;
+          @include ks-typeface('titleMd');
+        }
+
+        &--active {
+          color: var(--ks-color-neutral-highOnSurface);
+
+          &.#{$prefix}__bar-item::after {
+            background-color: var(--ks-color-primary-fill);
+          }
+        }
+
+        &--disabled {
+          cursor: not-allowed;
+          color: var(--ks-color-neutral-onSurfaceDisabled);
+        }
+      }
+      .#{$prefix}__bar-item--active.#{$prefix}__bar-item--disabled {
+        &.#{$prefix}__bar-item::after {
+          background-color: var(--ks-color-primary-fillDisabled);
+        }
+      }
+    }
+
+    &--sub-tab .#{$prefix}__bar-content {
+      .#{$prefix}__bar-item::after {
+        display: none;
+      }
+
+      .#{$prefix}__bar-item--active {
+        color: var(--ks-color-primary-onSurface);
+      }
+    }
+  }
+
+  &--horizontal {
+    .#{$prefix}__bar-content {
+      .#{$prefix}__bar-item {
+        &::after {
+          width: calc(100% - 16px);
+          height: 2px;
+        }
+
+        &:not(.#{$prefix}__bar-item--active):not(.#{$prefix}__bar-item--disabled):hover {
+          &.#{$prefix}__bar-item::after {
+            width: 100%;
+          }
+        }
+
+        &--active {
+          &.#{$prefix}__bar-item::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &--vertical {
+    top: auto;
+    bottom: auto;
+    $item-gap: 8px;
+
+    .#{$prefix}__bar-content {
+      flex-direction: column;
+
+      .#{$prefix}__bar-item {
+        width: 100%;
+        padding-left: $item-gap;
+        padding-right: $item-gap;
+
+        &::after {
+          width: 2px;
+          height: calc(100% - 16px);
+        }
+
+        &:not(.#{$prefix}__bar-item--active):not(.#{$prefix}__bar-item--disabled):hover {
+          &.#{$prefix}__bar-item::after {
+            height: 100%;
+          }
+        }
+
+        &--active {
+          &.#{$prefix}__bar-item::after {
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    [ks-divider]::part(vertical) {
+      height: 100%;
+    }
+  }
+
+  [ks-divider]::part(vertical) {
+    margin: 0;
+  }
+
+  &--top {
+    flex-direction: column;
+
+    .#{$prefix}__bar-item::after {
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &--bottom {
+    flex-direction: column-reverse;
+
+    .#{$prefix}__bar-item::after {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &--left {
+    flex-direction: row;
+
+    .#{$prefix}__bar-item {
+      text-align: right;
+
+      &::after {
+        top: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  &--right {
+    flex-direction: row-reverse;
+
+    .#{$prefix}__bar-item {
+      text-align: left;
+
+      &::after {
+        top: 0;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}

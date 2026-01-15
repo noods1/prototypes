@@ -1,0 +1,51 @@
+{
+  "name": "@fe-infra/keystone-icons-vue",
+  "description": "A Keystone icon library package for vue3 applications.",
+  "version": "0.7.2",
+  "license": "MIT",
+  "bugs": "https://code.byted.org/ad/byted-web-components/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://code.byted.org/ad/byted-web-components",
+    "directory": "keystone-icons/vue"
+  },
+  "keywords": [
+    "Keystone",
+    "Icons",
+    "Icon",
+    "SVG",
+    "Vue"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run tsc",
+    "start": "tsc -w -p .",
+    "tsc": "tsc -p .",
+    "lint:staged": "echo skip lint"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@byted-keystone/vue-output-target": "workspace:*",
+    "@fe-infra/keystone-icons": "workspace:*",
+    "vue-demi": "latest"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "typescript": "^5.2.2"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  }
+}

@@ -1,0 +1,119 @@
+@use 'sass:list';
+@import '../../prestyles/index.scss';
+
+$prefix: tag;
+
+$prefix-type: 'primary', 'support', 'error', 'warning', 'success', 'neutral';
+$tag-sizes: 'md', 'lg';
+$tag-padding: var(--ks-spacing-50), var(--ks-spacing-100);
+
+:host {
+  display: inline-flex;
+}
+
+@mixin generateSize {
+  @each $size-key in $tag-sizes {
+    &--#{$size-key} {
+      $lineHeight: var(--ks-text-labelLg-lineHeight);
+      $paddingY: list.nth($tag-padding, list.index($tag-sizes, $size-key));
+      padding: $paddingY var(--ks-spacing-200);
+      height: calc($lineHeight + 2 * $paddingY);
+    }
+  }
+}
+
+.#{$prefix}--sm {
+  min-width: 24px;
+  height: 20px;
+  padding: var(--ks-spacing-50) calc(var(--ks-spacing-100) + var(--ks-spacing-50));
+  .#{$prefix}__text {
+    font-size: var(--ks-text-labelMd-fontSize);
+    line-height: var(--ks-text-labelMd-lineHeight);
+    font-weight: var(--ks-text-labelMd-fontWeight);
+    letter-spacing: var(--ks-text-labelMd-letterSpacing);
+    font-family: var(--ks-text-labelMd-fontFamily);
+  }
+}
+
+.#{$prefix} {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ks-spacing-100);
+  border-radius: var(--ks-border-radius-md);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: var(--ks-ref-color-white);
+  @include ks-transition-out(100, all);
+
+  .indicator {
+    flex-basis: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__text {
+    display: inline-flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: var(--ks-text-labelLg-fontSize);
+    line-height: var(--ks-text-labelLg-lineHeight);
+    font-weight: var(--ks-text-labelLg-fontWeight);
+    letter-spacing: var(--ks-text-labelLg-letterSpacing);
+    font-family: var(--ks-text-labelLg-fontFamily);
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    &__content {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-height: 100%;
+    }
+  }
+
+  &__close-icon {
+    display: flex;
+  }
+
+  @include generateSize;
+
+  &--disabled {
+    cursor: no-drop;
+  }
+
+  &--closeable {
+    cursor: pointer;
+  }
+}
+
+@each $type in $prefix-type {
+  .#{$prefix}--#{$type} {
+    color: var(--ks-color-#{$type}-onSurface);
+    background-color: var(--ks-color-#{$type}-surface3);
+    .#{$prefix}__close-icon {
+      color: var(--ks-color-#{$type}-onSurface);
+    }
+
+    &.#{$prefix}--closeable:not(.#{$prefix}--disabled):hover {
+      background-color: var(--ks-color-#{$type}-surface2Hover);
+    }
+    &.#{$prefix}--closeable:not(.#{$prefix}--disabled):active {
+      background-color: var(--ks-color-#{$type}-surface2Active);
+    }
+    &.#{$prefix}--disabled {
+      color: var(--ks-color-#{$type}-fillDisabled);
+      background-color: var(--ks-color-#{$type}-surface1);
+
+      .#{$prefix}__close-icon {
+        color: var(--ks-color-#{$type}-onSurfaceDisabled);
+      }
+    }
+  }
+}

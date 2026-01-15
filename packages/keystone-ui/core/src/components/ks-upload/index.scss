@@ -1,0 +1,54 @@
+$prefix: upload;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.#{$prefix} {
+  display: flex;
+  flex-direction: column;
+  &__file-list {
+    display: block;
+    margin-top: var(--ks-spacing-200);
+  }
+  [ks-rc-upload] {
+    display: inline-block;
+    width: 100%;
+    [ks-text] {
+      display: block;
+      margin-top: var(--ks-spacing-100);
+      span {
+        color: var(--ks-color-neutral-onSurface);
+        transition: 0.1s;
+      }
+      .disabled {
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+      }
+    }
+    &:hover {
+      [ks-text] {
+        span:not(.disabled) {
+          color: var(--ks-color-neutral-onSurfaceHover);
+        }
+      }
+    }
+    &:active {
+      [ks-text] {
+        span:not(.disabled) {
+          color: var(--ks-color-neutral-onSurfaceActive);
+        }
+      }
+    }
+  }
+
+  &__message {
+    color: var(--ks-color-neutral-onSurface);
+    font-size: var(--ks-text-bodySm-fontSize);
+    line-height: var(--ks-text-bodySm-lineHeight);
+    margin-top: var(--ks-spacing-100);
+    &--error {
+      color: var(--ks-color-error-onSurface);
+    }
+  }
+}

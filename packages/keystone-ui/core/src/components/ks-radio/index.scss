@@ -1,0 +1,145 @@
+@import '../../prestyles/index.scss';
+
+$prefix-radio: radio;
+.container {
+  display: flex;
+  width: fit-content;
+  gap: var(--ks-spacing-200);
+
+  #label,
+  .contentDesc {
+    cursor: pointer;
+  }
+}
+
+.#{$prefix-radio}-disabled {
+  cursor: not-allowed;
+  #label,
+  #desc {
+    cursor: not-allowed;
+  }
+  .#{$prefix-radio} {
+    cursor: not-allowed;
+  }
+}
+
+.#{$prefix-radio} {
+  flex-shrink: 0;
+  position: relative;
+  appearance: none;
+  border-radius: var(--ks-border-radius-full);
+  border: 2px solid var(--ks-color-neutral-fillLow);
+  box-sizing: border-box;
+  background-color: var(--ks-color-neutral-surface);
+  @include ks-transition-out(100, border-color);
+  @include ks-transition-out(150, border-width);
+
+  margin: 0;
+  padding: 0;
+
+  &--align-flex-start {
+    align-items: flex-start;
+  }
+  &--align-center {
+    align-items: center;
+  }
+
+  &--size-md {
+    $size: 20px;
+    width: $size;
+    height: $size;
+  }
+
+  &--checked {
+    border-width: 6px;
+  }
+
+  &--checked:not(&--disabled) {
+    border-color: var(--ks-color-primary-fill);
+    &:hover,
+    &:focus {
+      border-color: var(--ks-color-primary-fillHover);
+    }
+    &:active {
+      border-color: var(--ks-color-primary-fillActive);
+    }
+  }
+  &:not(&--disabled, &--checked, &--error) {
+    &:hover,
+    &:focus {
+      border-color: var(--ks-color-neutral-fillLowHover);
+    }
+    &:active {
+      border-color: var(--ks-color-neutral-fillLowActive);
+    }
+  }
+
+  &--disabled {
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+    // 是不是不存在 low-disabled
+    border-color: var(--ks-color-primary-fillDisabled);
+    .desc {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+  }
+  &--disabled:not(&--checked) {
+    background-color: var(--ks-color-neutral-surface2Disabled);
+    // 是不是不存在 low-disabled
+    border-color: var(--ks-color-neutral-fillDisabled);
+  }
+
+  &--error {
+    border-color: var(--ks-color-error-fill);
+    &:hover,
+    &:focus {
+      border-color: var(--ks-color-error-fillHover);
+    }
+    &:active {
+      border-color: var(--ks-color-error-fillActive);
+    }
+  }
+
+  &__input {
+    @include byted-check-wrapper;
+  }
+}
+
+#texts {
+  display: flex;
+  gap: var(--ks-spacing-100);
+  align-items: center;
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+    .tooltip {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+    #label {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+  }
+}
+
+#label {
+  @include ks-typeface('bodySm');
+  width: fit-content;
+  color: var(--ks-color-neutral-highOnSurface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-50);
+  align-items: baseline;
+}
+
+.tooltip {
+  font-size: 16px;
+  color: var(--ks-color-neutral-onSurface);
+}
+
+.contentDesc {
+  @include ks-typeface('labelSm');
+  color: var(--ks-color-neutral-onSurface);
+  &-disabled {
+    cursor: not-allowed;
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+  }
+}

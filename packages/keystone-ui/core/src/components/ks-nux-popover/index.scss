@@ -1,0 +1,124 @@
+$prefix: ks-nux-popover;
+
+.#{$prefix}__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent; // Or a semi-transparent color e.g. rgba(0, 0, 0, 0.1)
+  z-index: 9999;
+  pointer-events: auto; // Block interactions
+  overflow: hidden;
+  inset-block: 0;
+  inset-inline: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+:host {
+  display: inline-block;
+}
+
+.#{$prefix} {
+  padding: var(--ks-spacing-400);
+  width: 320px;
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--ks-spacing-400);
+
+  &__vertical {
+    flex-direction: column;
+    .#{$prefix}__img {
+      width: 288px;
+      height: 160px;
+    }
+  }
+
+  &__horizontal {
+    flex-direction: row;
+    width: 400px;
+    height: 246px;
+    .#{$prefix}__img {
+      width: 120px;
+      height: 214px;
+    }
+  }
+
+  .#{$prefix}__img {
+    border-radius: var(--ks-border-radius-sm);
+    flex-shrink: 0;
+    overflow: hidden;
+    img {
+      height: 100%;
+      width: 100%;
+      vertical-align: bottom;
+    }
+  }
+
+  .#{$prefix}__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ks-spacing-200);
+    .#{$prefix}__body--content {
+      flex-grow: 1;
+    }
+    .#{$prefix}__body--footer {
+      margin-top: var(--ks-spacing-200);
+      position: relative;
+      height: 24px;
+      .page,
+      .buttons {
+        position: absolute;
+        height: 24px;
+        bottom: 0;
+        align-items: center;
+        display: flex;
+        gap: var(--ks-spacing-200);
+      }
+      .page {
+        left: 0;
+      }
+      .buttons {
+        right: 0;
+        .button {
+          font-size: 12px;
+          line-height: 16px;
+          font-style: normal;
+          text-align: center;
+          font-family: var(--ks-ref-text-fontFamily-text);
+          letter-spacing: 0.161px;
+          font-weight: 500;
+          padding: var(--ks-spacing-100) var(--ks-spacing-200);
+          border-radius: var(--ks-border-radius-md);
+          cursor: pointer;
+        }
+        .button-text {
+          color: var(--ks-color-support-onFillLow);
+          &:hover {
+            background-color: var(--ks-color-neutral-transparentFillHover);
+          }
+          &:active {
+            background-color: var(--ks-color-neutral-transparentFillActive);
+          }
+        }
+
+        .button-support {
+          color: var(--ks-color-primary-onFill);
+          background-color: var(--ks-color-support-fill);
+          &:hover {
+            background-color: var(--ks-color-support-fillHover);
+          }
+          &:active {
+            background-color: var(--ks-color-support-fillActive);
+          }
+        }
+      }
+    }
+  }
+  &__loading-icon {
+    display: inline-flex;
+    vertical-align: text-top;
+    color: var(--ks-color-primary-onFill);
+  }
+}

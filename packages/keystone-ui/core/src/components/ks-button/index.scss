@@ -1,0 +1,320 @@
+@use 'sass:list';
+@use 'sass:map';
+@import '../../prestyles/index.scss';
+$prefix: button;
+
+$button-sizes: 'xs', 'sm', 'md', 'lg';
+$button-colors: 'primary', 'support', 'neutral', 'success', 'error', 'warning', 'info';
+$button-padding-x: var(--ks-spacing-50), var(--ks-spacing-200), var(--ks-spacing-400), var(--ks-spacing-600);
+$button-padding-y: var(--ks-spacing-50), var(--ks-spacing-100), var(--ks-spacing-200), var(--ks-spacing-300);
+$button-font-variants: 'labelSm', 'labelMd', 'labelLg', 'labelLg';
+
+:host {
+  display: inline-flex;
+  margin-inline-start: var(--ks-comp-space__item-margin-inline-start, unset);
+}
+
+@mixin generateSize {
+  @each $size-key in $button-sizes {
+    $fontVariant: list.nth($button-font-variants, list.index($button-sizes, $size-key));
+    $paddingX: list.nth($button-padding-x, list.index($button-sizes, $size-key));
+    $paddingY: list.nth($button-padding-y, list.index($button-sizes, $size-key));
+
+    &--#{$size-key} {
+      $formItemHeight: calc(var(--ks-text-#{$fontVariant}-lineHeight) + 2 * $paddingY);
+      padding: $paddingY $paddingX;
+      height: $formItemHeight;
+      @include ks-typeface($fontVariant);
+
+      &.#{$prefix}--cycle,
+      &.#{$prefix}--square {
+        @if $size-key == 'xs' {
+          // FIXME bad override, should refactor the whole square prop to iconOnly prop
+          width: 18px;
+          height: 18px;
+        } @else {
+          width: $formItemHeight;
+          min-width: $formItemHeight;
+        }
+      }
+
+      &.#{$prefix}--round {
+        border-radius: calc($formItemHeight / 2);
+      }
+    }
+  }
+}
+
+@mixin generateColor {
+  $token-suffixs: 'fill', 'fillHover', 'fillActive', 'fillDisabled', 'onSurface', 'onSurfaceHover', 'onSurfaceActive',
+    'fillHigh', 'fillHighHover', 'fillHighActive', 'highOnSurface', 'highOnSurfaceHover', 'highOnSurfaceActive',
+    'onFill', 'onFillDisabled', 'surface', 'surfaceHover', 'surfaceActive', 'onSurface', 'onSurfaceHover',
+    'onSurfaceActive', 'onSurfaceDisabled', 'transparentFill', 'transparentFillHover', 'transparentFillActive',
+    'transparentFillDisabled';
+
+  @each $color-key in $button-colors {
+    &--color-#{$color-key} {
+      @each $suffix in $token-suffixs {
+        --ks-comp-color-btn-#{$suffix}: var(--ks-color-#{$color-key}-#{$suffix});
+      }
+    }
+  }
+}
+
+@mixin generateType {
+  &--type-contained {
+    background-color: var(--ks-comp-color-btn-fill);
+    border-color: var(--ks-comp-color-btn-fill);
+    color: var(--ks-comp-color-btn-onFill);
+
+    &.#{$prefix}--color-neutral {
+      background-color: var(--ks-comp-color-btn-fillHigh);
+      border-color: var(--ks-comp-color-btn-fillHigh);
+    }
+
+    &.#{$prefix}--color-error {
+      background-color: var(--ks-comp-color-btn-onSurface);
+      border-color: var(--ks-comp-color-btn-onSurface);
+    }
+
+    &:not(.#{$prefix}--disabled):hover {
+      background-color: var(--ks-comp-color-btn-fillHover);
+      border-color: var(--ks-comp-color-btn-fillHover);
+      color: var(--ks-comp-color-btn-onFill);
+
+      &.#{$prefix}--color-neutral {
+        background-color: var(--ks-comp-color-btn-fillHighHover);
+        border-color: var(--ks-comp-color-btn-fillHighHover);
+      }
+
+      &.#{$prefix}--color-error {
+        background-color: var(--ks-comp-color-btn-onSurfaceHover);
+        border-color: var(--ks-comp-color-btn-onSurfaceHover);
+      }
+    }
+
+    &:not(.#{$prefix}--disabled) {
+      &:active,
+      &.#{$prefix}--force-active {
+        background-color: var(--ks-comp-color-btn-fillActive);
+        border-color: var(--ks-comp-color-btn-fillActive);
+        color: var(--ks-comp-color-btn-onFill);
+
+        &.#{$prefix}--color-neutral {
+          background-color: var(--ks-comp-color-btn-fillHighActive);
+          border-color: var(--ks-comp-color-btn-fillHighActive);
+        }
+
+        &.#{$prefix}--color-error {
+          background-color: var(--ks-comp-color-btn-onSurfaceActive);
+          border-color: var(--ks-comp-color-btn-onSurfaceActive);
+        }
+      }
+    }
+
+    &.#{$prefix}--disabled {
+      background-color: var(--ks-comp-color-btn-fillDisabled);
+      border-color: var(--ks-comp-color-btn-fillDisabled);
+      color: var(--ks-comp-color-btn-onFillDisabled);
+      &.#{$prefix}--color-error {
+        color: var(--ks-comp-color-btn-onFill);
+      }
+    }
+
+    &.#{$prefix}--color-primary.#{$prefix}--loading {
+      slot[name='loading'] {
+        color: var(--ks-color-primary-onSurface);
+      }
+    }
+
+    &.#{$prefix}--color-error {
+      &.#{$prefix}--loading {
+        slot[name='loading'] {
+          color: var(--ks-color-error-onSurface);
+        }
+      }
+    }
+  }
+
+  &--type-outlined {
+    background-color: var(--ks-comp-color-btn-surface);
+    border-color: var(--ks-comp-color-btn-fillHigh);
+    color: var(--ks-comp-color-btn-highOnSurface);
+
+    &:not(.#{$prefix}--disabled):hover {
+      background-color: var(--ks-comp-color-btn-surfaceHover);
+      border-color: var(--ks-comp-color-btn-fillHigh);
+      color: var(--ks-comp-color-btn-highOnSurface);
+    }
+
+    &:not(.#{$prefix}--disabled) {
+      &:active,
+      &.#{$prefix}--force-active {
+        background-color: var(--ks-comp-color-btn-surfaceActive);
+        border-color: var(--ks-comp-color-btn-fillHigh);
+        color: var(--ks-comp-color-btn-highOnSurface);
+      }
+    }
+
+    &.#{$prefix}--disabled {
+      background-color: var(--ks-comp-color-btn-surface);
+      border-color: var(--ks-comp-color-btn-fillDisabled);
+      color: var(--ks-comp-color-btn-onSurfaceDisabled);
+    }
+  }
+
+  &--type-plain {
+    background-color: var(--ks-comp-color-btn-transparentFill);
+    border-color: transparent;
+    color: var(--ks-comp-color-btn-onSurface);
+
+    &.#{$prefix}--color-neutral {
+      color: var(--ks-comp-color-btn-highOnSurface);
+    }
+
+    &:not(.#{$prefix}--disabled):hover {
+      background-color: var(--ks-comp-color-btn-transparentFillHover);
+      border-color: transparent;
+      color: var(--ks-comp-color-btn-onSurfaceHover);
+
+      &.#{$prefix}--color-neutral {
+        color: var(--ks-comp-color-btn-highOnSurfaceHover);
+      }
+    }
+
+    &:not(.#{$prefix}--disabled) {
+      &:active,
+      &.#{$prefix}--force-active {
+        background-color: var(--ks-comp-color-btn-transparentFillActive);
+        border-color: transparent;
+        color: var(--ks-comp-color-btn-onSurfaceActive);
+
+        &.#{$prefix}--color-neutral {
+          color: var(--ks-comp-color-btn-highOnSurfaceActive);
+        }
+      }
+    }
+
+    &.#{$prefix}--disabled {
+      background-color: var(--ks-comp-color-btn-transparentFillDisabled);
+      border-color: transparent;
+      color: var(--ks-comp-color-btn-onSurfaceDisabled);
+    }
+
+    &.#{$prefix}--disabled.#{$prefix}--loading {
+      slot[name='loading'] {
+        color: var(--ks-color-neutral-highOnSurface);
+      }
+    }
+
+    &.#{$prefix}--color-primary.#{$prefix}--loading {
+      slot[name='loading'] {
+        color: var(--ks-color-primary-onSurface);
+      }
+    }
+  }
+}
+
+:host(.#{$prefix}-host-block) {
+  display: block;
+}
+
+:host(.#{$prefix}-host-group:not(:only-child):first-child) button[dir='ltr'] {
+  border-top-right-radius: none;
+  border-bottom-right-radius: none;
+}
+
+:host(.#{$prefix}-host-group:not(:only-child):last-child) button[dir='ltr'] {
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+}
+
+:host(.#{$prefix}-host-group:not(:only-child):first-child) button[dir='rtl'] {
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+}
+
+:host(.#{$prefix}-host-group:not(:only-child):last-child) button[dir='rtl'] {
+  border-top-right-radius: none;
+  border-bottom-right-radius: none;
+}
+
+:host(.#{$prefix}-host-group:not(:only-child):not(:first-child, :last-child)) button {
+  border-radius: none;
+}
+
+.#{$prefix} {
+  display: inline-flex;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ks-color-neutral-surface1);
+  border-radius: var(--ks-comp-space__item-radius, var(--ks-border-radius-md));
+  border: 1px solid var(--ks-color-neutral-fill);
+  color: var(--ks-color-neutral-highOnSurface);
+  margin: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+  position: relative;
+  column-gap: var(--ks-spacing-100);
+
+  @include ks-transition-out(100, background-color, border-color, color);
+
+  &--disabled {
+    background-color: var(--ks-color-neutral-surface1);
+    border-color: var(--ks-color-neutral-fillDisabled);
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+    cursor: no-drop;
+  }
+
+  &:not(.#{$prefix}--disabled):hover {
+    background-color: var(--ks-color-neutral-surface1Hover);
+    border-color: var(--ks-color-neutral-fill);
+    color: var(--ks-color-neutral-highOnSurfaceHover);
+  }
+
+  &:not(.#{$prefix}--disabled) {
+    &:active,
+    &.#{$prefix}--force-active {
+      background-color: var(--ks-color-neutral-surface1Active);
+      border-color: var(--ks-color-neutral-fill);
+      color: var(--ks-color-neutral-highOnSurface);
+    }
+  }
+
+  &.#{$prefix}--disabled.#{$prefix}--loading {
+    slot[name='loading'] {
+      color: var(--ks-color-neutral-highOnSurface);
+    }
+  }
+
+  &__loading-content {
+    display: inline-flex;
+    vertical-align: text-top;
+    gap: var(--ks-spacing-100);
+  }
+
+  @include generateSize;
+  @include generateColor;
+  @include generateType;
+
+  &--block {
+    width: 100%;
+  }
+
+  &--cycle {
+    border-radius: var(--ks-border-radius-full);
+  }
+
+  &--square,
+  &--cycle {
+    padding: 0;
+  }
+
+  &__loading-icon {
+    display: inline-flex;
+    vertical-align: text-top;
+  }
+}

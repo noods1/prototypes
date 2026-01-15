@@ -1,0 +1,17 @@
+$prefix: status-message;
+$variants: 'primary', 'neutral', 'success', 'warning', 'error';
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ks-spacing-100);
+  &__icon {
+    display: flex;
+    height: var(--ks-text-labelSm-lineHeight);
+    align-items: center;
+  }
+}

@@ -1,0 +1,11 @@
+@import '../../../../prestyles/index.scss';
+
+:host {
+  width: fit-content;
+  display: block;
+}
+
+[slot='footer'] {
+  display: flex;
+  gap: var(--ks-spacing-100);
+}

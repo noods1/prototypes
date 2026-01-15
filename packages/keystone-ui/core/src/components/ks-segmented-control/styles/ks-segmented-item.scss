@@ -1,0 +1,82 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: 'segmented-item';
+
+:host {
+  display: inline-flex;
+  align-items: center;
+
+  --ks-comp-divider-opacity: 1;
+}
+
+:host([ks-active]),
+:host(:first-of-type),
+:host(:not([ks-disabled]):hover) {
+  --ks-comp-divider-opacity: 0;
+}
+
+:host([ks-active][ks-disabled]) .#{$prefix} {
+  cursor: not-allowed;
+  color: var(--ks-color-primary-fillDisabled);
+  background-color: var(--ks-color-neutral-surface);
+}
+
+:host([ks-disabled]:not([ks-active])) .#{$prefix} {
+  cursor: not-allowed;
+  color: var(--ks-color-neutral-highOnSurfaceDisabled);
+}
+
+:host([ks-active]:not([ks-disabled])) .#{$prefix} {
+  color: var(--ks-color-primary-onSurface);
+  background-color: var(--ks-color-neutral-surface);
+}
+
+:host(:not([ks-active]):not([ks-disabled])) .#{$prefix} {
+  &:hover {
+    color: var(--ks-color-neutral-highOnSurfaceHover);
+    background-color: var(--ks-color-neutral-overlayLow);
+  }
+
+  &:active {
+    color: var(--ks-color-neutral-highOnSurfaceActive);
+    background-color: var(--ks-color-neutral-overlayLow);
+  }
+}
+
+.#{$prefix} {
+  cursor: pointer;
+  position: relative;
+  border-radius: var(--ks-border-radius-sm);
+  color: var(--ks-color-neutral-highOnSurface);
+  padding: calc(var(--ks-spacing-200) - var(--ks-spacing-50)) var(--ks-spacing-200);
+
+  @include ks-transition-out(100, background-color, color);
+
+  &__label {
+    @include ks-typeface('labelLg');
+  }
+
+  &::before {
+    content: '';
+    width: 1px;
+    height: 16px;
+
+    inset-block: 0;
+    margin: auto 0;
+    position: absolute;
+
+    opacity: var(--ks-comp-divider-opacity);
+    border-radius: var(--ks-border-radius-sm);
+    background-color: var(--ks-color-neutral-lowOnSurface);
+
+    @include ks-transition-out(100, opacity);
+  }
+
+  // Place divider on left to avoid using :has selector (which has worse performance than +)
+  &:dir(ltr)::before {
+    left: 0;
+  }
+  &:dir(rtl)::before {
+    right: 0;
+  }
+}

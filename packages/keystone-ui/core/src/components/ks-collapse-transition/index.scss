@@ -1,0 +1,15 @@
+@import '../../prestyles/index.scss';
+$prefix: ks-collapse-transition;
+
+:host {
+  display: contents !important;
+}
+
+.#{$prefix} {
+  &__wrapper {
+    overflow: hidden;
+    :not(&--in) {
+      height: 0;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+packages:
+  - 'apps/*'
+  - 'packages/**'
+  - 'hydration-react'
+  - 'hydration-vue'
+  - 'libs/rollup-plugin-custom-elements'

@@ -1,0 +1,36 @@
+@import '../../../../prestyles/index.scss';
+@import '../utils.scss';
+$date-range-panel: ks-date-range-panel;
+
+@include generatePanel($date-range-panel, 7);
+
+.#{$date-range-panel} {
+  display: flex;
+  box-shadow: var(--ks-size__shadow-sm) var(--ks-color__shadow);
+
+  &__left-range {
+    [ks-multiple-date-panel]::part(right) {
+      visibility: hidden;
+    }
+  }
+
+  &__right-range {
+    [ks-multiple-date-panel]::part(left) {
+      visibility: hidden;
+    }
+  }
+
+  &__header-title {
+    display: inline-flex;
+    font-weight: bold;
+    padding: 0 2px;
+    &:hover {
+      // color: var(--ks-color__primary__font-hover);
+      // cursor: pointer;
+    }
+  }
+
+  [ks-multiple-date-panel]::part(self) {
+    box-shadow: none;
+  }
+}

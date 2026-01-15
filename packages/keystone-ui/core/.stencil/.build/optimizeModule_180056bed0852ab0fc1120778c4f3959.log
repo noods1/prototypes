@@ -1,0 +1,1 @@
+import{n as o,v as r}from"./p-BVbYP5UG.js";var a="[object Boolean]";function e(e){return e===true||e===false||o(e)&&r(e)==a}export{e as i};

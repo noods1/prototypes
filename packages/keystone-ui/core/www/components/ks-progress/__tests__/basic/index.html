@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ks-progress component: basic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link href="/build/keystone.css" rel="stylesheet" />
+    <script src="/build/keystone.esm.js" type="module"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .progress-section {
+        margin-bottom: 40px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .progress-section h3 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        color: #007bff;
+      }
+      .progress-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px; /* Increased gap for better separation */
+        align-items: flex-start; /* Align items to the start for varying heights */
+      }
+      .progress-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        min-width: 150px; /* Minimum width for better layout */
+      }
+      .progress-item span {
+        font-size: 0.9em;
+        color: #555;
+      }
+      .custom-width-bar {
+        margin-bottom: 15px;
+      }
+      .ring-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: center; /* Center rings vertically */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>KsProgress Component Examples</h1>
+
+    <!-- Bar Variant -->
+    <div class="progress-section">
+      <h3>Bar Variant</h3>
+      <div class="progress-container">
+        <div class="progress-item">
+          <span>Default (0%, md, default)</span>
+          <ks-progress percent="0"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>50%, Success, sm</span>
+          <ks-progress percent="50" status="success" size="sm"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>75%, Error, xs (maps to sm bar)</span>
+          <ks-progress percent="75" status="error" size="xs"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>25%, Warning</span>
+          <ks-progress percent="25" status="warning"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>100%, No Label</span>
+          <ks-progress percent="100" show-label="false"></ks-progress>
+        </div>
+      </div>
+      <h4 style="margin-top: 30px; margin-bottom: 10px">Bar with Custom Width</h4>
+      <div class="custom-width-bar">
+        <ks-progress percent="60" width="300px"></ks-progress>
+      </div>
+      <div class="custom-width-bar">
+        <ks-progress percent="40" status="success" width="50%"></ks-progress>
+      </div>
+      <h4 style="margin-top: 30px; margin-bottom: 10px">Bar with Help Text Slot</h4>
+      <div class="custom-width-bar">
+        <ks-progress percent="55" status="default">
+          <div slot="helpText">This is some helpful text below the progress bar.</div>
+        </ks-progress>
+      </div>
+      <div class="custom-width-bar">
+        <ks-progress percent="80" status="error">
+          <div slot="helpText" style="color: red; font-style: italic">Error details here.</div>
+        </ks-progress>
+      </div>
+    </div>
+
+    <!-- Ring Variant -->
+    <div class="progress-section">
+      <h3>Ring Variant</h3>
+      <div class="ring-container">
+        <div class="progress-item">
+          <span>Default (0%, md)</span>
+          <ks-progress variant="ring" percent="0"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>50%, Success, sm</span>
+          <ks-progress variant="ring" percent="50" status="success" size="sm"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>75%, Error, xs</span>
+          <ks-progress variant="ring" percent="75" status="error" size="xs"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>25%, Warning (shows percent)</span>
+          <ks-progress variant="ring" percent="25" status="warning"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>100%, No Label, md</span>
+          <ks-progress variant="ring" percent="100" show-label="false" size="md"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>60%, Custom Width (size prop ignored)</span>
+          <ks-progress variant="ring" percent="60" width="100px"></ks-progress>
+        </div>
+      </div>
+    </div>
+
+    <!-- RTL Direction Example -->
+    <div class="progress-section" dir="rtl">
+      <h3>RTL Support</h3>
+      <div class="progress-container">
+        <div class="progress-item">
+          <span>Bar, 30%</span>
+          <ks-progress percent="30"></ks-progress>
+        </div>
+        <div class="progress-item">
+          <span>Ring, 60%, Success</span>
+          <ks-progress variant="ring" percent="60" status="success"></ks-progress>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

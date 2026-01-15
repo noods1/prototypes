@@ -1,0 +1,210 @@
+@import '../../prestyles/index.scss';
+$prefix: switch;
+
+$switch-handle-size-md: 16px;
+$switch-handle-size-sm: 14px;
+$switch-handle-margin: 2px;
+$switch-content-padding: 8px;
+
+:host {
+  display: flex;
+  width: fit-content;
+}
+.#{$prefix}__container {
+  display: flex;
+  flex-direction: column;
+}
+.#{$prefix}__title {
+  margin-bottom: var(--ks-spacing-200);
+}
+.#{$prefix}__content {
+  display: flex;
+  width: fit-content;
+  gap: var(--ks-spacing-200);
+}
+.#{$prefix}--right {
+  flex-direction: row-reverse;
+}
+
+.#{$prefix} {
+  border: 0;
+  display: flex;
+  align-items: center;
+  background-color: var(--ks-color-neutral-fillLow);
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  color: var(--ks-color-neutral-onFill);
+
+  @include ks-transition-out(100, background-color);
+
+  &:not(&.#{$prefix}--disabled) {
+    &:hover,
+    &:focus {
+      background-color: var(--ks-color-neutral-fillLowHover);
+    }
+    &:active {
+      background-color: var(--ks-color-neutral-fillLowActive);
+    }
+  }
+
+  &--md {
+    min-width: 36px;
+    height: 20px;
+    border-radius: 20px;
+  }
+  &--sm {
+    min-width: 32px;
+    height: 18px;
+    border-radius: 18px;
+  }
+
+  &__handle {
+    top: $switch-handle-margin;
+    inset-inline-start: $switch-handle-margin;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: var(--ks-elevation-shadow-level2);
+
+    @include ks-transition-in(150, inset-inline-start);
+
+    width: $switch-handle-size-md;
+    height: $switch-handle-size-md;
+    background-color: var(--ks-color-neutral-onFill);
+
+    ks-icon-loading {
+      // TODO: Improve this animation
+      animation: ks-switch-icon-spin 1s linear infinite;
+    }
+
+    .#{$prefix}--checked & {
+      inset-inline-start: calc(100% - $switch-handle-margin - $switch-handle-size-md);
+    }
+
+    .#{$prefix}--sm & {
+      width: $switch-handle-size-sm;
+      height: $switch-handle-size-sm;
+    }
+
+    .#{$prefix}--checked &--sm {
+      inset-inline-start: calc(100% - $switch-handle-margin - $switch-handle-size-sm);
+    }
+  }
+
+  ::slotted([slot='true-content']) {
+    display: none;
+  }
+
+  &--checked {
+    background-color: var(--ks-color-primary-fill);
+    &:not(&.#{$prefix}--disabled) {
+      &:hover,
+      &:focus {
+        background-color: var(--ks-color-primary-fillHover);
+      }
+      &:active {
+        background-color: var(--ks-color-primary-fillActive);
+      }
+    }
+
+    ::slotted([slot='false-content']) {
+      display: none;
+    }
+    ::slotted([slot='true-content']) {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    background-color: var(--ks-color-neutral-fillLowDisabled);
+
+    &.#{$prefix}--checked {
+      background-color: var(--ks-color-primary-fillDisabled);
+    }
+
+    &:not(&.#{$prefix}--checked) {
+      .#{$prefix}__handle {
+        background-color: var(--ks-ref-color-neutral-750);
+      }
+    }
+  }
+}
+
+#texts {
+  display: flex;
+  flex-direction: column;
+  &.right {
+    flex-direction: row-reverse;
+    margin-inline-start: var(--ks-spacing-200);
+  }
+  #label {
+    display: flex;
+    .tag {
+      margin-left: var(--ks-spacing-100);
+    }
+  }
+}
+
+#texts.#{$prefix}__tooltip {
+  flex-direction: row;
+  gap: var(--ks-spacing-100);
+  align-items: center;
+}
+
+#label {
+  @include ks-typeface('bodySm');
+  width: fit-content;
+  cursor: pointer;
+  color: var(--ks-color-neutral-highOnSurface);
+  flex-direction: column;
+  &.disabled {
+    cursor: not-allowed;
+  }
+  .#{$prefix}__texts--sm & {
+    @include ks-typeface('labelSm');
+    gap: var(--ks-spacing-100);
+  }
+
+  .#{$prefix}__texts--md & {
+    gap: var(--ks-spacing-100);
+  }
+}
+
+.tooltip {
+  display: inline-flex;
+  margin-top: 2px;
+  margin-inline-start: var(--ks-spacing-100);
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 1em;
+  color: var(--ks-color-neutral-fill);
+  &:hover,
+  &:focus {
+    color: var(--ks-color-neutral-fillHover);
+  }
+}
+
+.desc {
+  @include ks-typeface('labelSm');
+  color: var(--ks-color-neutral-onSurface);
+  margin-top: var(--ks-spacing-50);
+}
+
+@keyframes ks-switch-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(120deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

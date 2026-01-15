@@ -1,0 +1,143 @@
+@use 'sass:math';
+@import '../../prestyles/index.scss';
+
+$prefix-badge: badge;
+$badge-variants: 'primary', 'support', 'neutral', 'success', 'error', 'warning', 'info';
+
+:host {
+  display: inline-flex;
+  line-height: 0; // 用来结局组件内部 inline-block导致的下边距占位问题
+}
+
+.#{$prefix-badge} {
+  $size: 16px;
+  $dotsize: 8px;
+  position: relative;
+  display: flex;
+
+  &__sup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &--alone {
+      position: relative;
+      transform: unset;
+      z-index: unset;
+      box-shadow: unset;
+    }
+
+    &--dot {
+      width: $dotsize;
+      height: $dotsize;
+      border-radius: 50%;
+    }
+
+    &--count {
+      border-radius: math.div($size, 2);
+      min-width: $size;
+      height: $size;
+      line-height: $size;
+      color: var(--ks-ref-color-white);
+      padding: 0 var(--ks-spacing-100);
+      @include ks-typeface('labelMd');
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    &--content {
+      border-radius: math.div($size, 2);
+      min-width: $size;
+      height: $size;
+      line-height: $size;
+      color: var(--ks-ref-color-white);
+      padding: 0 var(--ks-spacing-100);
+      @include ks-typeface('labelMd');
+    }
+
+    @each $variant-key in $badge-variants {
+      &--color-#{$variant-key} {
+        background-color: var(--ks-color-#{$variant-key}-fill);
+        .disabled {
+          background-color: var(--ks-color-#{$variant-key}-fillDisabled);
+        }
+      }
+    }
+
+    &__avatar__border {
+      border: 1px solid var(--ks-color-neutral-onFill);
+    }
+
+    &--dir-topright {
+      --translate: translate(40%, -40%);
+      transform: var(--translate);
+      right: 0;
+    }
+    &--dir-topright.#{$prefix-badge}__sup__avatar {
+      transform: none;
+    }
+    &--dir-topright.#{$prefix-badge}__sup__avatar.#{$prefix-badge}__sup__avatar__lg {
+      top: 3px;
+      right: 3px;
+    }
+    &--dir-topleft {
+      --translate: translate(-40%, -40%);
+      transform: var(--translate);
+      left: 0;
+    }
+    &--dir-topleft.#{$prefix-badge}__sup__avatar {
+      transform: none;
+    }
+    &--dir-topleft.#{$prefix-badge}__sup__avatar.#{$prefix-badge}__sup__avatar__lg {
+      top: 3px;
+      left: 3px;
+    }
+    &--dir-bottomleft {
+      --translate: translate(-40%, 40%);
+      transform: var(--translate);
+      left: 0;
+      bottom: 0;
+    }
+    &--dir-bottomleft.#{$prefix-badge}__sup__avatar {
+      transform: none;
+    }
+    &--dir-bottomleft.#{$prefix-badge}__sup__avatar.#{$prefix-badge}__sup__avatar__lg {
+      bottom: 3px;
+      left: 3px;
+    }
+    &--dir-bottomright {
+      --translate: translate(40%, 40%);
+      transform: var(--translate);
+      bottom: 0;
+      right: 0;
+    }
+    &--dir-bottomright.#{$prefix-badge}__sup__avatar {
+      transform: none;
+    }
+    &--dir-bottomright.#{$prefix-badge}__sup__avatar.#{$prefix-badge}__sup__avatar__lg {
+      bottom: 3px;
+      right: 3px;
+    }
+  }
+
+  .disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes aniStatusProcessing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}

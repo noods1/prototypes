@@ -1,0 +1,27 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: menu-item-group;
+
+:host {
+  width: 100%;
+}
+
+.#{$prefix} {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--ks-spacing-100);
+  margin: var(--ks-spacing-100) 0 0;
+
+  &-title {
+    color: var(--ks-color-neutral-onSurface);
+    padding: calc(var(--ks-spacing-200) + var(--ks-spacing-50)) var(--ks-spacing-200);
+    padding-left: calc(var(--ks-comp-side-navigation-level) * var(--ks-spacing-800));
+
+    @include ks-typeface('labelSm');
+
+    &--root {
+      padding-left: var(--ks-spacing-200);
+    }
+  }
+}

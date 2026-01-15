@@ -1,0 +1,154 @@
+@import '../../prestyles/index.scss';
+$prefix: input-number;
+$addon-widths: 42px 38px 34px 30px 26px;
+
+:host {
+  display: inline-flex;
+  width: 100%;
+}
+
+.#{$prefix} {
+  &__controls {
+    width: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all ease-in-out 0.1s;
+
+    &.#{$prefix}__controls--visible {
+      opacity: 1;
+    }
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      width: 36px;
+      background-color: var(--ks-color-neutral-surface2);
+      color: var(--ks-color-neutral-highOnSurface);
+      height: 36px;
+      &:not(&--disabled):hover {
+        background-color: var(--ks-color-neutral-surface2Hover);
+      }
+      &:not(&--disabled):active {
+        background-color: var(--ks-color-neutral-surface2Active);
+      }
+      &-start {
+        border-inline-end: 1px solid var(--ks-color-neutral-fillLow);
+      }
+      &-end {
+        border-inline-start: 1px solid var(--ks-color-neutral-fillLow);
+      }
+      &--disabled {
+        cursor: not-allowed;
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+      }
+    }
+  }
+
+  &__has-controls::part(label) {
+    padding: 0;
+  }
+  &__has-controls::part(controls-start-divider),
+  &__has-controls::part(controls-end-divider) {
+    display: none;
+  }
+  &__has-controls::part(content) {
+    padding-right: var(--ks-spacing-300);
+  }
+  &__has-controls[dir='rtl']::part(content) {
+    padding-left: var(--ks-spacing-300);
+  }
+  [ks-input]::part(input) {
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  &__out-ctl-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+
+    color: var(--ks-color-neutral-onSurface);
+
+    &-up {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 16px;
+      height: 14px;
+      background-color: var(--ks-color-neutral-surface2);
+      // color: var(--ks-color-neutral-highOnSurface);
+      border-radius: var(--ks-border-radius-sm) var(--ks-border-radius-sm) 0 0;
+      &:not(&--disabled):hover {
+        background-color: var(--ks-color-neutral-surface2Hover);
+      }
+      &:not(&--disabled):active {
+        background-color: var(--ks-color-neutral-surface2Active);
+      }
+      &--disabled {
+        cursor: not-allowed;
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+        background-color: var(--ks-color-neutral-surface2Disabled);
+      }
+    }
+    &-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 16px;
+      height: 14px;
+      background-color: var(--ks-color-neutral-surface2);
+      // color: var(--ks-color-neutral-highOnSurface);
+      border-radius: 0 0 var(--ks-border-radius-sm) var(--ks-border-radius-sm);
+      &:not(&--disabled):hover {
+        background-color: var(--ks-color-neutral-surface2Hover);
+      }
+      &:not(&--disabled):active {
+        background-color: var(--ks-color-neutral-surface2Active);
+      }
+      &--disabled {
+        cursor: not-allowed;
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+        background-color: var(--ks-color-neutral-surface2Disabled);
+      }
+    }
+    &--disabled {
+      cursor: not-allowed;
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+      background-color: var(--ks-color-neutral-surface2Disabled);
+    }
+  }
+
+  &__addon {
+    display: flex;
+    align-items: center;
+    font-size: inherit;
+    width: 36px;
+    position: relative;
+  }
+
+  &::placeholder {
+    color: var(--ks-color-neutral-lowOnSurface);
+  }
+
+  &[dir='ltr'] {
+    .#{$prefix}__out-ctl-btn {
+      margin-right: var(--ks-spacing-100);
+    }
+  }
+
+  &[dir='rtl'] {
+    .#{$prefix}__out-ctl-btn {
+      margin-left: var(--ks-spacing-100);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+$prefix: 'segmented-group';
+
+:host {
+  display: inline-block;
+}
+
+.#{$prefix} {
+  display: flex;
+  overflow: hidden;
+  padding: var(--ks-spacing-50);
+  column-gap: var(--ks-spacing-50);
+  border-radius: var(--ks-border-radius-md);
+  background-color: var(--ks-color-neutral-overlayLow);
+
+  &--disabled {
+    background-color: var(--ks-color-neutral-overlayLowDisabled);
+  }
+}

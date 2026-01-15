@@ -1,0 +1,1 @@
+const t=t=>t&&t.offsetWidth||0;const s=t=>t&&t.offsetHeight||0;const a=s=>Math.ceil(t(s));const n=t=>Math.ceil(s(t.children[1]));const o=t=>{let s;if(t.infinite){s=Math.ceil(t.slideCount/t.slidesToScroll)}else{s=Math.ceil((t.slideCount-t.slidesToShow)/t.slidesToScroll)+1}return s};const c=t=>t.currentIndex+t.slidesToShow>=t.count;export{n as a,o as b,a as g,c as h};

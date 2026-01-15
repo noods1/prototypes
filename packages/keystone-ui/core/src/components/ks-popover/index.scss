@@ -1,0 +1,14 @@
+@import '../../prestyles/index.scss';
+
+$prefix: popover;
+
+:host {
+  display: contents !important;
+}
+.#{$prefix} {
+  &::part(body) {
+    box-shadow: var(--ks-elevation-shadow-level3);
+    background-color: var(--ks-color-neutral-surface);
+    border-radius: var(--ks-border-radius-lg);
+  }
+}

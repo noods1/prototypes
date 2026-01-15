@@ -1,0 +1,23 @@
+$prefix: overlay;
+
+:host {
+  display: contents !important;
+  pointer-events: none;
+}
+
+.#{$prefix} {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  inset: auto;
+  top: 0;
+  left: 0;
+  height: auto;
+  position: fixed;
+  overflow: visible;
+
+  &::backdrop {
+    display: none;
+  }
+}

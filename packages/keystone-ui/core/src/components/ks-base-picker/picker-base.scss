@@ -1,0 +1,41 @@
+@import '../../prestyles/index.scss';
+$base-picker: ks-picker-base;
+
+:host {
+  width: fit-content;
+  display: block;
+}
+.#{$base-picker} {
+  width: fit-content;
+  &__popover {
+    border-radius: var(--ks-border-radius-md);
+    overflow: hidden;
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 var(--ks-spacing-300);
+      min-height: 47px;
+      border-top: 1px solid var(--ks-color-neutral-fillLow);
+      gap: var(--ks-spacing-200);
+      &-slot {
+        display: flex;
+        align-items: center;
+        gap: var(--ks-spacing-200);
+      }
+    }
+  }
+  &__timezone {
+    display: inline-block;
+    padding: var(--ks-spacing-100) var(--ks-spacing-200);
+    color: var(--ks-color-neutral-highOnSurface);
+    border-radius: var(--ks-border-radius-md);
+    &:hover {
+      background-color: rgba(18, 20, 21, 0.07);
+    }
+    &__container {
+      margin-inline-end: auto;
+      width: fit-content;
+    }
+  }
+}

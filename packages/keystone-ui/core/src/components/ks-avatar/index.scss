@@ -1,0 +1,141 @@
+@use 'sass:list';
+@import '../../prestyles/index.scss';
+
+$prefix-avatar: avatar;
+$avatar-sizes: 'xs', 'sm', 'md', 'lg';
+$avatar-diameters: var(--ks-spacing-400), var(--ks-spacing-600), var(--ks-spacing-800), var(--ks-spacing-1200);
+$avatar-text-variants: 'labelMd', 'titleSm', 'titleMd', 'headlineMd';
+
+:host {
+  position: relative;
+  display: inline-flex;
+}
+
+.#{$prefix-avatar} {
+  display: inline-flex;
+  vertical-align: middle;
+  text-align: center;
+  background-color: var(--ks-color-support-surface3);
+  color: var(--ks-color-support-fill);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &-outer {
+    position: relative;
+  }
+
+  &--disabled {
+    color: var(--ks-color-support-fillDisabled);
+    &.#{$prefix-avatar}--image {
+      position: relative;
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        content: '';
+        background: rgba($color: #ffffff, $alpha: 0.4);
+      }
+    }
+  }
+
+  @each $size-key in $avatar-sizes {
+    &--#{$size-key} {
+      $size: list.nth($avatar-diameters, list.index($avatar-sizes, $size-key));
+      width: $size;
+      height: $size;
+      @include ks-typeface(list.nth($avatar-text-variants, list.index($avatar-sizes, $size-key)));
+      line-height: $size;
+
+      & > * {
+        line-height: $size;
+      }
+    }
+  }
+
+  &--square {
+    border-radius: var(--ks-border-radius-md);
+  }
+
+  &--circle {
+    border-radius: var(--ks-border-radius-full);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__overlap {
+    display: inline-flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--ks-color-neutral-surface1);
+    height: 20px;
+    width: 20px;
+    align-items: center;
+    justify-content: center;
+
+    &--square {
+      border-radius: var(--ks-border-radius-md);
+    }
+
+    &--circle {
+      border-radius: var(--ks-border-radius-full);
+    }
+
+    ::slotted([slot='overlap']) {
+      @include ks-typeface('labelSm');
+      cursor: pointer;
+    }
+  }
+}
+
+.#{$prefix-avatar}-container {
+  display: flex;
+  align-items: center;
+  gap: var(--ks-spacing-200);
+}
+
+.#{$prefix-avatar}-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ks-spacing-100);
+}
+
+:host([dir='rtl']) {
+  .#{$prefix-avatar}__overlap {
+    left: 0;
+    right: initial;
+  }
+}
+
+:host(.#{$prefix-avatar}-host-group) {
+  position: relative;
+
+  .#{$prefix-avatar} {
+    border: 2px solid var(--ks-color-neutral-onFill);
+  }
+}
+
+:host(.#{$prefix-avatar}-host-group[dir='ltr']:not(:only-child)) {
+  margin-left: -12px !important;
+}
+:host(.#{$prefix-avatar}-host-group[dir='rtl']:not(:only-child)) {
+  margin-right: -12px !important;
+}
+
+:host(.#{$prefix-avatar}-host-group[dir='ltr']:not(:only-child):first-child) {
+  margin-left: 0 !important;
+}
+:host(.#{$prefix-avatar}-host-group[dir='rtl']:not(:only-child):first-child) {
+  margin-right: 0 !important;
+}
+
+:host(.#{$prefix-avatar}-host-group[style-hidden]) {
+  display: none;
+}

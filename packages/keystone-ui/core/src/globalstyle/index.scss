@@ -1,0 +1,21 @@
+@import '~@fe-infra/keystone-design-tokens/index.css';
+
+@import '../components/ks-scrollbar/global-style.scss';
+@import '../components/ks-text/global-style.scss';
+@import '../components/ks-segmented-control/styles/global-style.scss';
+@import '../components/ks-nux-popover/index.scss';
+
+:root {
+  --ks-zindex__popper: 1000; /* popper 采用absolute定位，默认给1000层级，为普通布局层级预留，同时低于dialog层级，保证dialog可以覆盖其上 */
+  --ks-zindex__modal: 1001; /* dialog 默认层级从1001开始，通过js全局变量逐层追加 */
+  color: var(--ks-color-neutral-highOnSurface);
+}
+
+mark {
+  background-color: var(--ks-color-primary-surface2);
+  color: var(--ks-color-primary-onSurface);
+}
+
+.unscrollable {
+  overflow: hidden;
+}

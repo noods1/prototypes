@@ -1,0 +1,1 @@
+function t(){return(t,e)=>{const n=new WeakMap;Object.defineProperty(t,"_valueFix",{get(){return n.get(this)},set(t){this.value=t;n.set(this,t)}})}}export{t as V};

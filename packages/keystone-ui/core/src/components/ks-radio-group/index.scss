@@ -1,0 +1,14 @@
+$prefix-radio-group: radio-group;
+
+:host {
+  display: inline-flex;
+}
+
+.#{$prefix-radio-group} {
+  display: flex;
+  gap: 24px;
+  &--vertical {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,11 @@
+@import '../../../prestyles/index.scss';
+
+:host {
+  display: block;
+}
+
+.link {
+  &::part(self) {
+    @include ks-typeface('labelSm');
+  }
+}

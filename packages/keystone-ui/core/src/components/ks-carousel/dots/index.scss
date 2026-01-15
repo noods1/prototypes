@@ -1,0 +1,29 @@
+@import '../../../prestyles/index.scss';
+$prefix: 'dots';
+
+:host {
+  display: block;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  height: 6px;
+}
+
+.#{$prefix} {
+  @include ks-transition-in-out(200, all);
+  display: inline-flex;
+  gap: var(--ks-spacing-200);
+
+  li {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: var(--ks-border-radius-full);
+    background-color: var(--ks-color-neutral-fillLow);
+    cursor: pointer;
+    &.active {
+      background-color: var(--ks-color-neutral-fill);
+    }
+  }
+}

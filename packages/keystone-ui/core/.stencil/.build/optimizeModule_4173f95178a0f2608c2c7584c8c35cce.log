@@ -1,0 +1,11 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+function t(t){return t}
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */class s extends Event{constructor(t,s,e,r){super("context-request",{bubbles:true,composed:true});this.context=t;this.callback=s;this.subscribe=e??false;this.contextPath=r}}export{s as C,t as c};

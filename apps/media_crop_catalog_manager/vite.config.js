@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,4 +9,9 @@ export default defineConfig({
   server: {
     port: 5177,
   },
+  resolve: {
+    alias: {
+      '@fe-infra/keystone-design-tokens': path.resolve(__dirname, '../../packages/keystone-design-tokens')
+    }
+  }
 })

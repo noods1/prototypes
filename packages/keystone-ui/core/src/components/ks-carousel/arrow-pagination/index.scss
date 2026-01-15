@@ -1,0 +1,20 @@
+@import '../../../prestyles/index.scss';
+$prefix: 'arrow-pagination';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--ks-spacing-200);
+}
+.#{$prefix} {
+  &--text {
+    @include ks-typeface('bodySm');
+    font-variant-numeric: lining-nums tabular-nums;
+    margin: 0 var(--ks-spacing-100);
+    color: var(--ks-color-neutral-highOnSurface);
+  }
+}
+.#{$prefix}--arrow {
+  color: var(--ks-color-neutral-onSurface);
+}

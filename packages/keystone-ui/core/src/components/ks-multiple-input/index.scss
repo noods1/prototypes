@@ -1,0 +1,6 @@
+@import '../../prestyles/index.scss';
+$prefix: multiple-input;
+
+.#{$prefix} {
+  display: inline-flex;
+}

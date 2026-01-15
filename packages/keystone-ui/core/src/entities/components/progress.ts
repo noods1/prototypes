@@ -1,0 +1,5 @@
+export type ProgressSize = 'md' | 'sm' | 'xs';
+
+export type ProgressType = 'bar' | 'ring';
+
+export type ProgressStatus = 'default' | 'success' | 'error' | 'warning';

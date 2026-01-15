@@ -1,0 +1,14 @@
+$prefix: button-group;
+
+:host {
+  display: block;
+  height: 36px;
+}
+
+.#{$prefix} {
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--ks-color-neutral-surface);
+  border-radius: var(--ks-border-radius-md);
+}

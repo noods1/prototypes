@@ -1,0 +1,58 @@
+@use 'sass:math';
+@import '../../prestyles/index.scss';
+$prefix: space;
+
+.#{$prefix} {
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 100%;
+
+  &--horizontal {
+    flex-direction: row;
+    &.#{$prefix}--compact {
+      ::slotted(*) {
+        --ks-comp-space__item-radius: 0;
+      }
+      ::slotted(:first-child) {
+        --ks-comp-space__item-radius: var(--ks-border-radius-md) 0 0 var(--ks-border-radius-md);
+      }
+      ::slotted(:last-child) {
+        --ks-comp-space__item-radius: 0 var(--ks-border-radius-md) var(--ks-border-radius-md) 0;
+      }
+      ::slotted(:last-child:first-child) {
+        --ks-comp-space__item-radius: var(--ks-border-radius-md);
+      }
+      ::slotted(:not(:first-child)) {
+        --ks-comp-space__item-margin-inline-start: -1px;
+      }
+      &[dir='rtl'] {
+        ::slotted(:first-child) {
+          --ks-comp-space__item-radius: 0 var(--ks-border-radius-md) var(--ks-border-radius-md) 0;
+        }
+        ::slotted(:last-child) {
+          --ks-comp-space__item-radius: var(--ks-border-radius-md) 0 0 var(--ks-border-radius-md);
+        }
+      }
+    }
+  }
+
+  &--vertical {
+    flex-direction: column;
+    &.#{$prefix}--compact {
+      ::slotted(*) {
+        --ks-comp-space__item-radius: 0;
+        width: 100%;
+      }
+      ::slotted(:first-child) {
+        --ks-comp-space__item-radius: var(--ks-border-radius-md) var(--ks-border-radius-md) 0 0;
+      }
+      ::slotted(:last-child) {
+        --ks-comp-space__item-radius: 0 0 var(--ks-border-radius-md) var(--ks-border-radius-md);
+      }
+      ::slotted(:not(:first-child)) {
+        margin-top: -1px !important;
+        position: relative;
+      }
+    }
+  }
+}

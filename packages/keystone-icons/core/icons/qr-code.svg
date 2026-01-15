@@ -1,0 +1,12 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="5.5007" y="27.5968" width="14.9035" height="14.9035" rx="1.5" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+<rect x="15.4524" y="32.5485" width="5" height="5" rx="0.277778" transform="rotate(90 15.4524 32.5485)" fill="currentColor"/>
+<rect x="5.5007" y="5.50024" width="15" height="15" rx="1.51618" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+<rect x="15.3158" y="10.41" width="5.02696" height="5.02696" rx="0.279276" transform="rotate(90 15.3158 10.41)" fill="currentColor"/>
+<rect x="27.5007" y="5.50024" width="15" height="15" rx="1.51618" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+<rect x="37.5142" y="10.4868" width="5.02696" height="5.02696" rx="0.279276" transform="rotate(90 37.5142 10.4868)" fill="currentColor"/>
+<path d="M29.9821 31.9856H35.987L35.9861 35.9866H31.9851V39.9954H35.987L35.9861 44.0002H28.0085V39.9954H24.032V35.9866H29.032V31.9856H25.9734V26.051H29.9821V31.9856Z" fill="currentColor"/>
+<path d="M44.0007 44.0002H39.9958V39.9954H44.0007V44.0002Z" fill="currentColor"/>
+<path d="M39.9958 39.9954H35.987L35.9861 35.9866H39.9958V39.9954Z" fill="currentColor"/>
+<path d="M44.0007 35.9866H39.9958V31.9807H35.987V28.0159H32.0632V24.0071H40.0007V31.9807H44.0007V35.9866Z" fill="currentColor"/>
+</svg>

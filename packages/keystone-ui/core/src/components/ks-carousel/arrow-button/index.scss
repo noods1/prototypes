@@ -1,0 +1,9 @@
+@import '../../../prestyles/index.scss';
+$prefix: 'arrow-button';
+
+:host {
+  height: 24px;
+}
+.#{$prefix}--arrow {
+  color: var(--ks-color-neutral-onSurface);
+}

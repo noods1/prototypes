@@ -1,0 +1,72 @@
+@import '../../../prestyles/index.scss';
+
+$prefix-cascader-searchlist: cascader-searchlist;
+.#{$prefix-cascader-searchlist} {
+  height: 100%;
+  overflow-y: auto;
+  &__item {
+    padding: var(--ks-spacing-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // color: var(--ks-color-neutral-highOnSurface);
+    border-radius: var(--ks-border-radius-md);
+    column-gap: var(--ks-spacing-200);
+    cursor: pointer;
+    transition: all var(--ks-transition-functionalShort);
+
+    [data-highlight] {
+      color: var(--ks-color-primary-onSurface);
+      background-color: var(--ks-color-primary-surface2);
+    }
+
+    .#{$prefix-cascader-searchlist}__text {
+      vertical-align: middle;
+    }
+
+    &__left {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: var(--ks-text-bodySm-fontSize);
+      line-height: var(--ks-text-bodySm-lineHeight);
+      font-weight: var(--ks-text-bodySm-fontWeight);
+      & > * {
+        vertical-align: middle;
+      }
+      &--fulllabel {
+        & > [ks-checkbox] {
+          width: calc(100% - 12px);
+        }
+        & > [ks-checkbox]::part(label) {
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+    &:not(&--disabled, &--active, &--selected):hover {
+      background-color: var(--ks-color-neutral-surface2Hover);
+    }
+    &--active {
+      background-color: var(--ks-color-neutral-surface2Active);
+    }
+    &--selected {
+      color: var(--ks-color-primary-onSurface);
+      background-color: var(--ks-color-primary-surface2);
+    }
+    &--disabled {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+      cursor: not-allowed;
+      &.#{$prefix-cascader-searchlist}__item--selected,
+      &.#{$prefix-cascader-searchlist}__item--active {
+        background-color: var(--ks-color-primary-surface1);
+      }
+    }
+    & + & {
+      margin-top: var(--ks-spacing-50);
+    }
+  }
+}

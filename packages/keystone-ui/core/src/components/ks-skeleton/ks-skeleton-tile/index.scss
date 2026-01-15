@@ -1,0 +1,16 @@
+@import '../../../prestyles/index.scss';
+$prefix: skeleton-tile;
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--ks-spacing-400);
+  background: transparent;
+  border-radius: var(--ks-border-radius-lg);
+  gap: var(--ks-spacing-200);
+}

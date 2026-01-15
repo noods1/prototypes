@@ -1,0 +1,26 @@
+@import '../../prestyles/index.scss';
+
+$prefix: avatar-group;
+
+:host {
+  display: inline-flex;
+}
+
+.#{$prefix} {
+  display: inline-flex;
+
+  &__surplus {
+    &::part(self) {
+      color: var(--ks-color-neutral-onSurface);
+      background-color: var(--ks-color-neutral-surface3);
+      @include ks-typeface('labelMd');
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    &__sm {
+      font-size: 10px;
+    }
+    &__lg {
+      @include ks-typeface('labelLg');
+    }
+  }
+}

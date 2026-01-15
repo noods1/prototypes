@@ -1,0 +1,26 @@
+@use 'sass:list';
+@import '../../../prestyles/index.scss';
+
+$prefix: skeleton-text;
+$text-sizes: 'Sm', 'Md', 'Lg';
+$text-types: 'headline', 'title', 'body', 'label';
+
+:host {
+  display: inline;
+  line-height: 0;
+}
+
+.#{$prefix} {
+  display: inline-flex;
+  background-color: var(--ks-color-neutral-surface3);
+  width: 100%;
+  border-radius: var(--ks-border-radius-md);
+  @each $type-key in $text-types {
+    @each $size-key in $text-sizes {
+      $formItemHeight: var(--ks-text-#{$type-key}#{$size-key}-lineHeight);
+      &-#{$type-key}-#{$size-key} {
+        height: $formItemHeight;
+      }
+    }
+  }
+}

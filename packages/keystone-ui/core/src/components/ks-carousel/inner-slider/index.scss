@@ -1,0 +1,10 @@
+@import '../../../prestyles/index.scss';
+:host {
+  overflow: hidden;
+  display: block;
+}
+.inner-slider {
+  display: flex;
+  overflow: hidden;
+  @include ks-transition-in-out(200, transform);
+}

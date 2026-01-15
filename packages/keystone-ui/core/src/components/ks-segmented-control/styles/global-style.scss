@@ -1,0 +1,8 @@
+[ks-segmented-group] {
+  // Hide divider between active item and next item
+  [ks-segmented-item][ks-active] + [ks-segmented-item],
+  // Hide divider between hovered item and next item
+  [ks-segmented-item]:not([ks-disabled]):hover + [ks-segmented-item] {
+    --ks-comp-divider-opacity: 0;
+  }
+}

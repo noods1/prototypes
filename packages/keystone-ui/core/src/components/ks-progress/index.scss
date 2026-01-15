@@ -1,0 +1,103 @@
+@import '../../prestyles/index.scss';
+
+$prefix: progress;
+:host {
+  display: block;
+  &:has(.#{$prefix}--bar) {
+    width: 100%;
+  }
+}
+
+.#{$prefix} {
+  display: flex;
+  align-items: center;
+  position: relative;
+  &__outer {
+    flex: 1;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  &__inner {
+    height: 100%;
+
+    border-radius: 100px;
+    @include ks-transition-out(100, width);
+  }
+  &__label {
+    min-width: 26px;
+    display: flex;
+    align-items: center;
+    margin-inline-start: var(--ks-spacing-400);
+    color: var(--ks-color-neutral-highOnSurface);
+  }
+
+  &--ring {
+    display: inline-flex;
+    .#{$prefix}__label {
+      min-width: initial;
+      margin: 0;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &.#{$prefix}--md {
+      .#{$prefix}__label {
+        @include ks-typeface('bodyMd');
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+    }
+    &.#{$prefix}--sm {
+      .#{$prefix}__label {
+        @include ks-typeface('bodyMd');
+      }
+    }
+
+    &.#{$prefix}--xs {
+      .#{$prefix}__label {
+        @include ks-typeface('labelSm');
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+    }
+  }
+
+  &--bar {
+    width: 100%;
+    .#{$prefix}__label {
+      @include ks-typeface('labelSm');
+      font-variant-numeric: lining-nums tabular-nums;
+      height: var(--ks-text-labelSm-lineHeight);
+    }
+    &.#{$prefix}--xs {
+      .#{$prefix}__outer {
+        height: 2px;
+      }
+    }
+    &.#{$prefix}--sm {
+      .#{$prefix}__outer {
+        height: 4px;
+      }
+    }
+    &.#{$prefix}--md {
+      .#{$prefix}__outer {
+        height: 8px;
+      }
+    }
+  }
+}
+
+.helpText {
+  display: block;
+  margin-top: var(--ks-spacing-100);
+  @include ks-typeface('labelSm');
+  color: var(--ks-color-neutral-highOnSurface);
+  &.success {
+    color: var(--ks-color-success-onSurface);
+  }
+  &.error {
+    color: var(--ks-color-error-onSurface);
+  }
+  &.warning {
+    color: var(--ks-color-warning-onSurface);
+  }
+}

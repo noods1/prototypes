@@ -1,0 +1,20 @@
+@import '../../prestyles/index.scss';
+
+$prefix: calendar;
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--ks-border-radius-md);
+  box-shadow: var(--ks-elevation-shadow-level1);
+  background-color: var(--ks-color-neutral-surface);
+  border: 1px solid var(--ks-color-neutral-fillLow);
+
+  &--year &__container {
+    padding: var(--ks-spacing-100) var(--ks-spacing-200);
+  }
+}

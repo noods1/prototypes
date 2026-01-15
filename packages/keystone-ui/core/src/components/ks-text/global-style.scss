@@ -1,0 +1,46 @@
+@use 'sass:map';
+
+// body affects default font-family of all elements but not
+// button, input, optgroup, select, textarea
+// so they need to be overridden too
+body,
+button,
+input,
+optgroup,
+select,
+textarea,
+::-webkit-file-upload-button {
+  font-family: var(--ks-ref-text-fontFamily-text);
+}
+
+// emphasized text should use medium weight in TikTok Sans
+b,
+strong {
+  font-weight: var(--ks-ref-text-weight-medium);
+}
+
+$font-families: (
+  'TikTok Sans Text': 'TikTokSansText',
+  'TikTok Sans Display': 'TikTokSansDisplay',
+);
+
+$font-weights: (
+  'Light': 300,
+  'Regular': 400,
+  'Medium': 500,
+  'Bold': 700,
+  'Black': 900,
+);
+
+@each $font-family-name, $font-family-uri in $font-families {
+  @each $font-weight-label, $font-weight-value in $font-weights {
+    @font-face {
+      font-family: $font-family-name;
+      // Use CDN fonts to optimize loading performance, as fonts are not often updated.
+      src: url('https://sf16-sg.tiktokcdn.com/obj/eden-sg/uhbeylbvog/ks-text/#{$font-family-uri}-#{$font-weight-label}.woff2')
+        format('woff2');
+      font-weight: $font-weight-value;
+      font-display: swap;
+    }
+  }
+}

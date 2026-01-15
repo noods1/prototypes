@@ -1,0 +1,54 @@
+@import '../../../../prestyles/index.scss';
+@import '../utils.scss';
+$month-panel: ks-month-panel;
+
+@include generatePanel($month-panel);
+
+.#{$month-panel} {
+  &__header-title {
+    display: inline-flex;
+    padding: 0 10px;
+    &:hover {
+      // color: var(--ks-color__primary__font-hover);
+      // cursor: pointer;
+    }
+  }
+  &__header-content {
+    @include ks-typeface('labelLg');
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 84px);
+    padding: 8px;
+    grid-row-gap: 16px;
+  }
+  &__item {
+    padding: 2px;
+    width: 100%;
+
+    &-inner {
+      width: 100%;
+      border-radius: var(--ks-border-radius-md);
+      padding: 6px 0;
+      @include ks-typeface('bodySm');
+    }
+
+    &:not(&--disabled, &--active) {
+      .#{$month-panel}__item-inner {
+        &:hover {
+          background-color: var(--ks-color-neutral-surfaceHover);
+        }
+        &:active {
+          background-color: var(--ks-color-neutral-surfaceActive);
+        }
+      }
+    }
+
+    &--active {
+      .#{$month-panel}__item-inner {
+        background-color: var(--ks-color-primary-fill);
+        color: var(--ks-color-primary-onFill);
+      }
+    }
+  }
+}

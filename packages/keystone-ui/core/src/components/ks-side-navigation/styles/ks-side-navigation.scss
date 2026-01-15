@@ -1,0 +1,40 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: side-navigation;
+
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.#{$prefix} {
+  user-select: none;
+
+  width: 100%;
+  height: 100%;
+  row-gap: var(--ks-spacing-200);
+  padding: var(--ks-spacing-400) var(--ks-spacing-200);
+
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    padding: var(--ks-spacing-200);
+    color: var(--ks-color-neutral-highOnSurface);
+
+    @include ks-typeface('titleLg');
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &-content {
+    flex: 1;
+    display: flex;
+    overflow: hidden auto;
+    flex-direction: column;
+    row-gap: var(--ks-spacing-100);
+  }
+}

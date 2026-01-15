@@ -1,0 +1,1 @@
+const t=(t,n)=>{const o=[];const c=t=>{if(typeof t.content==="function"){o.push(n(`slot-content-${t.date.getTime()}`,t.content()))}};t.renderContent?.forEach(c);return o};export{t as I};

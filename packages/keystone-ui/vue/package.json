@@ -1,0 +1,52 @@
+{
+  "name": "@fe-infra/keystone-vue",
+  "description": "Vue specific wrapper for @fe-infra/keystone",
+  "version": "0.19.24",
+  "license": "MIT",
+  "bugs": "https://code.byted.org/ad/byted-web-components/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://code.byted.org/ad/byted-web-components.git",
+    "directory": "keystone/vue"
+  },
+  "keywords": [
+    "Keystone",
+    "Web Components",
+    "Design System",
+    "Vue"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/index.css",
+  "sideEffects": [
+    "./dist/index.js"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run tsc",
+    "start": "tsc -w -p .",
+    "tsc": "tsc -p .",
+    "lint:staged": "echo skip lint"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@fe-infra/keystone": "workspace:*",
+    "vue-demi": "latest"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  }
+}

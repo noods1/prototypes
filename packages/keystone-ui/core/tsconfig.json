@@ -1,0 +1,25 @@
+{
+  "extends": "../../../libs/config/tsconfig.components.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2020",
+      // https://stenciljs.com/docs/testing/playwright/overview
+      "ESNext.Disposable",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "target": "ES2020",
+    "useDefineForClassFields": false, // Required by the @stencil/core 4.27.2 compiler mechanism
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@fixture/*": ["./fixture/*"]
+    },
+    "skipLibCheck": true
+  },
+  "include": ["src", "fixture"],
+  "exclude": [
+    "node_modules",
+    "**/__test__/**",
+    "**/__tests__/**"
+  ]
+}

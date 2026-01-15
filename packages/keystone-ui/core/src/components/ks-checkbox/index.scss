@@ -1,0 +1,184 @@
+@import '../../prestyles/index.scss';
+
+$prefix-checkbox: checkbox;
+$prefix-checkbox-display: #{$prefix-checkbox}__display;
+:host {
+  display: inline-flex;
+}
+
+.#{$prefix-checkbox} {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  vertical-align: middle;
+  gap: var(--ks-spacing-200);
+  user-select: none;
+
+  &--align-flex-start {
+    align-items: flex-start;
+  }
+  &--align-center {
+    align-items: center;
+  }
+
+  &--checked,
+  &--indeterminate {
+    .#{$prefix-checkbox-display} {
+      border-color: var(--ks-color-primary-fill);
+      background-color: var(--ks-color-primary-fill);
+
+      &:hover {
+        border-color: var(--ks-color-primary-fillHover);
+        background-color: var(--ks-color-primary-fillHover);
+      }
+
+      &:active,
+      &:focus {
+        border-color: var(--ks-color-primary-fillActive);
+        background-color: var(--ks-color-primary-fillActive);
+      }
+    }
+  }
+
+  &--disabled {
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+    cursor: no-drop;
+    .#{$prefix-checkbox-display} {
+      background-color: var(--ks-color-neutral-surface2Disabled);
+      border-color: var(--ks-color-neutral-fillDisabled);
+    }
+    [ks-theme='default'],
+    [ks-theme='neutral'] {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+    &.#{$prefix-checkbox}--checked {
+      .#{$prefix-checkbox-display} {
+        background-color: var(--ks-color-primary-fillDisabled);
+        border-color: var(--ks-color-primary-fillDisabled);
+      }
+    }
+  }
+
+  &--error {
+    .#{$prefix-checkbox-display} {
+      border-color: var(--ks-color-error-fill);
+    }
+    &.#{$prefix-checkbox}--checked {
+      .#{$prefix-checkbox-display} {
+        border-color: var(--ks-color-primary-fill);
+        background-color: var(--ks-color-primary-fill);
+
+        &:hover {
+          border-color: var(--ks-color-primary-fillHover);
+          background-color: var(--ks-color-primary-fillHover);
+        }
+
+        &:active,
+        &:focus {
+          border-color: var(--ks-color-primary-fillActive);
+          background-color: var(--ks-color-primary-fillActive);
+        }
+      }
+    }
+  }
+  &--error:not(&--disabled, &--checked, &--indeterminate) {
+    &:hover {
+      .#{$prefix-checkbox-display} {
+        border-color: var(--ks-color-error-fillHover);
+      }
+    }
+    &:active,
+    &:focus {
+      .#{$prefix-checkbox-display} {
+        border-color: var(--ks-color-error-fillActive);
+      }
+    }
+  }
+
+  &:not(&--disabled, &--error, &--checked, &--indeterminate) {
+    &:hover {
+      .#{$prefix-checkbox-display} {
+        border-color: var(--ks-color-neutral-fillLowHover);
+      }
+    }
+
+    &:active,
+    &:focus {
+      .#{$prefix-checkbox-display} {
+        border-color: var(--ks-color-neutral-fillLowActive);
+      }
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ks-spacing-50);
+    overflow: hidden;
+    #content {
+      > [ks-tooltip] {
+        > [ks-icon] {
+          color: var(--ks-color-neutral-onSurface);
+        }
+      }
+      display: flex;
+      gap: var(--ks-spacing-100);
+      align-items: center;
+      @include ks-typeface('bodySm');
+    }
+    .#{$prefix-checkbox}--sm & #content {
+      color: var(--ks-color-neutral-onSurface);
+      @include ks-typeface('labelSm');
+    }
+    .#{$prefix-checkbox}--disabled & #content {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+  }
+
+  &__input {
+    @include byted-check-wrapper;
+  }
+
+  &--sm {
+    gap: var(--ks-spacing-100);
+  }
+}
+
+.#{$prefix-checkbox-display} {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: var(--ks-border-radius-md);
+  border: 2px solid var(--ks-color-neutral-fillLow);
+  box-sizing: border-box;
+  color: var(--ks-color-neutral-onFill);
+  overflow: hidden;
+  background-color: var(--ks-color-primary-surface);
+  @include ks-transition-out(100, border-color, background-color);
+
+  &__icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-origin: left bottom;
+    animation: ks-checkbox-icon-scale 100ms var(--ks-transition-easing-standardOut);
+  }
+
+  .#{$prefix-checkbox}--sm & {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@keyframes ks-checkbox-icon-scale {
+  from {
+    transform: scale(0.6);
+  }
+  to {
+    transform: scale(1);
+  }
+}

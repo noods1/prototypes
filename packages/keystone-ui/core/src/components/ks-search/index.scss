@@ -1,0 +1,22 @@
+@import '../../prestyles/index.scss';
+
+$prefix: 'search';
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  &__select {
+    min-width: 100px;
+    max-width: 160px;
+  }
+  &__input {
+    flex-grow: 1;
+  }
+  &__disabled {
+    #search-icon {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+  }
+}

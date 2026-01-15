@@ -1,0 +1,92 @@
+@import '../../prestyles/index.scss';
+
+$prefix: upload-drop;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+[ks-upload]::part(self) {
+  display: block;
+}
+
+.#{$prefix} {
+  width: 100%;
+  min-height: 160px;
+  border: 1px dashed var(--ks-color-neutral-fillLow);
+  border-radius: var(--ks-border-radius-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all ease-in-out 0.1s;
+  cursor: pointer;
+  padding: var(--ks-spacing-400);
+  box-sizing: border-box;
+  color: var(--ks-color-neutral-onSurface);
+
+  background-color: var(--ks-color-neutral-surface);
+  &:hover:not(.#{$prefix}--disabled) {
+    background-color: var(--ks-color-neutral-surfaceHover);
+    border-color: var(--ks-color-neutral-fillLowHover);
+    &.#{$prefix}--plain {
+      color: var(--ks-color-neutral-onSurfaceHover);
+      .#{$prefix}__special-text {
+        color: var(--ks-color-primary-onSurfaceHover);
+      }
+    }
+  }
+  &:active:not(.#{$prefix}--disabled) {
+    background-color: var(--ks-color-neutral-surfaceActive);
+    border-color: var(--ks-color-neutral-fillLowActive);
+    &.#{$prefix}--plain {
+      color: var(--ks-color-neutral-onSurfaceActive);
+      .#{$prefix}__special-text {
+        color: var(--ks-color-primary-onSurfaceActive);
+      }
+    }
+  }
+  &.#{$prefix}--plain {
+    color: var(--ks-color-neutral-onSurface);
+  }
+
+  &--highlight:not(.#{$prefix}--disabled) {
+    border-color: var(--ks-color-primary-fillLow);
+    background-color: var(--ks-color-primary-surface2);
+    &.#{$prefix}--plain {
+      color: var(--ks-color-neutral-onSurface);
+    }
+  }
+
+  &--error:not(.#{$prefix}--highlight) {
+    border-color: var(--ks-color-error-fill);
+    background-color: var(--ks-color-error-surface2);
+  }
+
+  &.#{$prefix}--disabled {
+    cursor: not-allowed;
+    background-color: var(--ks-color-neutral-surface2Disabled);
+    color: var(--ks-color-neutral-onSurfaceDisabled);
+
+    .#{$prefix}__text {
+      .#{$prefix}__special-text {
+        color: var(--ks-color-primary-fillDisabled);
+      }
+    }
+  }
+
+  &__text {
+    text-align: center;
+    font-size: var(--ks-text-bodySm-fontSize);
+    line-height: var(--ks-text-bodySm-lineHeight);
+
+    .#{$prefix}__special-text {
+      color: var(--ks-color-primary-onSurface);
+    }
+  }
+
+  &__icon {
+    font-size: 36px;
+  }
+}

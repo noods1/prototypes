@@ -1,0 +1,112 @@
+@import '../../prestyles/index.scss';
+
+$prefix: toast;
+$message-variants: 'success', 'warning', 'error', 'info';
+
+.#{$prefix} {
+  box-sizing: border-box;
+  margin-bottom: var(--ks-spacing-400);
+  color: var(--ks-color-neutral-highOnSurface);
+  background-color: var(--ks-color-neutral-surface);
+  border-radius: var(--ks-border-radius-md);
+  box-shadow: var(--ks-elevation-shadow-level3);
+  pointer-events: auto;
+  display: none;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--ks-spacing-200);
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    ks-icon-loading {
+      // TODO: Improve this animation
+      animation: ks-message-icon-spin 1s linear infinite;
+    }
+  }
+
+  &--sm {
+    width: auto;
+    max-width: 400px;
+    padding: var(--ks-spacing-200) var(--ks-spacing-300);
+
+    .#{$prefix}__content {
+      @include ks-typeface('bodySm');
+    }
+
+    .#{$prefix}__close {
+      &::part(self) {
+        padding: var(--ks-spacing-50);
+        font-size: var(--ks-text-bodySm-fontSize);
+      }
+    }
+  }
+
+  &--md {
+    width: 400px;
+    padding: var(--ks-spacing-300);
+
+    .#{$prefix}__title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      @include ks-typeface('titleSm');
+      &__container {
+        display: flex;
+        gap: var(--ks-spacing-200);
+        align-items: center;
+      }
+    }
+
+    .#{$prefix}__content {
+      @include ks-typeface('labelSm');
+      &__withicon {
+        margin-left: calc(var(--ks-spacing-200) + 16px);
+      }
+    }
+
+    .#{$prefix}__close {
+      &__icon {
+        padding: var(--ks-spacing-50);
+      }
+      &::part(self) {
+        padding: var(--ks-spacing-200);
+        font-size: var(--ks-text-bodySm-fontSize);
+      }
+    }
+  }
+
+  &__wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ks-spacing-100);
+  }
+
+  &[style-show] {
+    display: inline-flex;
+    transform: translateY(-100%);
+  }
+
+  &__close::part(self) {
+    min-width: unset;
+    width: auto;
+    height: auto;
+    border: none;
+  }
+}
+
+@keyframes ks-message-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(120deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

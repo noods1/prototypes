@@ -1,0 +1,11 @@
+@import '../../prestyles/index.scss';
+$prefix: ks-scrollbar;
+
+:host {
+  display: block;
+  overflow: auto;
+}
+
+:host([ks-thin]) {
+  scrollbar-width: thin;
+}

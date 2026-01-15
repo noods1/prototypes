@@ -1,0 +1,57 @@
+@import '../../prestyles/index.scss';
+$prefix: input-password;
+$addon-widths: 42px 38px 34px 30px 26px;
+
+:host {
+  display: inline-flex;
+  width: 100%;
+}
+
+.#{$prefix} {
+  &__icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+    &[dir='ltr'] {
+      margin-right: var(--ks-spacing-200);
+    }
+
+    &[dir='rtl'] {
+      margin-left: var(--ks-spacing-200);
+    }
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 16px;
+      height: 14px;
+      color: var(--ks-color-neutral-onSurface);
+      &:not(&--disabled):hover {
+        color: var(--ks-color-neutral-onSurfaceHover);
+      }
+      &:not(&--disabled):active {
+        color: var(--ks-color-neutral-onSurfaceActive);
+      }
+      &--disabled {
+        cursor: not-allowed;
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+      }
+    }
+  }
+
+  &[dir='ltr'] {
+    .#{$prefix}__icon-btn {
+      margin-left: var(--ks-spacing-200);
+    }
+  }
+
+  &[dir='rtl'] {
+    .#{$prefix}__icon-btn {
+      margin-right: var(--ks-spacing-200);
+    }
+  }
+}

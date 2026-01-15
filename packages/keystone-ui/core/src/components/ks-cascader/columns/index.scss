@@ -1,0 +1,154 @@
+@use 'sass:math';
+@import '../../../prestyles/index.scss';
+
+$prefix-cascader-columns: cascader-columns;
+
+.#{$prefix-cascader-columns} {
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  min-height: 40px;
+  &__column {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    overflow-y: auto;
+    padding: 0 var(--ks-spacing-100);
+    scrollbar-width: none;
+    &:not(:nth-last-child(1)) {
+      border-right: 1px solid var(--ks-color-neutral-fillLow);
+    }
+    &-wrapper {
+      height: 100%;
+    }
+    &__item {
+      padding: var(--ks-spacing-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--ks-color-neutral-highOnSurface);
+      border-radius: var(--ks-border-radius-md);
+      column-gap: var(--ks-spacing-200);
+      cursor: pointer;
+      @include ks-transition-out(100, all);
+
+      &__left {
+        &__multiple {
+          display: flex;
+          flex: 1;
+          width: calc(100% - 24px);
+        }
+        & > * {
+          vertical-align: middle;
+        }
+        &--fulllabel {
+          & > [ks-checkbox] {
+            width: calc(100% - 12px);
+          }
+        }
+      }
+      &:not(&--disabled, &--active, &--selected):hover {
+        background-color: var(--ks-color-neutral-surfaceHover);
+      }
+      &:not(&--disabled, &--active, &--selected):active {
+        background-color: var(--ks-color-neutral-surfaceActive);
+      }
+      &--active {
+        background-color: var(--ks-color-neutral-surfaceActive);
+      }
+      &--selected {
+        // color: var(--ks-color-primary-onSurface);
+        background-color: var(--ks-color-primary-surface2);
+        &:not(.#{$prefix-cascader-columns}__column__item--disabled):hover {
+          background-color: var(--ks-color-primary-surface2Hover);
+        }
+        &:not(.#{$prefix-cascader-columns}__column__item--disabled):active {
+          background-color: var(--ks-color-primary-surface2Active);
+        }
+      }
+      &--selected:not(&--active) {
+        .#{$prefix-cascader-columns}__column__item__nexticon {
+          color: initial;
+          font-weight: bold;
+        }
+      }
+      &--disabled {
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+        cursor: not-allowed;
+        &.#{$prefix-cascader-columns}__column__item--selected,
+        &.#{$prefix-cascader-columns}__column__item--active {
+          background-color: var(--ks-color-primary-surface1);
+        }
+      }
+
+      &--disabled &--count {
+        background-color: var(--ks-color-neutral-fillDisabled);
+        color: var(--ks-color-primary-onFillDisabled);
+      }
+
+      &--count {
+        $size: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        border-radius: math.div($size, 2);
+        min-width: $size;
+        height: $size;
+        line-height: $size;
+        color: var(--ks-ref-color-white);
+        padding: 0 var(--ks-spacing-100);
+        @include ks-typeface('labelMd');
+        font-variant-numeric: lining-nums tabular-nums;
+        background-color: var(--ks-color-neutral-fill);
+      }
+    }
+    &__loadmore {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      height: 40px;
+      color: var(--ks-color-primary-fill);
+      &__loading {
+        color: var(--ks-color-primary-fill);
+      }
+      &__toload {
+        cursor: pointer;
+      }
+    }
+    &__loading {
+      color: var(--ks-color-primary-fill);
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__end {
+    display: inline-block;
+    width: 0;
+    height: 1px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+[dir='rtl'] .#{$prefix-cascader-columns}__column {
+  &:not(:nth-last-child(1)) {
+    border-right: none;
+  }
+  &:not(:nth-child(1)) {
+    border-right: 1px solid var(--ks-color-neutral-fillLow);
+  }
+}

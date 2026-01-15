@@ -1,0 +1,1 @@
+import{c as o}from"./p-BKnx-nkd.js";const t={START:"start",COMMON:"common",END:"end"};const n=o("button-group-context");export{n as B,t as P};

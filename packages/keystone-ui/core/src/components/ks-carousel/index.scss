@@ -1,0 +1,49 @@
+@use 'sass:math';
+@import '../../prestyles/index.scss';
+$prefix: 'carousel';
+:host {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.#{$prefix} {
+  &--arrow {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translate(0, -50%);
+    background-color: var(--ks-color-neutral-onFill);
+    border-radius: var(--ks-border-radius-md);
+    &__overlay--left {
+      box-shadow: var(--ks-elevation-shadow-level3);
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+    &__overlay--right {
+      box-shadow: var(--ks-elevation-shadow-level3);
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+    &__left:not(&__overlay--left) {
+      left: -32px;
+    }
+    &__right:not(&__overlay--right) {
+      right: -32px;
+    }
+
+    &--icon {
+      color: var(--ks-color-neutral-onSurface);
+    }
+  }
+
+  .first,
+  .last {
+    float: left;
+  }
+}
+
+.bulletin-mode {
+  position: absolute;
+  top: calc(202px + var(--ks-spacing-400));
+}

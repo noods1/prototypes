@@ -1,0 +1,14 @@
+@import '../../prestyles/index.scss';
+
+$prefix: dropdown-button;
+
+.#{$prefix} {
+  &__icon {
+    transform: rotate(0);
+    @include ks-transition(150, linear, transform);
+
+    &--reverse {
+      transform: rotate(180deg);
+    }
+  }
+}

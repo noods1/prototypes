@@ -1,0 +1,9 @@
+@use 'sass:math';
+@import '../../prestyles/index.scss';
+$prefix: 'transition';
+:host {
+  display: contents !important;
+}
+
+.#{$prefix} {
+}

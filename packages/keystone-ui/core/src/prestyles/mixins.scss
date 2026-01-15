@@ -1,0 +1,44 @@
+@use 'sass:list';
+@import './vars.scss';
+
+// 用于input作为类似radio、checkbox组件时记录check状态时，预设的input样式【隐藏】
+@mixin byted-check-wrapper() {
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -9999px;
+  margin: 0;
+  padding: 0;
+}
+
+// 纠正 icon 在当做文字与文字在inline排版情况下不对齐的问题
+@mixin iconfont-correct() {
+  margin-top: -0.2em;
+}
+
+@mixin ks-typeface($variant) {
+  font-size: var(--ks-text-#{$variant}-fontSize);
+  line-height: var(--ks-text-#{$variant}-lineHeight);
+  font-weight: var(--ks-text-#{$variant}-fontWeight);
+  letter-spacing: var(--ks-text-#{$variant}-letterSpacing);
+  font-family: var(--ks-text-#{$variant}-fontFamily);
+}
+
+@mixin ks-transition($duration, $easing, $property...) {
+  transition-property: $property;
+  transition-duration: #{$duration}ms;
+  transition-timing-function: $easing;
+}
+@mixin ks-transition-in($duration, $property...) {
+  @include ks-transition($duration, var(--ks-transition-easing-standardIn), $property...);
+}
+@mixin ks-transition-out($duration, $property...) {
+  @include ks-transition($duration, var(--ks-transition-easing-standardOut), $property...);
+}
+@mixin ks-transition-in-out($duration, $property...) {
+  @include ks-transition($duration, var(--ks-transition-easing-standardInOut), $property...);
+}

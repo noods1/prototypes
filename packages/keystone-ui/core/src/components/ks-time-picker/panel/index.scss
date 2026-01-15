@@ -1,0 +1,90 @@
+@import '../../../prestyles/index.scss';
+$prefix-time-panel: ks-time-panel;
+
+:host {
+  width: auto;
+  display: flex;
+}
+.#{$prefix-time-panel} {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  padding: var(--ks-spacing-100);
+  padding-bottom: 0;
+  width: fit-content;
+  border-radius: var(--ks-border-radius-md);
+  height: 260px;
+  &-minutes,
+  &-hours,
+  &-seconds {
+    box-sizing: border-box;
+    flex: 1;
+    // height: 240px;
+    overflow-y: overlay;
+    padding-bottom: 204px;
+    scrollbar-width: none;
+    // border-right: 1px solid var(--ks-color-neutral-fillLow);
+  }
+
+  &-am {
+    box-sizing: border-box;
+    flex: 1;
+    // height: 240px;
+    overflow-y: overlay;
+    // border-right: 1px solid var(--ks-color-neutral-fillLow);
+  }
+  &-minutes,
+  &-seconds,
+  &-am {
+    border-left: 1px solid var(--ks-color-neutral-fillLow);
+  }
+
+  &-item {
+    @include ks-typeface('bodySm');
+    font-variant-numeric: lining-nums tabular-nums;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    min-width: 64px;
+    &--active {
+      color: var(--ks-color-primary-onSurface);
+      background-color: var(--ks-color-primary-surface2);
+    }
+
+    &:not(&--disable):hover {
+      cursor: pointer;
+      background-color: var(--ks-color-neutral-surfaceHover);
+    }
+
+    &:not(&--disable):active {
+      cursor: pointer;
+      background-color: var(--ks-color-neutral-surfaceActive);
+    }
+
+    &--disable {
+      color: var(--ks-color-primary-onSurfaceDisabled);
+      cursor: not-allow;
+    }
+  }
+
+  &-seconds {
+    border-right: none;
+  }
+
+  &[dir='rtl'] {
+    .#{$prefix-time-panel} {
+      &-minutes,
+      &-hours,
+      &-seconds {
+        border-right-width: 0;
+        border-left: 1px solid var(--ks-color-neutral-fillLow);
+      }
+    }
+  }
+
+  &--timeZone {
+    @include ks-typeface('bodySm');
+  }
+}

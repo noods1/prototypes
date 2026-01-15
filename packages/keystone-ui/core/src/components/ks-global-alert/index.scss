@@ -1,0 +1,132 @@
+@import '../../prestyles/index.scss';
+
+$prefix: global-alert;
+$info-variants: 'warning', 'error', 'info', 'success', 'neutral';
+
+:host {
+  display: block;
+}
+
+@mixin generateAlertType {
+  @each $variant in $info-variants {
+    &--#{$variant} {
+      background-color: var(--ks-color-#{$variant}-surface2);
+
+      > slot[name='icon'] {
+        color: var(--ks-color-#{$variant}-fillLow);
+      }
+    }
+  }
+
+  // FIXME: remove info variant after confirming with designer
+  &--info {
+    background-color: var(--ks-color-primary-surface2);
+
+    > slot[name='icon'] {
+      color: var(--ks-color-primary-fillLow);
+    }
+  }
+}
+
+.#{$prefix} {
+  color: var(--ks-color-neutral-highOnSurface);
+  box-sizing: border-box;
+  pointer-events: auto;
+  display: flex;
+  overflow: hidden;
+  gap: var(--ks-spacing-200);
+
+  @include generateAlertType;
+
+  &__body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    gap: var(--ks-spacing-200);
+
+    &-content {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-link {
+      height: 20px;
+      display: flex;
+      align-items: center;
+      [ks-link]::part(self) {
+        @include ks-typeface('bodySm');
+      }
+    }
+  }
+
+  &__close {
+    [ks-button] {
+      &::part(self) {
+        border: none;
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+      }
+    }
+  }
+
+  &--horizontal {
+    height: 30px;
+    display: flex;
+    padding: 0 var(--ks-spacing-400);
+    align-items: center;
+    border-radius: var(--ks-border-radius-xl) var(--ks-border-radius-xl) 0 0;
+    .#{$prefix}__body {
+      flex-direction: row;
+      align-items: center;
+
+      &-title {
+        @include ks-typeface('labelMd');
+      }
+
+      &-content {
+        @include ks-typeface('labelSm');
+      }
+
+      &-link {
+        [ks-link]::part(self) {
+          @include ks-typeface('labelSm');
+        }
+      }
+    }
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+  }
+
+  //TODO: need to remove on deprecation
+  &--vertical {
+    padding: var(--ks-spacing-400);
+
+    > slot[name='icon'] {
+      display: inline-flex;
+      align-self: flex-start;
+    }
+
+    .#{$prefix}__body {
+      flex-direction: column;
+
+      &-title {
+        display: flex;
+        align-items: center;
+        @include ks-typeface('titleMd');
+      }
+
+      &-content {
+        @include ks-typeface('bodySm');
+      }
+    }
+  }
+  &--vertical > &__close {
+    height: 18px;
+    width: 18px;
+  }
+}

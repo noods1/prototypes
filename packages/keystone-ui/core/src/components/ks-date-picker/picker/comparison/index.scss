@@ -1,0 +1,40 @@
+@import '../../../../prestyles/index.scss';
+
+.picker__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid var(--ks-color__divider-default);
+  height: 42px;
+  padding: 0 16px;
+  column-gap: 8px;
+}
+
+[ks-date-comparison-panel]::part(self) {
+  box-shadow: none;
+}
+
+.picker__selected-container {
+  display: flex;
+  color: var(--ks-color__primary2__font-default);
+  font-size: var(--ks-size__font-md);
+  row-gap: 2px;
+  flex-direction: column;
+}
+
+.picker__selected-source {
+  font-size: var(--ks-size__font-sm);
+  line-height: 1;
+  color: var(--ks-color__primary2__font-default);
+}
+.picker__selected-target {
+  font-size: var(--ks-size__font-sm);
+  line-height: 1;
+  color: var(--ks-color__font-secondary);
+}
+
+.error__tips {
+  font-size: var(--ks-size__font-md);
+  color: var(--ks-color__danger__font-default);
+  padding: 0 20px;
+}

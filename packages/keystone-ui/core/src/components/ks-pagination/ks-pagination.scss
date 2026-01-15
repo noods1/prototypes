@@ -1,0 +1,61 @@
+@import '../../prestyles/index.scss';
+
+$prefix: pager;
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  display: flex;
+  align-items: center;
+
+  &--sm {
+    column-gap: var(--ks-spacing-100);
+  }
+
+  &--md {
+    column-gap: var(--ks-spacing-200);
+  }
+
+  &--dropdown {
+    column-gap: var(--ks-spacing-100);
+  }
+
+  &__record {
+    @include ks-typeface('labelSm');
+  }
+
+  &__item {
+    font-variant-numeric: lining-nums tabular-nums;
+
+    &[ks-button]::part(self) {
+      min-width: 24px;
+      padding: 0 calc(var(--ks-spacing-100) - 1px);
+    }
+
+    &--simple {
+      display: inline-flex;
+      align-items: center;
+      column-gap: var(--ks-spacing-100);
+      color: var(--ks-color-neutral-highOnSurface);
+
+      @include ks-typeface('bodySm');
+    }
+
+    &--active::part(self) {
+      border-color: var(--ks-color-primary-fill);
+      background-color: var(--ks-color-neutral-surface);
+    }
+  }
+
+  &__button-icon {
+    color: var(--ks-color-neutral-onSurface);
+
+    @include ks-transition-out(100, color);
+
+    &--disabled {
+      color: var(--ks-color-neutral-onSurfaceDisabled);
+    }
+  }
+}

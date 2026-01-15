@@ -1,0 +1,24 @@
+@import '../../prestyles/index.scss';
+
+$prefix-message-box: toast-box;
+
+:host {
+  --ks-comp-toast-gap: var(--ks-spacing-400);
+}
+
+.#{$prefix-message-box} {
+  z-index: 2;
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+  flex-direction: column;
+  top: var(--ks-comp-toast-gap);
+  right: var(--ks-comp-toast-gap);
+
+  &__wrap {
+    position: fixed;
+    width: 100vw;
+    inset: 0;
+    pointer-events: none;
+  }
+}

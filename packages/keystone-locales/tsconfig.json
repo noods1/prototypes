@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2017",
+    "outDir": "dist",
+    "paths": {
+      "@src/*": ["./src/*"]
+    },
+    "strict": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

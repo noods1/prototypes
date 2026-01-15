@@ -1,0 +1,103 @@
+@import '../../prestyles/index.scss';
+
+$prefix-form-item: form-item;
+
+:host {
+  /* form item height */
+  --ks-form-item-height-xs: 26px;
+  --ks-form-item-height-sm: 30px;
+  --ks-form-item-height-md: 34px;
+  --ks-form-item-height-lg: 38px;
+  --ks-form-item-height-xl: 42px;
+  --ks-form-item-height-xxl: 46px;
+
+  --ks-form-item-fontSize-xs: 12px;
+  --ks-form-item-fontSize-sm: 12px;
+  --ks-form-item-fontSize-md: 14px;
+  --ks-form-item-fontSize-lg: 14px;
+  --ks-form-item-fontSize-xl: 16px;
+  --ks-form-item-fontSize-xxl: 16px;
+}
+
+@mixin generateSize {
+  @each $size-key in $inputSizes {
+    &--size-#{$size-key} {
+      $font-size: var(--ks-form-item-fontSize-#{$size-key});
+      $formitem-h: var(--ks-form-item-height-#{$size-key});
+      .#{$prefix-form-item} {
+        &__label {
+          font-size: $font-size;
+          // line-height: $formitem-h;
+        }
+        &__control {
+          &__message {
+            font-size: calc($font-size - 2px);
+            min-height: calc($formitem-h - 14px);
+            padding: 4px 0 8px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.#{$prefix-form-item} {
+  display: flex;
+  gap: var(--ks-spacing-200);
+  flex-direction: column;
+  &__label {
+    display: flex;
+    box-sizing: border-box;
+    gap: 8px;
+    position: relative;
+    &--optional {
+      color: var(--ks-color-neutral-lowOnSurface);
+    }
+    &--empty {
+      display: none;
+    }
+  }
+  &__control {
+    flex: 1 1 auto;
+    &__message {
+      min-height: 20px;
+      padding: 4px 0 8px 0;
+      box-sizing: content-box;
+      &__text {
+        display: block;
+        color: var(--ks-color-neutral-onSurface);
+        &--warning {
+          color: var(--ks-color-warning-onSurface);
+        }
+        &--error {
+          color: var(--ks-color-error-onSurface);
+        }
+      }
+
+      &__icon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        border-radius: var(--ks-border-radius-full);
+        color: var(--ks-color-neutral-onFillLow);
+        background-color: var(--ks-color-neutral-fillLow);
+        margin-right: var(--ks-spacing-100);
+        &--warning {
+          color: var(--ks-color-neutral-onFillLow);
+          background-color: var(--ks-color-neutral-fillLow);
+        }
+        &--error {
+          color: var(--ks-color-error-onFillLow);
+          background-color: var(--ks-color-error-fillLow);
+        }
+        &--success {
+          color: var(--ks-color-success-onFillLow);
+          background-color: var(--ks-color-success-fillLow);
+        }
+      }
+    }
+  }
+  @include generateSize;
+}

@@ -1,0 +1,28 @@
+@import '../../prestyles/index.scss';
+
+$prefix: pager-jumper;
+
+:host {
+  display: block;
+}
+
+.#{$prefix} {
+  display: flex;
+  align-items: center;
+
+  &__input {
+    width: 64px;
+
+    &::part(append) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  &__button::part(self) {
+    border-color: var(--ks-color-neutral-fillLow);
+
+    &:hover {
+      border-color: var(--ks-color-neutral-fillLowHover);
+    }
+  }
+}

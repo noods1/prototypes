@@ -1,0 +1,49 @@
+{
+  "name": "@fe-infra/keystone-react",
+  "version": "0.19.24",
+  "license": "MIT",
+  "description": "React specific wrapper for @fe-infra/keystone",
+  "bugs": "https://code.byted.org/ad/byted-web-components/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://code.byted.org/ad/byted-web-components.git",
+    "directory": "keystone/react"
+  },
+  "keywords": [
+    "Keystone",
+    "Web Components",
+    "Design System",
+    "React"
+  ],
+  "sideEffects": [
+    "./dist/index.js"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run tsc",
+    "start": "tsc -w -p .",
+    "tsc": "tsc -p ."
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/react": "18.3.4",
+    "@types/react-dom": "18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@byted-keystone/react-output-target": "workspace:*",
+    "@fe-infra/keystone": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19"
+  }
+}

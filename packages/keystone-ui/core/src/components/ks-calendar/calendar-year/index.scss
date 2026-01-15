@@ -1,0 +1,20 @@
+@import '../../../prestyles/index.scss';
+
+$prefix: calendar-year;
+
+.#{$prefix} {
+  display: grid;
+  gap: var(--ks-spacing-200);
+  grid-template-columns: repeat(auto-fit, 268px);
+  justify-content: space-between;
+
+  &__header {
+    color: var(--ks-color-neutral-highOnSurface);
+    padding: var(--ks-spacing-200) var(--ks-spacing-400) 0;
+    @include ks-typeface('labelLg');
+  }
+
+  &__panel {
+    padding: var(--ks-spacing-200);
+  }
+}

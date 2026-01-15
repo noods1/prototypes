@@ -1,0 +1,15 @@
+$prefix-checkbox-group: checkbox-group;
+
+:host {
+  display: inline-flex;
+}
+
+.#{$prefix-checkbox-group} {
+  display: inline-flex;
+  column-gap: var(--ks-spacing-600);
+
+  &--vertical {
+    flex-direction: column;
+    row-gap: var(--ks-spacing-400);
+  }
+}

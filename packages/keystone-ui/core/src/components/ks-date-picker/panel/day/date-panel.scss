@@ -1,0 +1,343 @@
+@import '../../../../prestyles/index.scss';
+@import '../utils.scss';
+$panel-prefix: panel;
+
+@include generatePanel($panel-prefix, 7);
+
+@mixin generateOuterLine($border-radius) {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 0;
+  border-radius: $border-radius;
+  border: 1px dashed var(--ks-color-neutral-onSurface);
+  z-index: 2;
+}
+
+.#{$panel-prefix} {
+  &__header-title {
+    display: inline-flex;
+    padding: 0 2px;
+    @include ks-typeface('labelLg');
+
+    &:hover {
+      color: var(--ks-color-primary-onSurface);
+      cursor: pointer;
+    }
+    &:active {
+      color: var(--ks-color-primary-onSurfaceActive);
+    }
+    &-container {
+      display: inline-flex;
+      flex-direction: row;
+      &--year-first {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &__header-icon {
+    padding: 2px;
+    & + & {
+      padding-left: 4px;
+    }
+    color: var(--ks-color-neutral-onSurface);
+    &:hover {
+      color: var(--ks-color-neutral-onSurfaceHover);
+    }
+    &:focus,
+    &:active {
+      color: var(--ks-color-neutral-onSurfaceHover);
+    }
+  }
+
+  &__header--center {
+    height: auto;
+    border-bottom: none;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(7, $cell-w);
+    grid-template-rows: repeat(6, $cell-h);
+    place-content: space-around space-between;
+    &-in-range {
+      background-color: var(--ks-color-primary-surface2);
+      border-color: var(--ks-color-primary-surface2);
+      border-top-width: 2px;
+      border-top-color: white;
+      border-top-style: solid;
+      border-bottom-width: 2px;
+      border-bottom-color: white;
+      border-bottom-style: solid;
+    }
+    &-offset {
+      border-top: 1px dashed var(--ks-color-neutral-onSurface);
+      border-bottom: 1px dashed var(--ks-color-neutral-onSurface);
+      z-index: 3;
+
+      &.#{$panel-prefix}__content-cell-end {
+        .#{$panel-prefix}__item {
+          border-right: 1px dashed var(--ks-color-neutral-onSurface);
+        }
+      }
+
+      &:not(&--first, &--last) {
+        .#{$panel-prefix}__item--active {
+          &-first,
+          &-second {
+            --before-border: 1px dashed var(--ks-color-neutral-onSurface) !important;
+            border-top: 1px dashed var(--ks-color-neutral-onSurface);
+            border-bottom: 1px dashed var(--ks-color-neutral-onSurface);
+          }
+        }
+      }
+
+      &.#{$panel-prefix}__content-cell-start {
+        .#{$panel-prefix}__item {
+          border-left: 1px dashed var(--ks-color-neutral-onSurface);
+        }
+      }
+
+      &--first {
+        &:not(.#{$panel-prefix}__content-cell-end, .#{$panel-prefix}__content-offset--last) {
+          &::before {
+            @include generateOuterLine(4px 0 0 4px);
+            border-right-color: transparent;
+            left: $cell-gap;
+          }
+
+          .#{$panel-prefix}__item {
+            &:hover {
+              border-color: transparent;
+            }
+          }
+        }
+
+        &.#{$panel-prefix}__content-cell-start::before {
+          left: 0;
+        }
+
+        &.#{$panel-prefix}__content-cell-end,
+        &.#{$panel-prefix}__content-offset--last {
+          &:hover {
+            .#{$panel-prefix}__item {
+              border: 1px dashed var(--ks-color-neutral-onSurface);
+            }
+          }
+          .#{$panel-prefix}__item {
+            border: 1px dashed var(--ks-color-neutral-onSurface);
+          }
+        }
+
+        &:not(
+            .#{$panel-prefix}__content-cell-end,
+            .#{$panel-prefix}__content-cell-start,
+            .#{$panel-prefix}__content-offset--last
+          ),
+        &.#{$panel-prefix}__content-cell-start {
+          .#{$panel-prefix}__item {
+            border-right-color: transparent;
+            border-radius: $cell-radius 0 0 $cell-radius;
+          }
+        }
+      }
+
+      .#{$panel-prefix}__item {
+        &:not(&--active):hover {
+          color: inherit;
+        }
+      }
+
+      &--last.#{$panel-prefix}__content-cell-end {
+        .#{$panel-prefix}__item {
+          border-right-color: transparent;
+          border-radius: 0 $cell-radius $cell-radius 0;
+        }
+      }
+
+      &--last:not(.#{$panel-prefix}__content-cell-start, .#{$panel-prefix}__content-offset--first) {
+        &::before {
+          @include generateOuterLine(0 $cell-radius $cell-radius 0);
+          border-left-color: transparent;
+          right: $cell-gap;
+        }
+        &.#{$panel-prefix}__content-cell-end::before {
+          right: 0;
+        }
+      }
+
+      &--last {
+        position: relative;
+        z-index: 2;
+
+        &:not(
+            .#{$panel-prefix}__content-cell-end,
+            .#{$panel-prefix}__content-cell-start,
+            .#{$panel-prefix}__content-offset--first
+          ) {
+          .#{$panel-prefix}__item {
+            border-left-color: transparent;
+            border-radius: 0 $cell-radius $cell-radius 0;
+          }
+        }
+      }
+
+      &--first,
+      &--last {
+        border: none;
+      }
+    }
+
+    &-cell {
+      text-align: center;
+      display: flex;
+      // margin: -$cell-gap;
+      height: $cell-h;
+      box-sizing: border-box;
+      position: relative;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      @include ks-typeface('bodySm');
+      &--disabled {
+        cursor: not-allowed;
+      }
+      &:not(.#{$panel-prefix}__content-offset) {
+        &:hover .#{$panel-prefix}__item {
+          &:not(.#{$panel-prefix}__item--disabled, .#{$panel-prefix}__item--active) {
+            background-color: var(--ks-color-neutral-surfaceHover);
+          }
+        }
+        &:active .#{$panel-prefix}__item {
+          &:not(.#{$panel-prefix}__item--disabled, .#{$panel-prefix}__item--active) {
+            background-color: var(--ks-color-neutral-surfaceActive);
+          }
+        }
+        .#{$panel-prefix}__item--today {
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            background-color: var(--ks-color-neutral-onFill);
+            width: var(--ks-spacing-100);
+            height: var(--ks-spacing-100);
+            border-radius: var(--ks-border-radius-full);
+          }
+          &:not(.#{$panel-prefix}__item--disabled, .#{$panel-prefix}__item--active, .#{$panel-prefix}__gray-item) {
+            position: relative;
+            color: var(--ks-color-primary-onSurface);
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 2px;
+              left: 50%;
+              transform: translateX(-50%);
+              display: block;
+              background-color: var(--ks-color-primary-onSurface);
+              width: var(--ks-spacing-100);
+              height: var(--ks-spacing-100);
+              border-radius: var(--ks-border-radius-full);
+            }
+          }
+        }
+      }
+      &.#{$panel-prefix}__content-in-range:not(.#{$panel-prefix}__content-offset) {
+        &:hover .#{$panel-prefix}__item {
+          &:not(.#{$panel-prefix}__item--disabled, .#{$panel-prefix}__item--active) {
+            background-color: var(--ks-color-primary-surface2);
+          }
+        }
+        &:active .#{$panel-prefix}__item {
+          &:not(.#{$panel-prefix}__item--disabled, .#{$panel-prefix}__item--active) {
+            background-color: var(--ks-color-primary-surface2);
+          }
+        }
+      }
+      &-start {
+        padding: 0;
+        margin-left: 0;
+        margin-right: -$cell-gap;
+        padding-right: $cell-gap;
+        border-radius: $cell-radius 0 0 $cell-radius;
+      }
+      &-end {
+        padding: 0;
+        margin-right: 0;
+        margin-left: -$cell-gap;
+        padding-left: $cell-gap;
+        border-radius: 0 $cell-radius $cell-radius 0;
+      }
+      &-end.#{$panel-prefix}__content-offset--first,
+      &-start.#{$panel-prefix}__content-offset--last {
+        .#{$panel-prefix}__item {
+          border: 1px dashed var(--ks-color-neutral-onSurface);
+          border-radius: $cell-radius;
+        }
+      }
+      &-gray {
+        color: var(--ks-color-neutral-onSurfaceDisabled);
+      }
+
+      &:not(&-start) {
+        .#{$panel-prefix}__item--active {
+          &-second {
+            --before-border: 1px solid var(--ks-color-primary-surface2);
+            border-radius: 0 $cell-radius $cell-radius 0;
+            &::before {
+              content: ' ';
+              position: absolute;
+              width: 2px;
+              height: 100%;
+              left: -1px; // -1px 为父元素边框与此伪类元素的差值
+              transform: translateX(-100%);
+              background-color: var(--ks-color-primary-surface2);
+              border-top: var(--before-border);
+              border-bottom: var(--before-border);
+            }
+          }
+        }
+      }
+      &:not(&-end) {
+        .#{$panel-prefix}__item--active {
+          &-first {
+            --before-border: 1px solid var(--ks-color-primary-surface2);
+            border-radius: $cell-radius 0 0 $cell-radius;
+            &::before {
+              content: ' ';
+              position: absolute;
+              width: 2px;
+              height: 100%;
+              right: -1px; // -1px 为父元素边框与此伪类元素的差值
+              transform: translateX(100%);
+              background-color: var(--ks-color-primary-surface2);
+              border-top: var(--before-border);
+              border-bottom: var(--before-border);
+            }
+          }
+        }
+      }
+    }
+
+    &-week {
+      @include ks-typeface('labelLg');
+      color: var(--ks-color-neutral-onSurface);
+    }
+  }
+
+  &__item--active {
+    position: relative;
+  }
+
+  &__item,
+  &__gray-item {
+    width: calc(100% - var(--ks-spacing-100));
+    height: calc(100% - var(--ks-spacing-100));
+    box-sizing: border-box;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+}

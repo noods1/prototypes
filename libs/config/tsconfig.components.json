@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": false,
+
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "ES2022",
+      // https://stenciljs.com/docs/testing/playwright/overview
+      "ESNext.Disposable",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "strict": true,
+    "strictBindCallApply": true,
+    // "strictBuiltinIteratorReturn": true, // 需要 typescript 5.6+, @stencil/core 4.36.2 里用的 typescript 还没升级到
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true
+  }
+}
