@@ -33,10 +33,6 @@
     {
       "source": "/",
       "destination": "/index.html"
-    },
-    {
-      "source": "/((?!adpreview-multishow|catalog-creation-proto|media_crop_catalog_manager|assets|.*\\.(js|css|woff|woff2|png|jpg|jpeg|gif|svg|mp4|webp)).*)",
-      "destination": "/index.html"
     }
   ],
   "headers": [
