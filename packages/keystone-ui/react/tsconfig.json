@@ -3,7 +3,12 @@
   "compilerOptions": {
     "outDir": "./dist",
     "declarationDir": "./dist/types",
-    "skipLibCheck": true // FIXME 在 core 项目中的 @ts-expect-error 问题都被修复后移除
+    "skipLibCheck": true, // FIXME 在 core 项目中的 @ts-expect-error 问题都被修复后移除
+    "baseUrl": ".",
+    "paths": {
+      "@fe-infra/keystone": ["../core/src/index.ts", "../core/dist/types/index.d.ts"],
+      "@fe-infra/keystone/*": ["../core/src/*", "../core/dist/types/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/__tests__/**"]

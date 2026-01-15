@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "pnpm --filter @fe-infra/keystone-design-tokens run build 2>/dev/null || true && pnpm --filter @fe-infra/keystone-react run build 2>/dev/null || true && vite build && node scripts/build-all.js",
+    "build": "pnpm --filter @fe-infra/keystone-design-tokens run build 2>/dev/null || true && pnpm --filter @fe-infra/keystone-locales run build 2>/dev/null || true && pnpm --filter @byted-keystone/react-output-target run build 2>/dev/null || true && pnpm --filter @byted-keystone/vue-output-target run build 2>/dev/null || true && pnpm --filter @fe-infra/keystone run build:stencil && pnpm --filter @fe-infra/keystone-react run build && vite build && node scripts/build-all.js",
     "build:keystone": "pnpm --filter @fe-infra/keystone-locales run build 2>/dev/null || true && pnpm --filter @byted-keystone/react-output-target run build 2>/dev/null || true && pnpm --filter @byted-keystone/vue-output-target run build 2>/dev/null || true && pnpm --filter @fe-infra/keystone run build:stencil 2>/dev/null || true && pnpm --filter @fe-infra/keystone-react run build 2>/dev/null || true",
     "build:launcher": "vite build",
     "preview": "vite preview",
