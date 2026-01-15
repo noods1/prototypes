@@ -4,7 +4,8 @@ import { join } from 'node:path'
 
 const apps = [
   'adpreview-multishow',
-  'catalog-creation-proto'
+  'catalog-creation-proto',
+  'media_crop_catalog_manager'
 ]
 
 console.log('\nBuilding all apps...')
