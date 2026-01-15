@@ -23,14 +23,6 @@
       "destination": "/catalog-creation-proto/index.html"
     },
     {
-      "source": "/media_crop_catalog_manager",
-      "destination": "/media_crop_catalog_manager/index.html"
-    },
-    {
-      "source": "/media_crop_catalog_manager/:path*",
-      "destination": "/media_crop_catalog_manager/index.html"
-    },
-    {
       "source": "/",
       "destination": "/index.html"
     }
