@@ -8,14 +8,16 @@
     "declaration": true,
     "experimentalDecorators": true,
     "lib": ["dom", "es2017", "esnext.array"],
+    "types": ["node"],
     "moduleResolution": "node",
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "outDir": "dist",
     "jsx": "preserve",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "src/resources"]
