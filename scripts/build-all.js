@@ -8,6 +8,22 @@ const apps = [
   'media_crop_catalog_manager'
 ]
 
+// Build keystone packages first if needed
+console.log('\nChecking keystone packages...')
+const keystoneReactPath = join(process.cwd(), 'packages', 'keystone-ui', 'react', 'src', 'components')
+const hasComponents = existsSync(keystoneReactPath) && existsSync(join(keystoneReactPath, 'KsGlobalAlert.ts'))
+
+if (!hasComponents) {
+  console.log('Keystone components not found, building core package first...')
+  try {
+    const corePath = join(process.cwd(), 'packages', 'keystone-ui', 'core')
+    execSync('pnpm run build:stencil', { stdio: 'inherit', cwd: corePath })
+    console.log('✓ Core package built, components generated')
+  } catch (error) {
+    console.error('Warning: Core build failed, continuing anyway...')
+  }
+}
+
 console.log('\nBuilding all apps...')
 for (const app of apps) {
   const appPath = join(process.cwd(), 'apps', app)

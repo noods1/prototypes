@@ -8,36 +8,32 @@ const keystoneReactResolver = () => {
   const keystoneReactPath = path.resolve(__dirname, '../../packages/keystone-ui/react')
   return {
     name: 'keystone-react-resolver',
+    enforce: 'pre', // Run before other resolvers
     resolveId(id, importer) {
-      // Handle relative imports from keystone-react (both src and dist)
+      // Handle relative imports from keystone-react
       if (importer && importer.includes('keystone-ui/react')) {
-        if (id.startsWith('./components/') || id.startsWith('../components/')) {
-          // Determine if we're in src or dist based on importer
-          const componentName = id.replace('./components/', '').replace('../components/', '')
-          
-          // Try src first (since alias points to src)
+        // Handle component imports
+        if (id.startsWith('./components/')) {
+          const componentName = id.replace('./components/', '')
           const srcPath = path.resolve(keystoneReactPath, 'src', 'components', componentName + '.ts')
+          const distPath = path.resolve(keystoneReactPath, 'dist', 'components', componentName + '.js')
+          
           if (existsSync(srcPath)) {
             return srcPath
           }
-          
-          // Fallback to dist
-          const distPath = path.resolve(keystoneReactPath, 'dist', 'components', componentName + '.js')
           if (existsSync(distPath)) {
             return distPath
           }
         }
-        if (id.startsWith('./hooks/') || id.startsWith('../hooks/')) {
-          const hookName = id.replace('./hooks/', '').replace('../hooks/', '')
-          
-          // Try src first
+        // Handle hook imports
+        if (id.startsWith('./hooks/')) {
+          const hookName = id.replace('./hooks/', '')
           const srcPath = path.resolve(keystoneReactPath, 'src', 'hooks', hookName + '.ts')
+          const distPath = path.resolve(keystoneReactPath, 'dist', 'hooks', hookName + '.js')
+          
           if (existsSync(srcPath)) {
             return srcPath
           }
-          
-          // Fallback to dist
-          const distPath = path.resolve(keystoneReactPath, 'dist', 'hooks', hookName + '.js')
           if (existsSync(distPath)) {
             return distPath
           }
