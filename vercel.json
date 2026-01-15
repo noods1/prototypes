@@ -23,11 +23,19 @@
       "destination": "/catalog-creation-proto/index.html"
     },
     {
+      "source": "/media_crop_catalog_manager",
+      "destination": "/media_crop_catalog_manager/index.html"
+    },
+    {
+      "source": "/media_crop_catalog_manager/:path*",
+      "destination": "/media_crop_catalog_manager/index.html"
+    },
+    {
       "source": "/",
       "destination": "/index.html"
     },
     {
-      "source": "/((?!adpreview-multishow|catalog-creation-proto|assets|.*\\.(js|css|woff|woff2|png|jpg|jpeg|gif|svg|mp4|webp)).*)",
+      "source": "/((?!adpreview-multishow|catalog-creation-proto|media_crop_catalog_manager|assets|.*\\.(js|css|woff|woff2|png|jpg|jpeg|gif|svg|mp4|webp)).*)",
       "destination": "/index.html"
     }
   ],
