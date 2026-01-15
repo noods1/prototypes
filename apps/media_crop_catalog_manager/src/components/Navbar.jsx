@@ -1,6 +1,6 @@
 function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[150] bg-[#121212] h-[64px] flex items-center justify-between px-6">
+    <nav className="fixed top-[40px] left-0 right-0 z-[150] bg-[#121212] h-[64px] flex items-center justify-between px-6">
       {/* Left side - Branding */}
       <div className="flex items-center gap-3">
         {/* TikTok Logo */}
