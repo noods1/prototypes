@@ -1,5 +1,3 @@
-import React from 'react';
-
 function BackToLauncher() {
   const handleBackToLauncher = () => {
     window.location.href = '/';
