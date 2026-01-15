@@ -16,12 +16,6 @@ const apps = [
     displayName: 'Catalog Creation',
     description: 'Catalog creation prototype',
     url: getAppUrl('catalog-creation-proto')
-  },
-  {
-    name: 'media_crop_catalog_manager',
-    displayName: 'Media crop catalog manager',
-    description: 'Adding crop functionality to media files on catalog manager',
-    url: getAppUrl('media_crop_catalog_manager')
   }
 ]
 
