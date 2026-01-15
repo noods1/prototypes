@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "npm install --legacy-peer-deps && npm run build",
+  "buildCommand": "corepack enable && corepack prepare pnpm@10.21.0 --activate && pnpm install --no-frozen-lockfile && pnpm run build",
   "outputDirectory": "dist",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install --legacy-peer-deps",
+  "devCommand": "pnpm run dev",
+  "installCommand": "corepack enable && corepack prepare pnpm@10.21.0 --activate && pnpm install --no-frozen-lockfile",
   "framework": "vite",
   "rewrites": [
     {

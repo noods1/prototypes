@@ -12,15 +12,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/build-all.js",
+    "build:keystone": "pnpm --filter @fe-infra/keystone-locales run build 2>/dev/null || true && pnpm --filter @byted-keystone/react-output-target run build 2>/dev/null || true && pnpm --filter @byted-keystone/vue-output-target run build 2>/dev/null || true && pnpm --filter @fe-infra/keystone run build:stencil 2>/dev/null || true && pnpm --filter @fe-infra/keystone-react run build 2>/dev/null || true",
     "build:launcher": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "dev:adpreview": "npm run dev --workspace=apps/adpreview-multishow",
-    "dev:catalog": "npm run dev --workspace=apps/catalog-creation-proto",
+    "dev:adpreview": "pnpm --filter apps/adpreview-multishow run dev",
+    "dev:catalog": "pnpm --filter apps/catalog-creation-proto run dev",
     "dev:all": "npm-run-all --parallel dev dev:adpreview dev:catalog",
-    "build:adpreview": "npm run build --workspace=apps/adpreview-multishow",
-    "build:catalog": "npm run build --workspace=apps/catalog-creation-proto",
-    "install:all": "npm install"
+    "build:adpreview": "pnpm --filter apps/adpreview-multishow run build",
+    "build:catalog": "pnpm --filter apps/catalog-creation-proto run build",
+    "install:all": "pnpm install --no-frozen-lockfile"
   },
   "dependencies": {
     "react": "^19.2.3",
@@ -42,6 +43,7 @@
     "tailwindcss": "^4.1.18",
     "vite": "^7.2.4"
   },
+  "packageManager": "pnpm@10.21.0",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"

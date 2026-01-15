@@ -18,7 +18,7 @@ for (const app of apps) {
 
   console.log(`\nBuilding ${app}...`)
   try {
-    execSync('npm run build', { stdio: 'inherit', cwd: appPath })
+    execSync('pnpm run build', { stdio: 'inherit', cwd: appPath })
     
     // Copy built app to dist directory
     const appDist = join(appPath, 'dist')
