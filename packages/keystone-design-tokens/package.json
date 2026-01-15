@@ -7,9 +7,8 @@
   "main": "./cjs/index.js",
   "style": "./index.css",
   "scripts": {
-    "build": "node ./build/buildDesignTokens.mjs && tsc && npm run build:cjs && npm run format",
+    "build": "tsc && pnpm run build:cjs",
     "build:cjs": "tsc --outdir cjs --module CommonJS --declaration false",
-    "format": "emox prettier . --write",
     "prepublishOnly": "npm run build"
   },
   "files": [
