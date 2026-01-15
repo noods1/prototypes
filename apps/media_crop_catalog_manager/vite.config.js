@@ -12,8 +12,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@fe-infra/keystone-design-tokens': path.resolve(__dirname, '../../packages/keystone-design-tokens'),
-      '@fe-infra/keystone-react': path.resolve(__dirname, '../../packages/keystone-ui/react'),
+      '@fe-infra/keystone-react': path.resolve(__dirname, '../../packages/keystone-ui/react/dist'),
       '@fe-infra/keystone': path.resolve(__dirname, '../../packages/keystone-ui/core')
     }
+  },
+  optimizeDeps: {
+    exclude: ['@fe-infra/keystone-react', '@fe-infra/keystone']
   }
 })
